@@ -1,0 +1,17 @@
+{
+  "name": "lead-to-proposal",
+  "version": "1.0.0",
+  "description": "Find local businesses that need a better website and turn them into proposals and clients.",
+  "type": "module",
+  "bin": { "l2p": "bin/l2p.mjs" },
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "test": "node --test test/node/ && npm run test:py",
+    "test:node": "node --test test/node/",
+    "test:py": "${L2P_PYTHON:-python3} -m pytest -q test/python",
+    "demo": "node bin/l2p.mjs demo"
+  },
+  "license": "MIT",
+  "author": "Mohammad Jamali",
+  "repository": { "type": "git", "url": "https://github.com/mjamali97/lead-to-proposal.git" }
+}

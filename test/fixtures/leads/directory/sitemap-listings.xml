@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>{{BASE}}/listing/northwind-plumbing</loc></url>
+  <url><loc>{{BASE}}/listing/bluebird-bakery</loc></url>
+  <url><loc><![CDATA[{{BASE}}/listing/redwood-dental]]></loc></url>
+  <url><loc>{{BASE}}/listing/hidden-roofing</loc></url>
+</urlset>

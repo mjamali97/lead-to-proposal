@@ -1,0 +1,21 @@
+[
+  {
+    "searchString": "plumber", "title": "Northwind Plumbing", "placeId": "ChIJfictional0001", "categoryName": "Plumber", "categories": ["Plumber", "Drainage service"],
+    "address": "100 Example St, Austin, TX 78701", "street": "100 Example St", "city": "Austin", "state": "Texas", "postalCode": "78701", "countryCode": "US",
+    "location": { "lat": 30.2673, "lng": -97.7430 }, "phone": "(512) 555-0123", "phoneUnformatted": "+15125550123",
+    "website": "https://northwind-plumbing.example/", "url": "https://www.google.com/maps/place/?q=place_id:ChIJfictional0001",
+    "totalScore": 4.7, "reviewsCount": 132, "permanentlyClosed": false, "temporarilyClosed": false, "claimThisBusiness": true, "imagesCount": 41,
+    "openingHours": [{ "day": "Monday", "hours": "8 AM to 6 PM" }, { "day": "Sunday", "hours": "Closed" }],
+    "reviews": [
+      { "publishedAtDate": "2026-08-01T10:00:00.000Z", "stars": 5, "text": "Fast and tidy.", "responseFromOwnerText": "Thank you!" },
+      { "publishedAtDate": "2026-07-12T10:00:00.000Z", "stars": 3, "text": "Arrived late.", "responseFromOwnerText": null }
+    ]
+  },
+  {
+    "searchString": "plumber", "title": "Old Mill Pipes", "placeId": "ChIJfictional0002", "categoryName": "Plumber",
+    "address": "9 Sample Rd, Austin, TX 78702", "city": "Austin", "state": "Texas", "postalCode": "78702", "countryCode": "US",
+    "location": { "lat": 30.26, "lng": -97.72 }, "phone": "(512) 555-0161", "phoneUnformatted": "+15125550161", "website": "",
+    "url": "https://www.google.com/maps/place/?q=place_id:ChIJfictional0002", "totalScore": 4.1, "reviewsCount": 8,
+    "permanentlyClosed": true, "claimThisBusiness": false, "imagesCount": 2
+  }
+]

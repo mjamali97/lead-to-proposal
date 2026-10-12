@@ -1,0 +1,380 @@
+{
+  "_note": "Fictional demo package. Northwind Plumbing, its people, phone (555 number), domain (.example) and reviews are invented. Real job.json files are written by `l2p proposals queue`.",
+  "id": "b_0d3f5a9c2e71",
+  "slug": "northwind-plumbing",
+  "folder": "Northwind Plumbing",
+  "created": "2026-10-12",
+  "date": "2026-10-12",
+  "date_label": "October 2026",
+  "language": "en",
+  "secondary_language": "",
+  "business": {
+    "id": "b_0d3f5a9c2e71",
+    "name": "Northwind Plumbing",
+    "names": [
+      "Northwind Plumbing"
+    ],
+    "category": "Plumber",
+    "category_group": "trades",
+    "ticket": "premium",
+    "address": "1200 Example Ave",
+    "city": "Austin",
+    "region": "TX",
+    "postcode": "78701",
+    "country": "US",
+    "lat": 30.2449,
+    "lng": -97.7699,
+    "phones": [
+      {
+        "e164": "+15125550142",
+        "key": "1:5125550142",
+        "ext": "",
+        "type": "main",
+        "raw": "(512) 555-0142",
+        "valid": true
+      }
+    ],
+    "emails": [
+      "hello@northwind-plumbing.example"
+    ],
+    "website": "https://northwind-plumbing.example/",
+    "website_kind": "site",
+    "socials": {
+      "instagram": "",
+      "facebook": "",
+      "linkedin": "",
+      "tiktok": "",
+      "youtube": "",
+      "x": "",
+      "whatsapp": "",
+      "telegram": ""
+    },
+    "owner": {
+      "name": "Dana Whitfield",
+      "role": "Owner, master plumber",
+      "source": "about page",
+      "confidence": "high"
+    },
+    "hours": "Mo-Sa 07:00-19:00",
+    "sources": [
+      {
+        "source": "demo",
+        "url": "https://www.openstreetmap.org/",
+        "id": "demo:northwind"
+      }
+    ],
+    "google": {
+      "place_id": "demo-place-id",
+      "name": "Northwind Plumbing",
+      "rating": 4.8,
+      "reviews": 127,
+      "phone": "+15125550142",
+      "website": "https://northwind-plumbing.example/",
+      "maps_url": "https://www.google.com/maps/search/?api=1&query=Northwind+Plumbing+Austin",
+      "categories": [
+        "Plumber",
+        "Water heater installation service"
+      ],
+      "status": "OPERATIONAL",
+      "claimed": true,
+      "photos_count": 18,
+      "match": {
+        "basis": "phone",
+        "confidence": "high"
+      },
+      "reviews_sample": [
+        {
+          "date": "2026-08-03",
+          "rating": 5,
+          "text": "Our water heater died on a Sunday night. They were here Monday morning and had it replaced by lunch.",
+          "owner_reply": true
+        },
+        {
+          "date": "2026-06-19",
+          "rating": 5,
+          "text": "Explained the problem, gave me the price up front and stuck to it. Tidy work, too.",
+          "owner_reply": false
+        },
+        {
+          "date": "2026-05-02",
+          "rating": 5,
+          "text": "Third time we have used Northwind. Friendly, on time, and the kitchen drain finally drains.",
+          "owner_reply": true
+        }
+      ]
+    },
+    "flags": [],
+    "site_key": "northwind-plumbing.example",
+    "site_state": "ok",
+    "seo_score": 41,
+    "seo_band": "Needs significant work",
+    "seo_issues": [
+      "Page title is just \"Home\"",
+      "No main headline that says what you do",
+      "Not set up for phone screens",
+      "No business details for Google (structured data)",
+      "Photos have no descriptions"
+    ],
+    "need": 61,
+    "interest": 44,
+    "priority": 54,
+    "tier": "A",
+    "need_reasons": [
+      {
+        "id": "form_broken",
+        "points": 14,
+        "text": "The quote form shows an error instead of sending"
+      },
+      {
+        "id": "not_mobile",
+        "points": 12,
+        "text": "The site is not built for phones"
+      },
+      {
+        "id": "old_footer",
+        "points": 8,
+        "text": "Footer still says 2017"
+      }
+    ],
+    "interest_reasons": [
+      {
+        "id": "reviews",
+        "points": 18,
+        "text": "4.8 stars from 127 Google reviews"
+      }
+    ],
+    "negatives": [],
+    "disqualified": null,
+    "phone_check": {
+      "verdict": "MATCH",
+      "site": "+15125550142",
+      "google": "+15125550142"
+    },
+    "why_they_need_you": "Customers who find them on Google land on a 2017 site with a broken quote form.",
+    "why_they_care": "Premium-ticket trade with strong reviews that the website does not show.",
+    "risk": "",
+    "channel": "phone",
+    "outreach_rule": "Call on a weekday morning."
+  },
+  "site": {
+    "url": "https://northwind-plumbing.example/",
+    "final_url": "https://northwind-plumbing.example/",
+    "status": 200,
+    "ok": true,
+    "state": "ok",
+    "pages": [
+      {
+        "url": "https://northwind-plumbing.example/",
+        "status": 200,
+        "kind": "home"
+      },
+      {
+        "url": "https://northwind-plumbing.example/services.html",
+        "status": 200,
+        "kind": "services"
+      },
+      {
+        "url": "https://northwind-plumbing.example/contact.html",
+        "status": 200,
+        "kind": "contact"
+      }
+    ],
+    "signals": {
+      "https": true,
+      "viewport": false,
+      "tel_link": false,
+      "form": true,
+      "booking_widget": "",
+      "chat_widget": "",
+      "builder": "",
+      "footer_year": 2017,
+      "ua_tag": false,
+      "gtm": false,
+      "google_ads": false,
+      "meta_pixel": false,
+      "tiktok_pixel": false,
+      "incumbent_agency": "",
+      "no_cem_statement": false,
+      "coming_soon": false,
+      "parked": false,
+      "has_impressum": false,
+      "wayback_first": null,
+      "wayback_last_change": null
+    },
+    "seo": {
+      "score": 41,
+      "band": "Needs significant work",
+      "measured_pct": 90,
+      "categories": {
+        "crawl": 90,
+        "meta": 40,
+        "headings": 30,
+        "images": 20,
+        "perf": 55,
+        "schema": 0,
+        "links": 60,
+        "mobile": 0
+      },
+      "issues": [
+        "Page title is just \"Home\"",
+        "No main headline that says what you do",
+        "Not set up for phone screens",
+        "No business details for Google (structured data)",
+        "Photos have no descriptions"
+      ]
+    },
+    "phones": [],
+    "emails": [
+      {
+        "email": "hello@northwind-plumbing.example",
+        "page": "https://northwind-plumbing.example/contact.html"
+      }
+    ],
+    "socials": {},
+    "owner": {
+      "name": "Dana Whitfield",
+      "role": "Owner, master plumber",
+      "source": "about page",
+      "confidence": "high"
+    },
+    "brand": {
+      "logo": [
+        {
+          "url": "https://northwind-plumbing.example/images/logo.png",
+          "source": "header-img",
+          "w": 760,
+          "h": 200
+        }
+      ],
+      "colors": [
+        {
+          "hex": "#2B5D8A",
+          "weight": 14,
+          "source": "inline"
+        },
+        {
+          "hex": "#1D4466",
+          "weight": 9,
+          "source": "inline"
+        },
+        {
+          "hex": "#D9822B",
+          "weight": 3,
+          "source": "inline"
+        }
+      ],
+      "fonts": [
+        "Georgia",
+        "Verdana"
+      ],
+      "photos": [
+        {
+          "url": "https://northwind-plumbing.example/images/van.jpg",
+          "alt": "",
+          "w": 1200,
+          "h": 900,
+          "page": "https://northwind-plumbing.example/",
+          "kind": "hero"
+        }
+      ],
+      "tagline": "",
+      "description": "We are a family owned company serving Austin since 1998."
+    },
+    "crawled_at": "2026-10-12"
+  },
+  "agency": {
+    "name": "Fieldwork Studio",
+    "contact_name": "Alex Rivera",
+    "phone": "+1 512 555 0100",
+    "email": "hello@fieldwork.example",
+    "website": "fieldwork.example",
+    "logo": "../agency-logo.png",
+    "color": "#2F5D50"
+  },
+  "market": {
+    "country": "US",
+    "currency": "USD",
+    "currency_symbol": "$",
+    "language": "en",
+    "paper": "Letter",
+    "timezone": "America/Chicago"
+  },
+  "offer": {
+    "summary": "A new mobile-first website built from the business's own brand, live in 14 days",
+    "plans": [
+      {
+        "name": "Launch",
+        "price": "$750",
+        "tag": "Most popular",
+        "rec": true,
+        "items": [
+          "This exact page, finished with you",
+          "Call, text and quote buttons",
+          "Live in 14 days"
+        ]
+      },
+      {
+        "name": "Growth",
+        "price": "$1,500",
+        "tag": "Get found on Google",
+        "rec": false,
+        "items": [
+          "Everything in Launch",
+          "Google Business Profile tune-up",
+          "Local service pages"
+        ]
+      },
+      {
+        "name": "Custom",
+        "price": "Quote",
+        "tag": "Bigger projects",
+        "rec": false,
+        "items": [
+          "Booking, ordering or several locations",
+          "Scoped on a call"
+        ]
+      }
+    ],
+    "care_plan": "$39/month hosting, small edits and Google profile updates",
+    "delivery_days": 14
+  },
+  "strings": {},
+  "facts": {
+    "industry_group": "trades",
+    "industry_key": "home_services",
+    "ad_cost": {
+      "fact_id": "ads:home_services",
+      "industry": "home_services",
+      "label": "Home & Home Improvement",
+      "cpl_usd": 90.92,
+      "cpc_usd": 8.33,
+      "conversion_rate_pct": 8.05,
+      "number": "$91",
+      "source_line": "WordStream by LocaliQ, Google Ads Benchmarks 2026 (median of US campaigns, USD)",
+      "note": "US medians in USD. CPL = cost per lead (a call, form or chat), not per signed customer."
+    },
+    "web_facts": [
+      {
+        "fact_id": "brightlocal-54pct-visit-website-after-reviews",
+        "claim": "After reading good reviews, more than half of people go to the business's website next, so a business without a proper website loses them at that step.",
+        "number": "54% visit the business website after positive reviews (up from 32% in 2019)",
+        "source_line": "BrightLocal, Local Consumer Review Survey 2026",
+        "industries": [
+          "all"
+        ],
+        "caution": ""
+      },
+      {
+        "fact_id": "click-to-call-70pct-47pct",
+        "claim": "Most mobile searchers have tapped to call a business straight from Google, and almost half say they'll look at other businesses if no phone number is shown.",
+        "number": "70% have used click-to-call; 47% more likely to explore other brands without a phone number",
+        "source_line": "Google / Ipsos, The Role of Click to Call in the Path to Purchase, 2013",
+        "industries": [
+          "all",
+          "especially trades"
+        ],
+        "caution": "September 2013 survey. Old - pair with a newer stat."
+      }
+    ]
+  }
+}

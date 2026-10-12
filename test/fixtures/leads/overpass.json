@@ -1,0 +1,15 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API (fixture)",
+  "osm3s": { "timestamp_osm_base": "2026-10-01T00:00:00Z" },
+  "elements": [
+    { "type": "node", "id": 1001, "lat": 30.2672, "lon": -97.7431,
+      "tags": { "craft": "plumber", "name": "Northwind Plumbing", "phone": "+1 512 555 0123", "website": "https://northwind-plumbing.example",
+                "addr:housenumber": "100", "addr:street": "Example St", "addr:city": "Austin", "addr:postcode": "78701", "addr:state": "TX",
+                "contact:instagram": "northwind.plumbing", "opening_hours": "Mo-Fr 08:00-18:00" } },
+    { "type": "way", "id": 2002, "center": { "lat": 30.5083, "lon": -97.6789 },
+      "tags": { "shop": "bakery", "name": "Bluebird Bakery", "contact:phone": "512-555-0142;512-555-0143", "email": "orders@bluebird-bakery.example",
+                "addr:city": "Round Rock", "contact:facebook": "https://www.facebook.com/bluebirdbakery.example" } },
+    { "type": "node", "id": 1003, "lat": 30.27, "lon": -97.74, "tags": { "craft": "plumber" } }
+  ]
+}

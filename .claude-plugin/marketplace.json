@@ -1,0 +1,13 @@
+{
+  "name": "lead-to-proposal",
+  "owner": { "name": "Mohammad Jamali" },
+  "metadata": { "description": "Lead generation to signed client, for web design studios and freelancers." },
+  "plugins": [
+    {
+      "name": "lead-to-proposal",
+      "source": "./",
+      "description": "Leads → audit → score → workbook → redesign + proposal PDF → sales playbook.",
+      "version": "1.0.0"
+    }
+  ]
+}

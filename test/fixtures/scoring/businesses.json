@@ -1,0 +1,696 @@
+{
+  "updated": "2026-10-12",
+  "items": [
+    {
+      "id": "b_000000000001",
+      "names": [
+        "Northwind Plumbing"
+      ],
+      "category": "Plumber",
+      "category_group": "trades",
+      "ticket": "premium",
+      "address": "10 Example St",
+      "city": "Austin",
+      "region": "TX",
+      "postcode": "78701",
+      "country": "US",
+      "lat": 30.27,
+      "lng": -97.74,
+      "phones": [
+        {
+          "e164": "+15125550123",
+          "key": "1:5125550123",
+          "cc": "1",
+          "nsn": "5125550123",
+          "ext": "",
+          "valid": true,
+          "raw": "(512) 555-0123",
+          "type": ""
+        }
+      ],
+      "emails": [],
+      "website": "https://www.northwind.example",
+      "website_kind": "site",
+      "socials": {
+        "instagram": "https://instagram.com/northwind.example",
+        "facebook": "",
+        "linkedin": "",
+        "tiktok": "",
+        "youtube": "",
+        "x": "",
+        "whatsapp": "",
+        "telegram": ""
+      },
+      "owner": {
+        "name": "Dana Fields",
+        "role": "Owner",
+        "source": "about page",
+        "confidence": "high"
+      },
+      "hours": "",
+      "sources": [
+        {
+          "source": "osm",
+          "url": "https://osm.example/listing/1",
+          "id": "osm:1"
+        },
+        {
+          "source": "google_maps",
+          "url": "https://google_maps.example/listing/2",
+          "id": "google_maps:2"
+        },
+        {
+          "source": "csv",
+          "url": "https://csv.example/listing/3",
+          "id": "csv:3"
+        }
+      ],
+      "google": {
+        "place_id": "place-0",
+        "name": "Northwind Plumbing",
+        "rating": 4.7,
+        "reviews": 85,
+        "phone": "(512) 555-0199",
+        "website": "",
+        "maps_url": "https://maps.example/place/0",
+        "categories": [],
+        "status": "OPERATIONAL",
+        "claimed": true,
+        "photos_count": null,
+        "match": {
+          "basis": "phone",
+          "confidence": "high"
+        },
+        "reviews_sample": [
+          {
+            "date": "2026-10-01",
+            "rating": 5,
+            "text": "Great",
+            "owner_reply": true
+          },
+          {
+            "date": "2026-09-20",
+            "rating": 5,
+            "text": "Fast",
+            "owner_reply": true
+          },
+          {
+            "date": "2026-09-05",
+            "rating": 4,
+            "text": "Good",
+            "owner_reply": false
+          },
+          {
+            "date": "2026-08-28",
+            "rating": 5,
+            "text": "Nice",
+            "owner_reply": true
+          },
+          {
+            "date": "2026-08-15",
+            "rating": 5,
+            "text": "Top",
+            "owner_reply": false
+          }
+        ]
+      },
+      "flags": [],
+      "name": "Northwind Plumbing"
+    },
+    {
+      "id": "b_000000000002",
+      "names": [
+        "Bluebell Bakery"
+      ],
+      "category": "Bakery",
+      "category_group": "food",
+      "ticket": "low",
+      "address": "20 Example St",
+      "city": "Austin",
+      "region": "TX",
+      "postcode": "78701",
+      "country": "US",
+      "lat": 30.27,
+      "lng": -97.74,
+      "phones": [
+        {
+          "e164": "+15125550124",
+          "key": "1:5125550124",
+          "cc": "1",
+          "nsn": "5125550124",
+          "ext": "",
+          "valid": true,
+          "raw": "512-555-0124",
+          "type": ""
+        }
+      ],
+      "emails": [],
+      "website": "",
+      "website_kind": "none",
+      "socials": {
+        "instagram": "https://instagram.com/bluebell.test",
+        "facebook": "",
+        "linkedin": "",
+        "tiktok": "",
+        "youtube": "",
+        "x": "",
+        "whatsapp": "",
+        "telegram": ""
+      },
+      "owner": {
+        "name": "",
+        "role": "",
+        "source": "",
+        "confidence": ""
+      },
+      "hours": "",
+      "sources": [
+        {
+          "source": "osm",
+          "url": "https://osm.example/listing/1",
+          "id": "osm:1"
+        },
+        {
+          "source": "google_maps",
+          "url": "https://google_maps.example/listing/2",
+          "id": "google_maps:2"
+        }
+      ],
+      "google": {
+        "place_id": "place-1",
+        "name": "Bluebell Bakery",
+        "rating": 4.6,
+        "reviews": 120,
+        "phone": "512-555-0124",
+        "website": "",
+        "maps_url": "https://maps.example/place/1",
+        "categories": [],
+        "status": "OPERATIONAL",
+        "claimed": false,
+        "photos_count": null,
+        "match": {
+          "basis": "phone",
+          "confidence": "high"
+        },
+        "reviews_sample": []
+      },
+      "flags": [],
+      "name": "Bluebell Bakery"
+    },
+    {
+      "id": "b_000000000003",
+      "names": [
+        "Cedar Dental"
+      ],
+      "category": "Dentist",
+      "category_group": "health",
+      "ticket": "premium",
+      "address": "30 Example St",
+      "city": "Austin",
+      "region": "TX",
+      "postcode": "78701",
+      "country": "US",
+      "lat": 30.27,
+      "lng": -97.74,
+      "phones": [
+        {
+          "e164": "+15125550125",
+          "key": "1:5125550125",
+          "cc": "1",
+          "nsn": "5125550125",
+          "ext": "",
+          "valid": true,
+          "raw": "512-555-0125",
+          "type": ""
+        }
+      ],
+      "emails": [
+        "hello@cedardental.example"
+      ],
+      "website": "https://cedardental.example",
+      "website_kind": "site",
+      "socials": {
+        "instagram": "",
+        "facebook": "",
+        "linkedin": "",
+        "tiktok": "",
+        "youtube": "",
+        "x": "",
+        "whatsapp": "",
+        "telegram": ""
+      },
+      "owner": {
+        "name": "",
+        "role": "",
+        "source": "",
+        "confidence": ""
+      },
+      "hours": "",
+      "sources": [
+        {
+          "source": "osm",
+          "url": "https://osm.example/listing/1",
+          "id": "osm:1"
+        }
+      ],
+      "google": {
+        "place_id": "place-2",
+        "name": "Cedar Dental",
+        "rating": 4.9,
+        "reviews": 300,
+        "phone": "512-555-0125",
+        "website": "",
+        "maps_url": "https://maps.example/place/2",
+        "categories": [],
+        "status": "OPERATIONAL",
+        "claimed": true,
+        "photos_count": null,
+        "match": {
+          "basis": "phone",
+          "confidence": "high"
+        },
+        "reviews_sample": []
+      },
+      "flags": [],
+      "name": "Cedar Dental"
+    },
+    {
+      "id": "b_000000000004",
+      "names": [
+        "RooterCo Austin"
+      ],
+      "category": "Plumber",
+      "category_group": "trades",
+      "ticket": "premium",
+      "address": "40 Example St",
+      "city": "Austin",
+      "region": "TX",
+      "postcode": "78701",
+      "country": "US",
+      "lat": 30.27,
+      "lng": -97.74,
+      "phones": [
+        {
+          "e164": "+15125550126",
+          "key": "1:5125550126",
+          "cc": "1",
+          "nsn": "5125550126",
+          "ext": "",
+          "valid": true,
+          "raw": "512-555-0126",
+          "type": ""
+        }
+      ],
+      "emails": [],
+      "website": "https://rooterco.example",
+      "website_kind": "site",
+      "socials": {
+        "instagram": "",
+        "facebook": "",
+        "linkedin": "",
+        "tiktok": "",
+        "youtube": "",
+        "x": "",
+        "whatsapp": "",
+        "telegram": ""
+      },
+      "owner": {
+        "name": "",
+        "role": "",
+        "source": "",
+        "confidence": ""
+      },
+      "hours": "",
+      "sources": [
+        {
+          "source": "osm",
+          "url": "https://osm.example/listing/1",
+          "id": "osm:1"
+        }
+      ],
+      "google": null,
+      "flags": [],
+      "name": "RooterCo Austin"
+    },
+    {
+      "id": "b_000000000005",
+      "names": [
+        "Pixel Web Design Studio"
+      ],
+      "category": "Web design",
+      "category_group": "professional",
+      "ticket": "mid",
+      "address": "50 Example St",
+      "city": "Austin",
+      "region": "TX",
+      "postcode": "78701",
+      "country": "US",
+      "lat": 30.27,
+      "lng": -97.74,
+      "phones": [
+        {
+          "e164": "+15125550127",
+          "key": "1:5125550127",
+          "cc": "1",
+          "nsn": "5125550127",
+          "ext": "",
+          "valid": true,
+          "raw": "512-555-0127",
+          "type": ""
+        }
+      ],
+      "emails": [],
+      "website": "https://pixelweb.example",
+      "website_kind": "site",
+      "socials": {
+        "instagram": "",
+        "facebook": "",
+        "linkedin": "",
+        "tiktok": "",
+        "youtube": "",
+        "x": "",
+        "whatsapp": "",
+        "telegram": ""
+      },
+      "owner": {
+        "name": "",
+        "role": "",
+        "source": "",
+        "confidence": ""
+      },
+      "hours": "",
+      "sources": [
+        {
+          "source": "osm",
+          "url": "https://osm.example/listing/1",
+          "id": "osm:1"
+        }
+      ],
+      "google": null,
+      "flags": [],
+      "name": "Pixel Web Design Studio"
+    },
+    {
+      "id": "b_000000000006",
+      "names": [
+        "Lark Salon"
+      ],
+      "category": "Hair salon",
+      "category_group": "beauty",
+      "ticket": "mid",
+      "address": "60 Example St",
+      "city": "Austin",
+      "region": "TX",
+      "postcode": "78701",
+      "country": "US",
+      "lat": 30.27,
+      "lng": -97.74,
+      "phones": [
+        {
+          "e164": "+15125550128",
+          "key": "1:5125550128",
+          "cc": "1",
+          "nsn": "5125550128",
+          "ext": "",
+          "valid": true,
+          "raw": "512-555-0128",
+          "type": ""
+        }
+      ],
+      "emails": [],
+      "website": "https://larksalon.freesites.example",
+      "website_kind": "free_subdomain",
+      "socials": {
+        "instagram": "",
+        "facebook": "",
+        "linkedin": "",
+        "tiktok": "",
+        "youtube": "",
+        "x": "",
+        "whatsapp": "",
+        "telegram": ""
+      },
+      "owner": {
+        "name": "",
+        "role": "",
+        "source": "",
+        "confidence": ""
+      },
+      "hours": "",
+      "sources": [
+        {
+          "source": "osm",
+          "url": "https://osm.example/listing/1",
+          "id": "osm:1"
+        },
+        {
+          "source": "csv",
+          "url": "https://csv.example/listing/2",
+          "id": "csv:2"
+        }
+      ],
+      "google": null,
+      "flags": [],
+      "name": "Lark Salon"
+    },
+    {
+      "id": "b_000000000007",
+      "names": [
+        "Maple Auto Repair"
+      ],
+      "category": "Auto repair",
+      "category_group": "auto",
+      "ticket": "mid",
+      "address": "70 Example St",
+      "city": "Austin",
+      "region": "TX",
+      "postcode": "78701",
+      "country": "US",
+      "lat": 30.27,
+      "lng": -97.74,
+      "phones": [
+        {
+          "e164": "+15125550129",
+          "key": "1:5125550129",
+          "cc": "1",
+          "nsn": "5125550129",
+          "ext": "",
+          "valid": true,
+          "raw": "512-555-0129",
+          "type": ""
+        }
+      ],
+      "emails": [],
+      "website": "https://maple-auto.example",
+      "website_kind": "site",
+      "socials": {
+        "instagram": "https://instagram.com/mapleauto.test",
+        "facebook": "",
+        "linkedin": "",
+        "tiktok": "",
+        "youtube": "",
+        "x": "",
+        "whatsapp": "",
+        "telegram": ""
+      },
+      "owner": {
+        "name": "",
+        "role": "",
+        "source": "",
+        "confidence": ""
+      },
+      "hours": "",
+      "sources": [
+        {
+          "source": "osm",
+          "url": "https://osm.example/listing/1",
+          "id": "osm:1"
+        }
+      ],
+      "google": null,
+      "flags": [],
+      "name": "Maple Auto Repair"
+    },
+    {
+      "id": "b_000000000008",
+      "names": [
+        "Orchid Law"
+      ],
+      "category": "Lawyer",
+      "category_group": "legal",
+      "ticket": "premium",
+      "address": "80 Example St",
+      "city": "Austin",
+      "region": "TX",
+      "postcode": "78701",
+      "country": "US",
+      "lat": 30.27,
+      "lng": -97.74,
+      "phones": [
+        {
+          "e164": "+15125550130",
+          "key": "1:5125550130",
+          "cc": "1",
+          "nsn": "5125550130",
+          "ext": "",
+          "valid": true,
+          "raw": "512-555-0130",
+          "type": ""
+        }
+      ],
+      "emails": [],
+      "website": "",
+      "website_kind": "none",
+      "socials": {
+        "instagram": "",
+        "facebook": "",
+        "linkedin": "",
+        "tiktok": "",
+        "youtube": "",
+        "x": "",
+        "whatsapp": "",
+        "telegram": ""
+      },
+      "owner": {
+        "name": "",
+        "role": "",
+        "source": "",
+        "confidence": ""
+      },
+      "hours": "",
+      "sources": [
+        {
+          "source": "osm",
+          "url": "https://osm.example/listing/1",
+          "id": "osm:1"
+        }
+      ],
+      "google": {
+        "place_id": "place-7",
+        "name": "Orchid Law",
+        "rating": 4.1,
+        "reviews": 12,
+        "phone": "512-555-0130",
+        "website": "",
+        "maps_url": "https://maps.example/place/7",
+        "categories": [],
+        "status": "CLOSED_PERMANENTLY",
+        "claimed": true,
+        "photos_count": null,
+        "match": {
+          "basis": "phone",
+          "confidence": "high"
+        },
+        "reviews_sample": []
+      },
+      "flags": [],
+      "name": "Orchid Law"
+    },
+    {
+      "id": "b_000000000009",
+      "names": [
+        "Quiet Holdings"
+      ],
+      "category": "Consultant",
+      "category_group": "professional",
+      "ticket": "mid",
+      "address": "",
+      "city": "Austin",
+      "region": "TX",
+      "postcode": "78701",
+      "country": "US",
+      "lat": 30.27,
+      "lng": -97.74,
+      "phones": [],
+      "emails": [],
+      "website": "",
+      "website_kind": "none",
+      "socials": {
+        "instagram": "",
+        "facebook": "",
+        "linkedin": "",
+        "tiktok": "",
+        "youtube": "",
+        "x": "",
+        "whatsapp": "",
+        "telegram": ""
+      },
+      "owner": {
+        "name": "",
+        "role": "",
+        "source": "",
+        "confidence": ""
+      },
+      "hours": "",
+      "sources": [
+        {
+          "source": "csv",
+          "url": "https://csv.example/listing/1",
+          "id": "csv:1"
+        }
+      ],
+      "google": null,
+      "flags": [],
+      "name": "Quiet Holdings"
+    },
+    {
+      "id": "b_000000000010",
+      "names": [
+        "مخبز الياسمين",
+        "Jasmine Bakery"
+      ],
+      "category": "Bakery",
+      "category_group": "food",
+      "ticket": "low",
+      "address": "100 Example St",
+      "city": "Austin",
+      "region": "TX",
+      "postcode": "78701",
+      "country": "US",
+      "lat": 30.27,
+      "lng": -97.74,
+      "phones": [
+        {
+          "e164": "+15125550131",
+          "key": "1:5125550131",
+          "cc": "1",
+          "nsn": "5125550131",
+          "ext": "",
+          "valid": true,
+          "raw": "512-555-0131",
+          "type": ""
+        }
+      ],
+      "emails": [],
+      "website": "https://facebook.example/jasmine",
+      "website_kind": "social",
+      "socials": {
+        "instagram": "",
+        "facebook": "",
+        "linkedin": "",
+        "tiktok": "",
+        "youtube": "",
+        "x": "",
+        "whatsapp": "",
+        "telegram": ""
+      },
+      "owner": {
+        "name": "",
+        "role": "",
+        "source": "",
+        "confidence": ""
+      },
+      "hours": "",
+      "sources": [
+        {
+          "source": "osm",
+          "url": "https://osm.example/listing/1",
+          "id": "osm:1"
+        }
+      ],
+      "google": null,
+      "flags": [],
+      "name": "مخبز الياسمين"
+    }
+  ]
+}

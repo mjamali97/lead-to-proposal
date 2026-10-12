@@ -1,0 +1,310 @@
+{
+  "generated": "2026-10-07",
+  "currency": "USD",
+  "region": "US",
+  "usage_notes": "All figures are US data in USD from LocaliQ / WordStream by LocaliQ (USA TODAY Co.). They mix Google Ads and Microsoft Ads search campaigns, and LocaliQ says its 'averages' are medians. When quoting them in a proposal, cite them as 'US benchmark (WordStream by LocaliQ, 2026)'. Do not present them as Canadian or European figures. CPL is cost per lead (a call, form fill, chat or email), not cost per signed client. No verified Canada- or Europe-specific service-industry benchmark was found (see extra).",
+  "sources": [
+    {
+      "id": "wordstream-2026",
+      "publisher": "WordStream by LocaliQ (USA TODAY Co, Inc.)",
+      "title": "Google Ads Benchmarks 2026: Competitive Data & Insights for Every Industry",
+      "url": "https://www.wordstream.com/blog/2026-google-ads-benchmarks",
+      "year": 2026,
+      "region": "US",
+      "notes": "Author Susie Marino, 'Last Updated: May 19, 2026'. About the data, verbatim: 'This report is based on a sample of 13,474 US-based search advertising campaigns running between Apr 1, 2025, and March 31, 2026. Each subcategory includes at minimum 52 unique active campaigns. \"Averages\" are technically median figures to account for outliers. All currency values are posted in USD.' Covers Google Ads and Microsoft Ads search campaigns from LocaliQ customers (mostly small and local businesses) across 23 industries. This is the newest edition; the caller asked for 2025 or 2024, and 2026 was published after that. Verified in a live browser on 2026-10-07."
+    },
+    {
+      "id": "localiq-2026",
+      "publisher": "LocaliQ (USA TODAY Co, Inc.)",
+      "title": "NEW 2026 Search Advertising Benchmarks (+Tips)",
+      "url": "https://localiq.com/blog/search-advertising-benchmarks/",
+      "year": 2026,
+      "region": "US (implied; the page states no region, but its dataset matches wordstream-2026)",
+      "notes": "'Last Updated: June 1, 2026'. Says it is based on 'thousands of our customers' advertising campaigns across Google Ads and Microsoft Ads' for 'the top 20+ industries'. All four industry tables match wordstream-2026 row for row (checked against the raw HTML). Use it as a second public URL for the same data."
+    },
+    {
+      "id": "localiq-home-2025",
+      "publisher": "LocaliQ (USA TODAY Co, Inc.)",
+      "title": "2025 Search Ad Benchmarks for Home Services (+Expert Tips & Insights)",
+      "url": "https://localiq.com/blog/home-services-search-advertising-benchmarks/",
+      "year": 2025,
+      "region": "US",
+      "notes": "Verbatim: 'We've analyzed over 3,200 search ad campaigns from LocaliQ customers that ran from April 2024 to March 2025'. Google and Microsoft Ads. Has 16 home-services subcategories. Page last modified 2026-07-15 but still labelled 2025; no 2026 home-services edition was found."
+    },
+    {
+      "id": "localiq-healthcare-2026",
+      "publisher": "LocaliQ (USA TODAY Co, Inc.)",
+      "title": "Healthcare Search Ads Benchmarks for 16 Specialties",
+      "url": "https://localiq.com/blog/healthcare-search-advertising-benchmarks/",
+      "year": 2026,
+      "region": "US",
+      "notes": "'Last Updated: January 13, 2026'. Verbatim: 'This report is based on a sample of 3,542 US-based search advertising campaigns running between October 1, 2024, and September 30, 2025. Each subcategory includes at minimum 43 unique active campaigns. \"Averages\" are technically median figures to account for outliers. All currency values are posted in USD.'"
+    },
+    {
+      "id": "localiq-auto-2026",
+      "publisher": "LocaliQ (USA TODAY Co, Inc.)",
+      "title": "Automotive Search Advertising Benchmarks for 2026",
+      "url": "https://localiq.com/blog/automotive-search-advertising-benchmarks/",
+      "year": 2026,
+      "region": "US",
+      "notes": "'Last Updated: September 29, 2026'. Verbatim: 'This report is based on a sample of 1,983 US-based search advertising campaigns running between April 1, 2025, and June 30, 2026. Each subcategory includes at minimum 12 unique active campaigns. \"Averages\" are technically median figures...'"
+    },
+    {
+      "id": "localiq-realestate-2026",
+      "publisher": "LocaliQ (USA TODAY Co, Inc.)",
+      "title": "Real Estate Advertising Benchmarks (+Ideas for Better Results)",
+      "url": "https://localiq.com/blog/real-estate-search-advertising-benchmarks/",
+      "year": 2026,
+      "region": "US",
+      "notes": "'Last Updated: September 14, 2026'. Verbatim: 'This report is based on a sample of 894 US-based search advertising campaigns running between Apr 1, 2025, and March 31, 2026. Each subcategory includes at minimum 11 unique active campaigns.' Medians, USD."
+    },
+    {
+      "id": "localiq-legal-2024",
+      "publisher": "LocaliQ (USA TODAY Co, Inc.)",
+      "title": "Legal Search Advertising Benchmarks for 2024 (with Data & Tips)",
+      "url": "https://localiq.com/blog/legal-search-advertising-benchmarks/",
+      "year": 2024,
+      "region": "US",
+      "notes": "OLD DATA. Verbatim: 'This report is based on a sample of 256 US-based search advertising campaigns running between Apr 1, 2022, and March 31, 2023. Each subcategory includes at minimum 10 unique active campaigns.' Use only for the relative ranking of practice areas, never as current cost figures. It has no immigration-law subcategory."
+    }
+  ],
+  "industries": {
+    "legal": {
+      "report_category": "Attorneys & Legal Services",
+      "cpc_usd": 9.87,
+      "cpl_usd": 131.63,
+      "conversion_rate_pct": 5.55,
+      "ctr_pct": 5.87,
+      "source": "wordstream-2026",
+      "quote": "Attorneys & Legal Services $9.87 (Average CPC table) | 5.55% (Average CVR table) | $131.63 (Average CPL table). Prose: 'the industry with the highest cost per lead in Google and Microsoft Ads in 2026 is Attorneys and Legal Services, at $131.63.'",
+      "verified": true,
+      "notes": "Highest CPC and highest CPL of all 23 categories. No published LocaliQ/WordStream figure exists for immigration lawyers specifically; use the general legal category. Practice-area rows are below (2022-23 data, ranking only).",
+      "subcategories_old_2022_2023_data": {
+        "source": "localiq-legal-2024",
+        "verified": true,
+        "rows": {
+          "Accidents & Personal Injury Law": {"cpc_usd": 9.30, "conversion_rate_pct": 5.45, "cpl_usd": 159.17},
+          "Criminal Law": {"cpc_usd": 12.30, "conversion_rate_pct": 9.90, "cpl_usd": 101.49},
+          "Bankruptcy Law": {"cpc_usd": 11.70, "conversion_rate_pct": 13.56, "cpl_usd": 82.27},
+          "Estate & Probate Law (incl. Wills)": {"cpc_usd": 7.92, "conversion_rate_pct": 9.65, "cpl_usd": 72.24},
+          "Family Law (incl. Divorce)": {"cpc_usd": 7.69, "conversion_rate_pct": 8.52, "cpl_usd": 103.54},
+          "Tax Law": {"cpc_usd": 11.82, "conversion_rate_pct": 13.30, "cpl_usd": 120.30},
+          "General Practice Law": {"cpc_usd": 9.97, "conversion_rate_pct": 5.52, "cpl_usd": 96.54}
+        }
+      }
+    },
+    "dental": {
+      "report_category": "Dentists & Dental Services",
+      "cpc_usd": 8.00,
+      "cpl_usd": 72.97,
+      "conversion_rate_pct": 10.67,
+      "ctr_pct": 5.66,
+      "source": "wordstream-2026",
+      "quote": "Dentists & Dental Services $8.00 (Average CPC) | 10.67% (Average CVR) | $72.97 (Average CPL). Prose: 'industries with the highest CPCs included Attorneys and Legal Services ($9.87), Home and Home Improvement ($8.33), and Dentists and Dental Services ($8.00).'",
+      "verified": true,
+      "subcategories": {
+        "source": "localiq-healthcare-2026 (data Oct 2024 - Sep 2025)",
+        "verified": true,
+        "rows": {
+          "General Dentistry": {"cpc_usd": 7.03, "conversion_rate_pct": 7.74, "cpl_usd": 84.77},
+          "Emergency Dentistry": {"cpc_usd": 7.85, "conversion_rate_pct": 8.89, "cpl_usd": 75.19},
+          "Orthodontics": {"cpc_usd": 8.76, "conversion_rate_pct": 14.21, "cpl_usd": 71.52},
+          "Oral-Maxillofacial Surgery": {"cpc_usd": 7.85, "conversion_rate_pct": 11.60, "cpl_usd": 55.15}
+        }
+      }
+    },
+    "home_services": {
+      "report_category": "Home & Home Improvement",
+      "cpc_usd": 8.33,
+      "cpl_usd": 90.92,
+      "conversion_rate_pct": 8.05,
+      "ctr_pct": 6.47,
+      "source": "wordstream-2026",
+      "quote": "Home & Home Improvement $8.33 (Average CPC) | 8.05% (Average CVR) | $90.92 (Average CPL)",
+      "verified": true,
+      "notes": "The trade-level rows come from the separate 2025 home-services report (data Apr 2024 - Mar 2025), which is one year older than the headline figures. That report's verbatim overall averages are: 'The average CPC for home services in 2025 is $7.85.' 'The average CVR for home services in 2025 is 7.33%.' 'The average CPL for home services in 2025 is $90.92.'",
+      "subcategories": {
+        "source": "localiq-home-2025",
+        "verified": true,
+        "rows": {
+          "Air Conditioning Installation & Repair": {"cpc_usd": 9.68, "conversion_rate_pct": 6.56, "cpl_usd": 127.74},
+          "Heating & Furnaces": {"cpc_usd": 9.30, "conversion_rate_pct": 7.48, "cpl_usd": 129.02},
+          "Plumbing": {"cpc_usd": 10.49, "conversion_rate_pct": 7.63, "cpl_usd": 129.02},
+          "Electricians & Electrical Contractors": {"cpc_usd": 12.18, "conversion_rate_pct": 9.08, "cpl_usd": 93.69},
+          "Roofing & Gutters": {"cpc_usd": 10.70, "conversion_rate_pct": 3.70, "cpl_usd": 228.15},
+          "Construction & Contractors (General)": {"cpc_usd": 5.31, "conversion_rate_pct": 2.61, "cpl_usd": 165.67},
+          "Handyman Services": {"cpc_usd": 7.10, "conversion_rate_pct": 13.45, "cpl_usd": 54.05},
+          "Paint & Painting": {"cpc_usd": 13.74, "conversion_rate_pct": 10.80, "cpl_usd": 138.38},
+          "Landscaping": {"cpc_usd": 8.76, "conversion_rate_pct": 6.42, "cpl_usd": 117.92},
+          "Doors & Windows Sales": {"cpc_usd": 8.76, "conversion_rate_pct": 4.41, "cpl_usd": 200.34},
+          "Cleaning / Maid / Butler Services": {"cpc_usd": 8.50, "conversion_rate_pct": 17.65, "cpl_usd": 46.99}
+        }
+      }
+    },
+    "medical": {
+      "report_category": "Physicians & Surgeons",
+      "cpc_usd": 4.76,
+      "cpl_usd": 40.04,
+      "conversion_rate_pct": 12.43,
+      "ctr_pct": 6.61,
+      "source": "wordstream-2026",
+      "quote": "Physicians & Surgeons $4.76 (Average CPC) | 12.43% (Average CVR) | $40.04 (Average CPL)",
+      "verified": true,
+      "notes": "Overall averages in the healthcare vertical report, verbatim: 'The overall average cost per click for healthcare search ads this year is $5.64.' 'The average conversion rate for healthcare search ads is currently 8.09%.' 'The average cost per lead for healthcare search ads is currently $66.02.'",
+      "subcategories": {
+        "source": "localiq-healthcare-2026 (data Oct 2024 - Sep 2025)",
+        "verified": true,
+        "rows": {
+          "General Practice & Family Medicine": {"cpc_usd": 5.47, "conversion_rate_pct": 11.63, "cpl_usd": 62.80},
+          "Hospitals & Clinics": {"cpc_usd": 4.90, "conversion_rate_pct": 6.10, "cpl_usd": 72.97},
+          "Physical Therapy": {"cpc_usd": 4.95, "conversion_rate_pct": 15.35, "cpl_usd": 32.79},
+          "Mental Health": {"cpc_usd": 4.22, "conversion_rate_pct": 1.85, "cpl_usd": 141.17},
+          "Ophthalmology": {"cpc_usd": 4.95, "conversion_rate_pct": 18.29, "cpl_usd": 30.88},
+          "Urology": {"cpc_usd": 5.64, "conversion_rate_pct": 4.61, "cpl_usd": 111.05}
+        }
+      }
+    },
+    "beauty": {
+      "report_category": "Beauty & Personal Care",
+      "cpc_usd": 4.62,
+      "cpl_usd": 39.25,
+      "conversion_rate_pct": 10.35,
+      "ctr_pct": 6.75,
+      "source": "wordstream-2026",
+      "quote": "Beauty & Personal Care $4.62 (Average CPC) | 10.35% (Average CVR) | $39.25 (Average CPL)",
+      "verified": true,
+      "notes": "Covers salons and personal care. For med spas and aesthetics, the closest published rows are Dermatology and Plastic & Cosmetic Surgery in the healthcare report (below). No med-spa-specific benchmark was found. The report notes a big year-on-year swing for this category (CPL down 34.95%, CVR up 32.34%), so the figures may be volatile.",
+      "subcategories": {
+        "source": "localiq-healthcare-2026 (data Oct 2024 - Sep 2025)",
+        "verified": true,
+        "rows": {
+          "Dermatology": {"cpc_usd": 4.90, "conversion_rate_pct": 25.33, "cpl_usd": 18.54},
+          "Plastic & Cosmetic Surgery": {"cpc_usd": 5.75, "conversion_rate_pct": 8.52, "cpl_usd": 102.51}
+        }
+      }
+    },
+    "food": {
+      "report_category": "Restaurants & Food",
+      "cpc_usd": 2.05,
+      "cpl_usd": 30.57,
+      "conversion_rate_pct": 8.05,
+      "ctr_pct": 6.83,
+      "source": "wordstream-2026",
+      "quote": "Restaurants & Food $2.05 (Average CPC) | 8.05% (Average CVR) | $30.57 (Average CPL)",
+      "verified": true
+    },
+    "auto": {
+      "report_category": "Automotive — Repair, Service & Parts",
+      "cpc_usd": 4.35,
+      "cpl_usd": 29.96,
+      "conversion_rate_pct": 15.51,
+      "ctr_pct": 5.56,
+      "source": "wordstream-2026",
+      "quote": "Automotive — Repair, Service & Parts $4.35 (Average CPC) | 15.51% (Average CVR) | $29.96 (Average CPL)",
+      "verified": true,
+      "notes": "Dealers use a separate category, 'Automotive — For Sale': CPC $2.27, CVR 6.01%, CPL $44.26, CTR 8.28% (wordstream-2026, verified). The automotive vertical report (localiq-auto-2026, data Apr 2025 - Jun 2026) gives overall averages, verbatim: 'The average CPC for the automotive industry is $3.49.' 'The average conversion rate for automotive businesses is 9.21%.' 'The average CPL for automotive businesses is $33.12.'",
+      "alt_category": {"report_category": "Automotive — For Sale", "cpc_usd": 2.27, "cpl_usd": 44.26, "conversion_rate_pct": 6.01, "source": "wordstream-2026", "verified": true},
+      "subcategories": {
+        "source": "localiq-auto-2026",
+        "verified": true,
+        "rows": {
+          "Auto Service & Repair": {"cpc_usd": 6.42, "conversion_rate_pct": 15.39, "cpl_usd": 42.10},
+          "Body Repair & Paint": {"cpc_usd": 7.54, "conversion_rate_pct": 11.81, "cpl_usd": 56.26},
+          "Transmission & Clutch Repair": {"cpc_usd": 7.46, "conversion_rate_pct": 19.23, "cpl_usd": 34.81},
+          "General Used Auto Dealers": {"cpc_usd": 1.73, "conversion_rate_pct": 3.53, "cpl_usd": 59.74},
+          "General New Auto Dealers": {"cpc_usd": 2.48, "conversion_rate_pct": 6.73, "cpl_usd": 35.87}
+        }
+      }
+    },
+    "real_estate": {
+      "report_category": "Real Estate",
+      "cpc_usd": 3.22,
+      "cpl_usd": 102.51,
+      "conversion_rate_pct": 3.70,
+      "ctr_pct": 7.61,
+      "source": "wordstream-2026",
+      "quote": "Real Estate $3.22 (Average CPC) | 3.70% (Average CVR) | $102.51 (Average CPL). Also confirmed in localiq-realestate-2026: 'The overall average cost per lead for real estate search ads in 2026 is $102.51.'",
+      "verified": true,
+      "subcategories": {
+        "source": "localiq-realestate-2026",
+        "verified": true,
+        "rows": {
+          "Residential Real Estate Agent": {"cpc_usd": 3.19, "conversion_rate_pct": 1.29, "cpl_usd": 157.59},
+          "Real Estate Broker": {"cpc_usd": 3.71, "conversion_rate_pct": 1.53, "cpl_usd": 162.39},
+          "Homes for Sale by Agent": {"cpc_usd": 3.90, "conversion_rate_pct": 1.83, "cpl_usd": 142.59},
+          "Property Management": {"cpc_usd": 3.94, "conversion_rate_pct": 10.24, "cpl_usd": 76.71},
+          "Apartments & Rentals": {"cpc_usd": 3.10, "conversion_rate_pct": 3.42, "cpl_usd": 99.48}
+        }
+      }
+    },
+    "finance_insurance": {
+      "report_category": "Finance & Insurance",
+      "cpc_usd": 3.39,
+      "cpl_usd": 74.44,
+      "conversion_rate_pct": 2.64,
+      "ctr_pct": 9.83,
+      "source": "wordstream-2026",
+      "quote": "Finance & Insurance $3.39 (Average CPC) | 2.64% (Average CVR) | $74.44 (Average CPL). Prose: 'Finance and Insurance (2.64%), Furniture (2.99%), and Career and Employment (3.05%) were the three industries with the lowest CVRs.'",
+      "verified": true,
+      "notes": "One combined category. No separate accountant, mortgage-broker or insurance-broker rows were found in these reports. 'Business Services' (CPC $5.87, CVR 4.85%, CPL $93.69) may fit B2B accounting firms better."
+    },
+    "education": {
+      "report_category": "Education & Instruction",
+      "cpc_usd": 4.81,
+      "cpl_usd": 77.48,
+      "conversion_rate_pct": 13.14,
+      "ctr_pct": 7.56,
+      "source": "wordstream-2026",
+      "quote": "Education & Instruction $4.81 (Average CPC) | 13.14% (Average CVR) | $77.48 (Average CPL)",
+      "verified": true
+    },
+    "travel": {
+      "report_category": "Travel",
+      "cpc_usd": 2.14,
+      "cpl_usd": 44.70,
+      "conversion_rate_pct": 5.83,
+      "ctr_pct": 9.32,
+      "source": "wordstream-2026",
+      "quote": "Travel $2.14 (Average CPC) | 5.83% (Average CVR) | $44.70 (Average CPL)",
+      "verified": true,
+      "notes": "The report says travel CPL fell 39.35% year on year, the biggest drop of any category."
+    },
+    "all": {
+      "report_category": "All industries (overall average)",
+      "cpc_usd": 5.42,
+      "cpl_usd": 66.69,
+      "conversion_rate_pct": 8.18,
+      "ctr_pct": 6.64,
+      "source": "wordstream-2026",
+      "quote": "'The average cost per click in Google Ads in 2026 is $5.42.' 'The average conversion rate in Google Ads in 2026 is 8.18%.' 'The average cost per lead in Google Ads in 2026 is $66.69.' 'The average click-through rate in Google Ads in 2026 is 6.64%.'",
+      "verified": true,
+      "notes": "Overall figures appear in prose only, not as table rows. The report says CPL fell for the first time in five years, and that conversion rate rose for 87% of industries."
+    }
+  },
+  "extra": [
+    {
+      "claim": "Canada: average Google Ads CPC by industry (QliqQliq agency study of 100,000+ keywords across 19 Canadian industries; legal services CPC reportedly $26.39)",
+      "value": null,
+      "source_url": "https://www.benningtonbanner.com/online_features/press_releases/qliqqliq-study-reveals-google-ads-costs-across-19-canadian-industries-with-some-keywords-exceeding-894/article_05fcd3fb-a616-59db-8218-9b226709ca13.html",
+      "quote": null,
+      "verified": false,
+      "notes": "NOT VERIFIED. The source page returns 404 in WebFetch and in a real browser, so the figure appears only in search snippets. Search summaries describe it as Keyword Planner top-of-page bid estimates (Mar-Apr 2026), not actual campaign results, from a small agency. Do not use."
+    },
+    {
+      "claim": "Cost to acquire a new client (not a lead) via Google Ads for law firms or dentists in Canada",
+      "value": null,
+      "source_url": null,
+      "quote": null,
+      "verified": false,
+      "notes": "No reputable published benchmark found. The LocaliQ/WordStream CPL measures leads (calls, forms, chats), not signed clients or booked patients."
+    },
+    {
+      "claim": "Europe (Germany / Italy / Netherlands) Google Ads CPC benchmarks by service industry",
+      "value": null,
+      "source_url": null,
+      "quote": null,
+      "verified": false,
+      "notes": "No reputable country-by-industry benchmark for service businesses found. Smarter Ecommerce (smarter-ecommerce.com/en/smec-market-observer) publishes EU benchmarks, but only for ecommerce, so they do not apply to lawyers, dentists or trades. An agency guide (codedesign.org) shows inconsistent figures and was not used."
+    }
+  ]
+}

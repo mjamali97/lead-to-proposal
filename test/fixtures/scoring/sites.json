@@ -1,0 +1,363 @@
+{
+  "updated": "2026-10-12",
+  "items": {
+    "northwind.example": {
+      "url": "https://www.northwind.example",
+      "final_url": "http://northwind.example/",
+      "status": 200,
+      "ok": true,
+      "state": "ok",
+      "pages": [],
+      "signals": {
+        "https": false,
+        "viewport": false,
+        "tel_link": false,
+        "form": false,
+        "booking_widget": "",
+        "chat_widget": "",
+        "builder": "WordPress",
+        "footer_year": 2019,
+        "ua_tag": true,
+        "gtm": true,
+        "google_ads": true,
+        "meta_pixel": false,
+        "tiktok_pixel": false,
+        "incumbent_agency": "",
+        "no_cem_statement": false,
+        "coming_soon": false,
+        "parked": false,
+        "has_impressum": false,
+        "wayback_first": null,
+        "wayback_last_change": null
+      },
+      "seo": {
+        "score": 38,
+        "band": "Critical",
+        "measured_pct": 85,
+        "categories": {
+          "perf": 35
+        },
+        "issues": [
+          "No page title",
+          "No business details for Google (structured data)"
+        ]
+      },
+      "phones": [
+        {
+          "e164": "+15125550123",
+          "key": "1:5125550123",
+          "cc": "1",
+          "nsn": "5125550123",
+          "ext": "",
+          "valid": true,
+          "raw": "(512) 555-0123",
+          "type": "",
+          "page": "http://northwind.example/contact"
+        }
+      ],
+      "emails": [
+        {
+          "email": "office@northwind.example",
+          "page": "http://northwind.example/contact"
+        }
+      ],
+      "socials": {
+        "instagram": "",
+        "facebook": "",
+        "linkedin": "",
+        "tiktok": "",
+        "youtube": "",
+        "x": "",
+        "whatsapp": "",
+        "telegram": ""
+      },
+      "owner": {
+        "name": "",
+        "role": "",
+        "source": "",
+        "confidence": ""
+      },
+      "brand": {},
+      "crawled_at": "2026-10-12"
+    },
+    "cedardental.example": {
+      "url": "https://cedardental.example",
+      "final_url": "https://cedardental.example/",
+      "status": 200,
+      "ok": true,
+      "state": "ok",
+      "pages": [],
+      "signals": {
+        "https": true,
+        "viewport": true,
+        "tel_link": true,
+        "form": true,
+        "booking_widget": "BookingTool",
+        "chat_widget": "",
+        "builder": "Webflow",
+        "footer_year": 2026,
+        "ua_tag": false,
+        "gtm": false,
+        "google_ads": false,
+        "meta_pixel": true,
+        "tiktok_pixel": false,
+        "incumbent_agency": "",
+        "no_cem_statement": false,
+        "coming_soon": false,
+        "parked": false,
+        "has_impressum": false,
+        "wayback_first": null,
+        "wayback_last_change": null
+      },
+      "seo": {
+        "score": 88,
+        "band": "Good",
+        "measured_pct": 90,
+        "categories": {},
+        "issues": []
+      },
+      "phones": [
+        {
+          "e164": "+15125550125",
+          "key": "1:5125550125",
+          "cc": "1",
+          "nsn": "5125550125",
+          "ext": "",
+          "valid": true,
+          "raw": "512-555-0125",
+          "type": "",
+          "page": "https://cedardental.example/"
+        }
+      ],
+      "emails": [
+        {
+          "email": "hello@cedardental.example",
+          "page": "https://cedardental.example/contact"
+        }
+      ],
+      "socials": {
+        "instagram": "",
+        "facebook": "",
+        "linkedin": "",
+        "tiktok": "",
+        "youtube": "",
+        "x": "",
+        "whatsapp": "",
+        "telegram": ""
+      },
+      "owner": {
+        "name": "",
+        "role": "",
+        "source": "",
+        "confidence": ""
+      },
+      "brand": {},
+      "crawled_at": "2026-10-12"
+    },
+    "rooterco.example": {
+      "url": "https://rooterco.example",
+      "final_url": "https://rooterco.example/",
+      "status": 200,
+      "ok": true,
+      "state": "ok",
+      "pages": [],
+      "signals": {
+        "https": true,
+        "viewport": true,
+        "tel_link": true,
+        "form": true,
+        "booking_widget": "",
+        "chat_widget": "",
+        "builder": "",
+        "footer_year": 2026,
+        "ua_tag": false,
+        "gtm": false,
+        "google_ads": false,
+        "meta_pixel": false,
+        "tiktok_pixel": false,
+        "incumbent_agency": "",
+        "no_cem_statement": false,
+        "coming_soon": false,
+        "parked": false,
+        "has_impressum": false,
+        "wayback_first": null,
+        "wayback_last_change": null
+      },
+      "seo": {
+        "score": 60,
+        "band": "Needs significant work",
+        "categories": {},
+        "issues": []
+      },
+      "phones": [],
+      "emails": [],
+      "socials": {
+        "instagram": "",
+        "facebook": "",
+        "linkedin": "",
+        "tiktok": "",
+        "youtube": "",
+        "x": "",
+        "whatsapp": "",
+        "telegram": ""
+      },
+      "owner": {
+        "name": "",
+        "role": "",
+        "source": "",
+        "confidence": ""
+      },
+      "brand": {},
+      "crawled_at": "2026-10-12"
+    },
+    "pixelweb.example": {
+      "url": "https://pixelweb.example",
+      "final_url": "https://pixelweb.example/",
+      "status": 200,
+      "ok": true,
+      "state": "ok",
+      "pages": [],
+      "signals": {
+        "https": true,
+        "viewport": true,
+        "tel_link": true,
+        "form": true,
+        "booking_widget": "",
+        "chat_widget": "",
+        "builder": "",
+        "footer_year": 2026,
+        "ua_tag": false,
+        "gtm": false,
+        "google_ads": false,
+        "meta_pixel": false,
+        "tiktok_pixel": false,
+        "incumbent_agency": "",
+        "no_cem_statement": false,
+        "coming_soon": false,
+        "parked": false,
+        "has_impressum": false,
+        "wayback_first": null,
+        "wayback_last_change": null
+      },
+      "seo": {
+        "score": 95,
+        "band": "Excellent",
+        "categories": {},
+        "issues": []
+      },
+      "phones": [],
+      "emails": [],
+      "socials": {
+        "instagram": "",
+        "facebook": "",
+        "linkedin": "",
+        "tiktok": "",
+        "youtube": "",
+        "x": "",
+        "whatsapp": "",
+        "telegram": ""
+      },
+      "owner": {
+        "name": "",
+        "role": "",
+        "source": "",
+        "confidence": ""
+      },
+      "brand": {},
+      "crawled_at": "2026-10-12"
+    },
+    "larksalon.freesites.example": {
+      "url": "https://larksalon.freesites.example",
+      "final_url": "https://larksalon.freesites.example/",
+      "status": 200,
+      "ok": true,
+      "state": "ok",
+      "pages": [],
+      "signals": {
+        "https": true,
+        "viewport": true,
+        "tel_link": true,
+        "form": false,
+        "booking_widget": "",
+        "chat_widget": "",
+        "builder": "",
+        "footer_year": 2021,
+        "ua_tag": false,
+        "gtm": false,
+        "google_ads": false,
+        "meta_pixel": false,
+        "tiktok_pixel": false,
+        "incumbent_agency": "",
+        "no_cem_statement": false,
+        "coming_soon": false,
+        "parked": false,
+        "has_impressum": false,
+        "wayback_first": null,
+        "wayback_last_change": null
+      },
+      "seo": null,
+      "phones": [
+        {
+          "e164": "+15125550128",
+          "key": "1:5125550128",
+          "cc": "1",
+          "nsn": "5125550128",
+          "ext": "",
+          "valid": true,
+          "raw": "512-555-0128",
+          "type": "",
+          "page": "https://larksalon.freesites.example/"
+        }
+      ],
+      "emails": [],
+      "socials": {
+        "instagram": "",
+        "facebook": "",
+        "linkedin": "",
+        "tiktok": "",
+        "youtube": "",
+        "x": "",
+        "whatsapp": "",
+        "telegram": ""
+      },
+      "owner": {
+        "name": "",
+        "role": "",
+        "source": "",
+        "confidence": ""
+      },
+      "brand": {},
+      "crawled_at": "2026-10-12"
+    },
+    "maple-auto.example": {
+      "url": "https://maple-auto.example",
+      "final_url": "",
+      "status": 0,
+      "ok": false,
+      "state": "dns",
+      "pages": [],
+      "signals": {},
+      "seo": null,
+      "phones": [],
+      "emails": [],
+      "socials": {
+        "instagram": "",
+        "facebook": "",
+        "linkedin": "",
+        "tiktok": "",
+        "youtube": "",
+        "x": "",
+        "whatsapp": "",
+        "telegram": ""
+      },
+      "owner": {
+        "name": "",
+        "role": "",
+        "source": "",
+        "confidence": ""
+      },
+      "brand": {},
+      "crawled_at": "2026-10-12"
+    }
+  }
+}

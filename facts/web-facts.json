@@ -1,0 +1,336 @@
+{
+  "generated": "2026-10-07",
+  "facts": [
+    {
+      "id": "first-impression-50ms",
+      "group": "A",
+      "claim": "People decide whether they like the look of a website in about one-twentieth of a second.",
+      "number": "50 milliseconds",
+      "source": {"publisher": "Behaviour & Information Technology (Taylor & Francis); Lindgaard, Fernandes, Dudek & Brown", "title": "Attention web designers: You have 50 milliseconds to make a good first impression!", "year": 2006, "url": "https://doi.org/10.1080/01449290500330448"},
+      "quote": "Thus, visual appeal can be assessed within 50 ms, suggesting that web designers have about 50 ms to make a good first impression.",
+      "verified": true,
+      "industries": ["all"],
+      "caution": "Lab study measuring visual-appeal ratings, not purchases or trust. Vol. 25(2):115-126. Say 'judge how a site looks', not 'decide to buy'."
+    },
+    {
+      "id": "credibility-design-look-46pct",
+      "group": "A",
+      "claim": "In a Stanford study of 2,684 people, the look of a website was the thing people mentioned most often when judging whether to trust it.",
+      "number": "46.1% of comments (most-mentioned factor)",
+      "source": {"publisher": "Stanford Persuasive Technology Lab (B.J. Fogg et al.) for Consumer WebWatch / Consumer Reports", "title": "How Do People Evaluate a Web Site's Credibility? Results from a Large Study", "year": 2002, "url": "https://advocacy.consumerreports.org/research/how-do-people-evaluate-a-web-sites-credibility"},
+      "quote": "In this study, 2,684 people evaluated the credibility of two live Web sites on a similar topic (such as health or news). ... We found that the “design look” of the site was mentioned most frequently, being present in 46.1 percent of the comments.",
+      "verified": true,
+      "industries": ["all"],
+      "caution": "The figure is 46.1% of COMMENTS, not 46.1% of people (often misquoted as 'of consumers'). Study is from 2002. Dated October 29, 2002 on the Consumer Reports page."
+    },
+    {
+      "id": "stanford-contact-info-credibility",
+      "group": "A",
+      "claim": "Stanford's web-credibility researchers say a clearly shown phone number, address and email is one of the simplest ways to make a website more trusted.",
+      "number": "Guideline #5 of 10",
+      "source": {"publisher": "Stanford Web Credibility Research (Stanford Persuasive Technology Lab)", "title": "Stanford Guidelines for Web Credibility", "year": 2002, "url": "https://credibility.stanford.edu/guidelines/index.html"},
+      "quote": "5. Make it easy to contact you. A simple way to boost your site's credibility is by making your contact information clear: phone number, physical address, and email address.",
+      "verified": true,
+      "industries": ["all"],
+      "caution": "A research-based guideline, not a percentage. Year of guidelines approx. 2002 (page cites studies chi99-ptl02). Guideline #6 on the same page: 'We find that people quickly evaluate a site by visual design alone.'"
+    },
+    {
+      "id": "nng-leave-in-10-20-seconds",
+      "group": "A",
+      "claim": "Visitors often leave a web page within 10 to 20 seconds unless it quickly makes clear what you offer.",
+      "number": "10-20 seconds",
+      "source": {"publisher": "Nielsen Norman Group (Jakob Nielsen)", "title": "How Long Do Users Stay on Web Pages?", "year": 2011, "url": "https://www.nngroup.com/articles/how-long-do-users-stay-on-web-pages/"},
+      "quote": "Users often leave Web pages in 10–20 seconds, but pages with a clear value proposition can hold people's attention for much longer. To gain several minutes of user attention, you must clearly communicate your value proposition within 10 seconds.",
+      "verified": true,
+      "industries": ["all"],
+      "caution": "Published September 11, 2011; based on analysis of browsing data (desktop era)."
+    },
+    {
+      "id": "nng-57pct-above-fold",
+      "group": "A",
+      "claim": "People spend more than half their time on a page looking at the first screen, so your key message and phone number belong at the top.",
+      "number": "57% of viewing time above the fold; 74% in the first two screens",
+      "source": {"publisher": "Nielsen Norman Group (Therese Fessenden)", "title": "Scrolling and Attention", "year": 2018, "url": "https://www.nngroup.com/articles/scrolling-and-attention/"},
+      "quote": "In our most recent study, users spent about 57% of their page-viewing time above the fold. 74% of the viewing time was spent in the first two screenfuls, up to 2160px.",
+      "verified": true,
+      "industries": ["all"],
+      "caution": "Eyetracking study, desktop screens; article dated April 15, 2018."
+    },
+    {
+      "id": "bounce-32pct-1s-to-3s",
+      "group": "B",
+      "claim": "When a page takes 3 seconds to load instead of 1, the chance a visitor leaves goes up by about a third.",
+      "number": "+32% probability of bounce (1s to 3s)",
+      "source": {"publisher": "Think with Google (Google/SOASTA Research)", "title": "Mobile Page Load (stat card: 'The probability of bounce increases 32% as page load time goes from 1 second to 3 seconds')", "year": 2017, "url": "https://web.archive.org/web/2023/https://www.thinkwithgoogle.com/marketing-strategies/app-and-mobile/page-load-time-statistics/"},
+      "quote": "The probability of bounce increases 32% as page load time goes from 1 second to 3 seconds. Google/SOASTA Research, 2017.",
+      "verified": true,
+      "industries": ["all"],
+      "caution": "Original thinkwithgoogle.com URL now redirects to a generic business.google.com page; confirmed on the archived copy. It is a 32% RELATIVE increase in bounce probability, not '32% of visitors leave'. Also cited in Daniel An, 'Find out how you stack up to new industry benchmarks for mobile page speed', Feb 2018."
+    },
+    {
+      "id": "bounce-123pct-1s-to-10s",
+      "group": "B",
+      "claim": "Google found that a page taking 10 seconds instead of 1 more than doubles the chance a mobile visitor leaves.",
+      "number": "+123% probability of bounce (1s to 10s)",
+      "source": {"publisher": "Think with Google (Daniel An)", "title": "Find out how you stack up to new industry benchmarks for mobile page speed", "year": 2018, "url": "https://web.archive.org/web/2023/https://www.thinkwithgoogle.com/marketing-strategies/app-and-mobile/mobile-page-speed-new-industry-benchmarks/"},
+      "quote": "The neural net, which had a 90% prediction accuracy, found that as page load time goes from one second to 10 seconds, the probability of a mobile site visitor bouncing increases 123%.",
+      "verified": true,
+      "industries": ["all"],
+      "caution": "Footnoted to 'Google/SOASTA Research, 2017'. Modelled (neural-net) estimate; relative increase. Original URL now redirects; confirmed on archived copy."
+    },
+    {
+      "id": "mobile-53pct-abandon-3s",
+      "group": "B",
+      "claim": "Google found that more than half of visits to mobile sites are abandoned when the page takes longer than 3 seconds to load.",
+      "number": "53% of mobile site visits",
+      "source": {"publisher": "DoubleClick by Google (Alex Shellhammer)", "title": "The need for mobile speed: How mobile latency impacts publisher revenue", "year": 2016, "url": "https://web.archive.org/web/2017/https://www.doubleclickbygoogle.com/articles/mobile-speed-matters/"},
+      "quote": "In our new study, “The Need for Mobile Speed”, we found that 53% of mobile site visits are abandoned if pages take longer than 3 seconds to load.",
+      "verified": true,
+      "industries": ["all"],
+      "caution": "Published September 2016. Source footnote: 'Google Data, Aggregated, anonymized Google Analytics data from a sample of mWeb sites opted into sharing benchmark data, n=3.7K, Global, March 2016.' It is 53% of VISITS, not '53% of people/users'; often misattributed to 'Google 2018'. Data is 10 years old."
+    },
+    {
+      "id": "deloitte-0-1s-conversions",
+      "group": "B",
+      "claim": "A study by Deloitte for Google found that making a mobile site just 0.1 seconds faster lifted retail conversions by 8.4% and travel conversions by 10.1%.",
+      "number": "+8.4% retail conversions, +10.1% travel conversions per 0.1s faster",
+      "source": {"publisher": "Deloitte (commissioned by Google / 55)", "title": "Milliseconds Make Millions: A study on how improvements in mobile site speed positively affect a brand's bottom line", "year": 2020, "url": "https://web.archive.org/web/2021/https://www2.deloitte.com/content/dam/Deloitte/ie/Documents/Consulting/Milliseconds_Make_Millions_report.pdf"},
+      "quote": "Mobile site speed improvements had a direct correlation to improved funnel progression. An 8.4% increase in conversions with retail consumers was observed, and an increase in average order value of 9.2%. ... A 10.1% increase in conversions with travel consumers was observed",
+      "verified": true,
+      "industries": ["restaurants", "retail", "salons", "all (as general speed evidence)"],
+      "caution": "37 brands, Europe & US, 4-week period. For LEAD-GENERATION sites (closest to lawyers/clinics/trades) results were mixed: form step 1 to submission rose 21.6% and mobile bounce on info pages fell 8.3%, but overall mobile conversion rate fell 1.9%. Do not claim the 8.4% for service businesses. Live Deloitte URL is dead; confirmed via archived PDF (©2020 Deloitte Ireland LLP)."
+    },
+    {
+      "id": "mobile-share-worldwide",
+      "group": "B",
+      "claim": "Most web browsing worldwide now happens on phones, not computers.",
+      "number": "58.99% mobile, 39.26% desktop, 1.76% tablet (September 2026, worldwide)",
+      "source": {"publisher": "StatCounter Global Stats", "title": "Desktop vs Mobile vs Tablet Market Share Worldwide", "year": 2026, "url": "https://gs.statcounter.com/platform-market-share/desktop-mobile-tablet/worldwide"},
+      "quote": "Desktop vs Mobile vs Tablet Market Share Worldwide - September 2026 Mobile 58.99 % Desktop 39.26 % Tablet 1.76 %",
+      "verified": true,
+      "industries": ["all"],
+      "caution": "Share of page views on sites using StatCounter, not share of people. Updates monthly; re-check before printing."
+    },
+    {
+      "id": "mobile-share-canada-europe",
+      "group": "B",
+      "claim": "Phones account for roughly half or more of web browsing in Canada and Europe, and nearly two-thirds in the Netherlands.",
+      "number": "Canada 46.36% mobile (desktop 50.56%); Europe 55.41%; Germany 59.85%; Italy 51.78%; Netherlands 64.97% (September 2026)",
+      "source": {"publisher": "StatCounter Global Stats", "title": "Desktop vs Mobile vs Tablet Market Share (Canada, Europe, Germany, Italy, Netherlands)", "year": 2026, "url": "https://gs.statcounter.com/platform-market-share/desktop-mobile-tablet/canada"},
+      "quote": "Desktop vs Mobile vs Tablet Market Share in Canada - September 2026 Desktop 50.56 % Mobile 46.36 % Tablet 3.08 % | in Europe - September 2026 Mobile 55.41 % Desktop 42.32 % Tablet 2.27 % | in Germany - September 2026 Mobile 59.85 % | in Italy - September 2026 Mobile 51.78 % | in Netherlands - September 2026 Mobile 64.97 %",
+      "verified": true,
+      "industries": ["all"],
+      "caution": "In Canada desktop is still slightly ahead (50.56% vs 46.36%), so say 'nearly half' for Canada, not 'most'. Other pages: /europe, /germany, /italy, /netherlands. Page-view share; monthly figure."
+    },
+    {
+      "id": "unbounce-83pct-landing-visits-mobile",
+      "group": "B",
+      "claim": "Across more than 41,000 landing pages, about 8 in 10 visits came from phones.",
+      "number": "83% of landing page visits on mobile (81% for commercial & professional services)",
+      "source": {"publisher": "Unbounce", "title": "2024 Conversion Benchmark Report", "year": 2024, "url": "https://unbounce.com/conversion-benchmark-report/"},
+      "quote": "83% of landing page visits were on a mobile device, yet mobile converts 8% less than desktop",
+      "verified": true,
+      "industries": ["all"],
+      "caution": "Unbounce customers' landing pages (mostly paid-ad traffic), July 2023-July 2024. Professional-services page: 'despite 81% of landing page visits happening on mobile, the conversion rates were significantly lower than desktop visits.'"
+    },
+    {
+      "id": "google-speed-ranking-factor",
+      "group": "B",
+      "claim": "Google uses page speed as a ranking factor in mobile search, so very slow sites can be pushed down.",
+      "number": "Since July 2018",
+      "source": {"publisher": "Google Search Central Blog", "title": "Using page speed in mobile search ranking", "year": 2018, "url": "https://developers.google.com/search/blog/2018/01/using-page-speed-in-mobile-search"},
+      "quote": "Today we're announcing that starting in July 2018, page speed will be a ranking factor for mobile searches. The \"Speed Update\", as we're calling it, will only affect pages that deliver the slowest experience to users and will only affect a small percentage of queries.",
+      "verified": true,
+      "industries": ["all"],
+      "caution": "Google says it only affects the slowest pages and a small share of queries; relevance still matters more. Current Google doc (developers.google.com/search/docs/appearance/page-experience) adds: 'Core Web Vitals are used by our ranking systems.' Don't promise rankings."
+    },
+    {
+      "id": "near-me-76pct-visit-within-day",
+      "group": "C",
+      "claim": "Three in four people who search on their phone for something nearby visit a business within a day, and 28% of those searches lead to a purchase.",
+      "number": "76% visit within a day; 28% result in a purchase",
+      "source": {"publisher": "Think with Google", "title": "How Mobile Search Connects Consumers to Stores", "year": 2016, "url": "https://web.archive.org/web/2022/https://www.thinkwithgoogle.com/marketing-strategies/app-and-mobile/mobile-search-trends-consumers-to-stores/"},
+      "quote": "76% of people who search on their smartphones for something nearby visit a business within a day ... 28% of those searches for something nearby result in a purchase.",
+      "verified": true,
+      "industries": ["restaurants", "salons", "clinics", "dentists", "retail", "all walk-in businesses"],
+      "caution": "May 2016 infographic (image at storage.googleapis.com/twg-content/documents/mobile-search-trends-consumers-to-stores-desktop.svg). Footnote: 'Google/Purchased Digital Diary: How Consumers Solve Their Needs in the Moment, May 2016. Smartphone users = 1000, local searchers = 634, purchases = 1,140.' Small diary sample, likely US, 10 years old. Wording is 'visit a business', not 'visit the business they searched for'."
+    },
+    {
+      "id": "mobile-searches-30pct-location",
+      "group": "C",
+      "claim": "Google reported that almost a third of all mobile searches are related to a location.",
+      "number": "30% of mobile searches",
+      "source": {"publisher": "Think with Google", "title": "How Mobile Search Connects Consumers to Stores", "year": 2016, "url": "https://web.archive.org/web/2022/https://www.thinkwithgoogle.com/marketing-strategies/app-and-mobile/mobile-search-trends-consumers-to-stores/"},
+      "quote": "30% of all mobile searches are related to location.",
+      "verified": true,
+      "industries": ["all"],
+      "caution": "Footnote: 'Google Search Data, global, April 2016.' Old; use instead of the unsourced '46% of all Google searches are local'."
+    },
+    {
+      "id": "brightlocal-97pct-read-reviews",
+      "group": "C",
+      "claim": "Almost every consumer reads online reviews, and 4 in 10 always read them when looking for a business.",
+      "number": "97% read reviews online; 41% 'always' read reviews",
+      "source": {"publisher": "BrightLocal", "title": "Local Consumer Review Survey 2026", "year": 2026, "url": "https://www.brightlocal.com/research/local-consumer-review-survey/"},
+      "quote": "Reviews are a vital part of the business decision-making process, with 97% of consumers reading reviews online. In 2026, 41% of consumers “always” read reviews when browsing for businesses, a huge jump from last year (29%).",
+      "verified": true,
+      "industries": ["all"],
+      "caution": "Panel of 1,002 US adults via SurveyMonkey; published Feb 11, 2026. US data."
+    },
+    {
+      "id": "brightlocal-54pct-visit-website-after-reviews",
+      "group": "C",
+      "claim": "After reading good reviews, more than half of people go to the business's website next, so a business without a proper website loses them at that step.",
+      "number": "54% visit the business website after positive reviews (up from 32% in 2019)",
+      "source": {"publisher": "BrightLocal", "title": "Local Consumer Review Survey 2026", "year": 2026, "url": "https://www.brightlocal.com/research/local-consumer-review-survey/"},
+      "quote": "Consumers are most likely (54%) to visit a business’s website after reading positive reviews, up significantly from 32% when we last asked this in 2019. With just 40% of local businesses having a dedicated website, many consumers could be dropping off at this point in the funnel.",
+      "verified": true,
+      "industries": ["all"],
+      "caution": "1,002 US adults. The '40% of local businesses having a dedicated website' is BrightLocal's own claim in the same paragraph; quote it only as BrightLocal's estimate. Same survey: 20% contact the business and 20% make an appointment after positive reviews."
+    },
+    {
+      "id": "brightlocal-review-thresholds",
+      "group": "C",
+      "claim": "Nearly half of consumers won't use a business with fewer than 20 reviews, and about 7 in 10 only use businesses rated 4 stars or higher.",
+      "number": "47% won't use a business with <20 reviews; 68% only use 4+ stars",
+      "source": {"publisher": "BrightLocal", "title": "Local Consumer Review Survey 2026", "year": 2026, "url": "https://www.brightlocal.com/research/local-consumer-review-survey/"},
+      "quote": "47% of consumers won’t use a business with fewer than 20 reviews, and only 9% are willing to use one with five or fewer. ... Seven in ten (68%) will only use a business with four or more stars, up from 55% in 2025.",
+      "verified": true,
+      "industries": ["all"],
+      "caution": "US panel of 1,002 adults. Use to argue for showing reviews on the landing page."
+    },
+    {
+      "id": "brightlocal-ai-recommendations-45pct",
+      "group": "C",
+      "claim": "Close to half of consumers now use ChatGPT or other AI tools to find local business recommendations.",
+      "number": "45% (up from 6% the year before)",
+      "source": {"publisher": "BrightLocal", "title": "Local Consumer Review Survey 2026", "year": 2026, "url": "https://www.brightlocal.com/research/local-consumer-review-survey/"},
+      "quote": "Use of ChatGPT and other generative AI tools for local recommendations has grown rapidly, rising from 6% last year to 45% and becoming the third most popular source of business recommendations.",
+      "verified": true,
+      "industries": ["all"],
+      "caution": "US panel. BrightLocal advises: 'keep your website up-to-date' because AI tools reference it. Very large one-year jump; present as one survey's finding."
+    },
+    {
+      "id": "google-local-ranking-reviews-links",
+      "group": "C",
+      "claim": "Google says more reviews, good ratings and links from other websites help a business rank higher in local results.",
+      "number": "3 main factors: relevance, distance, prominence",
+      "source": {"publisher": "Google Business Profile Help", "title": "Tips to improve your local ranking on Google", "year": 2026, "url": "https://support.google.com/business/answer/7091?hl=en"},
+      "quote": "Prominence means how well-known a business is. Prominent places are more likely to show up in search results. This factor’s also based on info like how many websites link to your business and how many reviews you have. More reviews and positive ratings can help your business’s local ranking.",
+      "verified": true,
+      "industries": ["all"],
+      "caution": "Help page is undated (live as of Oct 2026). Page also says 'There's no way to request or pay for a better local ranking on Google.' Don't promise rankings."
+    },
+    {
+      "id": "click-to-call-70pct-47pct",
+      "group": "C",
+      "claim": "Most mobile searchers have tapped to call a business straight from Google, and almost half say they'll look at other businesses if no phone number is shown.",
+      "number": "70% have used click-to-call; 47% more likely to explore other brands without a phone number",
+      "source": {"publisher": "Google / Ipsos", "title": "The Role of Click to Call in the Path to Purchase", "year": 2013, "url": "https://www.thinkwithgoogle.com/_qs/documents/1454/click-to-call_research-studies_hz2ytgv.pdf"},
+      "quote": "70% of mobile searchers have used click to call to connect with a business directly from the search engine results page. ... 47% of mobile searchers say that if a business does not have a phone number associated with their search results, they will be more likely to explore other brands.",
+      "verified": true,
+      "industries": ["all", "especially trades", "lawyers", "clinics", "dentists"],
+      "caution": "September 2013; 3,000 respondents aged 18-74, online survey July 2-8, 2013 (country not stated in PDF; Google issued separate country editions, so assume US). Old - pair with a newer stat."
+    },
+    {
+      "id": "click-to-call-local-services",
+      "group": "C",
+      "claim": "People searching for professional and home services are especially likely to phone a business straight from their search.",
+      "number": "72% (professional services e.g. legal, real estate) and 66% (home services e.g. plumber) extremely/very likely to call",
+      "source": {"publisher": "Google / Ipsos", "title": "The Role of Click to Call in the Path to Purchase", "year": 2013, "url": "https://www.thinkwithgoogle.com/_qs/documents/1454/click-to-call_research-studies_hz2ytgv.pdf"},
+      "quote": "LOCAL SERVICES SEARCHERS HAVE THE HIGHEST LIKELIHOOD TO PLACE A PHONE CALL FROM SEARCH, LED BY PROFESSIONAL SEARCHES. % who would be extremely/very likely to call if the call capability was available in smartphone search: Professional 72% / Home 66%",
+      "verified": true,
+      "industries": ["lawyers", "trades", "home services", "real estate"],
+      "caution": "2013 survey, hypothetical question about a sample results page. Same section: 'The most likely reason to place a call related to local services is to schedule an appointment.'"
+    },
+    {
+      "id": "unbounce-median-conversion-by-industry",
+      "group": "D",
+      "claim": "A typical landing page turns about 6 or 7 of every 100 visitors into a lead or sale; for law firms it's about 6 in 100 and for healthcare about 5 in 100.",
+      "number": "Median 6.6% all industries; legal 6.3%; commercial & professional services 6.1%; healthcare 5.1% (wellness 8.2%, medical treatment 5.3%, dental 4.3%)",
+      "source": {"publisher": "Unbounce", "title": "2024 Conversion Benchmark Report (overview + legal, health & wellness, commercial & professional services pages)", "year": 2024, "url": "https://unbounce.com/conversion-benchmark-report/"},
+      "quote": "The median conversion rate across all industries is 6.6%. | The median conversion rate for legal landing pages is 6.3% | Its median conversion rate (8.2%) outperforms the median healthcare industry conversion rate (5.1%) ... medical treatment subcategory median conversion rate, which lies at 5.3%. ... The median conversion rate for dental services is 4.3% | The median conversion rate for commercial and professional services landing pages is 6.1%",
+      "verified": true,
+      "industries": ["all", "lawyers", "dentists", "clinics", "trades"],
+      "caution": "Data July 23, 2023-July 23, 2024: 464M visitors, 57M conversions, 41K+ landing pages built on Unbounce (methodology page). Benchmarks for dedicated landing pages, mostly paid traffic. Industry pages: /legal-conversion-rate/, /healthcare-wellness-conversion-rate/, /professional-services-conversion-rate/. Same report: repair and maintenance pages 'convert almost 3x better than home and renovation services' (exact rates shown only in chart). Use as a benchmark, not a promise."
+    },
+    {
+      "id": "statcan-research-goods-services",
+      "group": "E",
+      "claim": "About three in four Canadians look up information about products and services online.",
+      "number": "76.3% of Canadians aged 15+ (in the past 3 months, 2022)",
+      "source": {"publisher": "Statistics Canada (Canadian Internet Use Survey)", "title": "Table 22-10-0137-01 Selected online activities by gender, age group and highest certificate, diploma or degree completed", "year": 2023, "url": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=2210013701"},
+      "quote": "2022 | Canada | Researched for information about goods or services | Total, gender | Total, 15 years and over | Percent | 76.3 (table note: 'Percentage of Canadians.' Activities are 'during the past three months'.)",
+      "verified": true,
+      "industries": ["all"],
+      "caution": "Reference year 2022, released July 2023; ten provinces, age 15+. Covers goods and services in general, not specifically local businesses."
+    },
+    {
+      "id": "statcan-booked-appointments-online",
+      "group": "E",
+      "claim": "More than half of Canadians book appointments online.",
+      "number": "58.5% of Canadians aged 15+ booked appointments online (past 3 months, 2022), up from 34.3% in 2018",
+      "source": {"publisher": "Statistics Canada (Canadian Internet Use Survey)", "title": "Table 22-10-0137-01 Selected online activities by gender, age group and highest certificate, diploma or degree completed", "year": 2023, "url": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=2210013701"},
+      "quote": "2022 | Canada | Booked appointments | Total, gender | Total, 15 years and over | Percent | 58.5 (2018: 34.3; 2020: 48.2)",
+      "verified": true,
+      "industries": ["salons", "clinics", "dentists", "lawyers", "trades"],
+      "caution": "Survey redesigned in 2018; StatCan cautions comparisons between cycles may have minor wording changes. Does not specify appointment type."
+    },
+    {
+      "id": "eurostat-find-info-goods-services",
+      "group": "E",
+      "claim": "Most adults in Europe use the internet to find information about goods and services, including 8 in 10 Germans and 9 in 10 Dutch.",
+      "number": "2025: EU 71.81%; Germany 80.06%; Italy 60.01%; Netherlands 90.6%; France 68.46% (individuals aged 16-74)",
+      "source": {"publisher": "Eurostat", "title": "Individuals - internet activities (isoc_ci_ac_i), indicator 'Internet use: finding information about goods and services'", "year": 2026, "url": "https://ec.europa.eu/eurostat/databrowser/view/isoc_ci_ac_i/default/table"},
+      "quote": "I_IUIF: 'Internet use: finding information about goods and services' | PC_IND 'Percentage of individuals' | IND_TOTAL 'All individuals' | 2025: EU27_2020 71.81, DE 80.06, IT 60.01, NL 90.6, FR 68.46",
+      "verified": true,
+      "industries": ["all"],
+      "caution": "Pulled from the Eurostat API (dataset updated 2026-04-17). Survey population: individuals aged 16-74. Usual reference period is the last 3 months. Values jump between years (Germany was 41.67 in 2023, flagged low reliability), so cite only the 2025 figure and the year."
+    },
+    {
+      "id": "csa-cant-read-wont-buy",
+      "group": "F",
+      "claim": "Three in four online shoppers prefer to buy when product information is in their own language, and 4 in 10 will never buy from a site in another language.",
+      "number": "76% prefer info in their native language; 40% will not buy from websites in other languages; 65% prefer content in their language even if poor quality",
+      "source": {"publisher": "CSA Research", "title": "Can't Read, Won't Buy - B2C", "year": 2020, "url": "https://www.newswire.com/view/content/survey-of-8-709-consumers-in-29-countries-finds-that-76-prefer-21174283"},
+      "quote": "Based on a survey of 8,709 global consumers in 29 countries in Europe, Asia, North America, and South America, CSA Research found that 76% of online shoppers prefer to buy products with information in their native language. In addition, 40% will never buy from websites in other languages.",
+      "verified": true,
+      "industries": ["all", "especially immigrant-community businesses"],
+      "caution": "Official CSA press release, July 9, 2020; survey fielded by Kantar. The 65% ('Prefer Content in Their Language - Even if it's poor quality') was confirmed on CSA's archived CRWB-B2C page (csa-research.com/More/Featured-Content/Global-Growth/CRWB-Series/CRWB-B2C, now 404 live). About online shoppers buying products in their home countries, not specifically about immigrants choosing local services."
+    }
+  ],
+  "rejected": [
+    {
+      "claim": "75% of users judge a company's credibility based on its website design (attributed to Stanford)",
+      "why": "No primary source found. The Stanford study (Fogg et al., 2002) reports that 'design look' appeared in 46.1% of comments, not 75% of users. The Stanford Web Credibility guidelines page contains no 75% figure. Use the 46.1% fact instead."
+    },
+    {
+      "claim": "94% of first impressions are design-related",
+      "why": "Misquoted. Source is Sillence, Briggs, Fishwick & Harris, 'Trust and mistrust of online health sites', CHI 2004: 15 UK women at menopause looking at health sites. Table 2 shows 94% of COMMENTS about why they REJECTED or MISTRUSTED a site related to design (6% to content). It is not about first impressions in general, and the same paper found content mattered more for sites they trusted."
+    },
+    {
+      "claim": "88% of online consumers are less likely to return to a site after a bad experience",
+      "why": "Traces to a 2009 survey by Gomez, a web-performance vendor (about 1,500 US online shoppers during peak season), known only through press coverage (Computerworld/PCWorld). The original report could not be opened. Vendor survey, e-commerce only, 17 years old."
+    },
+    {
+      "claim": "47% of consumers expect a web page to load in 2 seconds or less (Akamai/Forrester)",
+      "why": "Could not open the original 2009 Akamai press release (live URL returns Access Denied; archive redirects to newsroom). E-commerce-only, 2009. Use the Google/SOASTA or DoubleClick figures instead."
+    },
+    {
+      "claim": "53% of mobile users leave a site that takes more than 3 seconds to load (Google, 2018)",
+      "why": "Partly misquoted. The figure is real but it is from DoubleClick by Google, September 2016, and it refers to 53% of mobile site VISITS abandoned, not 53% of users. The corrected version is in 'facts' as mobile-53pct-abandon-3s."
+    },
+    {
+      "claim": "46.1% of consumers judge a website's credibility by its design",
+      "why": "Misquoted. Fogg et al. (2002) report 'design look' in 46.1% of COMMENTS from 2,684 participants, not 46.1% of people. The corrected version is in 'facts'."
+    },
+    {
+      "claim": "A 0.1-second faster site increases conversions by 8.4% for any business",
+      "why": "Overgeneralized. Deloitte's 'Milliseconds Make Millions' (2020) found 8.4% for retail and 10.1% for travel. For lead-generation sites the overall mobile conversion rate actually fell 1.9% (though form completion rose 21.6%). Do not apply the 8.4% to law firms, clinics or trades."
+    },
+    {
+      "claim": "46% of all Google searches are local / seeking local information",
+      "why": "No Google publication. It traces to a single tweet (Nick Wilsdon, Oct 10, 2018) reporting a slide at a Google 'Secrets of Local Search' event; Search Engine Roundtable (Oct 17, 2018) wrote: 'all I have is a tweet from this SEO on this stat.' Google's own published figure is '30% of all mobile searches are related to location' (Think with Google, 2016), which is in 'facts' instead."
+    }
+  ]
+}

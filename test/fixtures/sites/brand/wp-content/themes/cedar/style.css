@@ -1,0 +1,10 @@
+/* Theme Name: Cedar */
+:root { --brand-primary: #1F6F5C; --brand-accent: #E07A2F; --text: #2b2b2b; --muted: #999999; }
+body { font-family: "Lora", Georgia, serif; color: var(--text); }
+a { color: #1E6E5B; }
+a:hover { color: var(--brand-accent); }
+.site-header { background: #ffffff; border-bottom: 3px solid var(--brand-primary); }
+.cta { background: var(--brand-accent); }
+.badge { background: #1F6F5C; }
+footer { background: #222; color: #eee; }
+@media (max-width: 768px) { .site-header nav { display: none; } }

@@ -1,0 +1,73 @@
+{
+  "name": "demo-austin-trades",
+  "agency": {
+    "name": "Fieldwork Studio",
+    "contact_name": "Alex Rivera",
+    "phone": "+1 512 555 0100",
+    "email": "hello@fieldwork.example",
+    "website": "fieldwork.example",
+    "logo": "",
+    "color": "#2F5D50"
+  },
+  "market": {
+    "country": "US",
+    "currency": "USD",
+    "currency_symbol": "$",
+    "language": "en",
+    "paper": "Letter",
+    "timezone": "America/Chicago"
+  },
+  "area": {
+    "name": "Austin metro",
+    "bbox": [
+      30.0,
+      -98.1,
+      30.7,
+      -97.4
+    ],
+    "cities": [
+      "austin",
+      "round rock",
+      "cedar park",
+      "pflugerville",
+      "georgetown",
+      "kyle",
+      "buda"
+    ]
+  },
+  "sources": [
+    {
+      "type": "csv",
+      "name": "demo-list",
+      "enabled": true,
+      "file": "leads.csv",
+      "map": {
+        "name": "Business Name",
+        "phone": "Phone",
+        "website": "Website",
+        "address": "Address",
+        "city": "City",
+        "category": "Category",
+        "email": "Email"
+      }
+    }
+  ],
+  "google_lookup": {
+    "enabled": false
+  },
+  "crawl": {
+    "max_pages": 4,
+    "gap_ms": 20,
+    "concurrency": 4,
+    "timeout_ms": 5000,
+    "respect_robots": true,
+    "wayback": false
+  },
+  "proposals": {
+    "tiers": [
+      "A",
+      "B"
+    ],
+    "limit": 3
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "_note": "Fictional demo. Every 'source' points at the demo's own fictional data (job.json and examples/demo/old-site/).",
+  "collected": "2026-10-12",
+  "business": {
+    "name": "Northwind Plumbing",
+    "category": "Plumber",
+    "owner": "Dana Whitfield, owner and master plumber",
+    "since": 1998,
+    "address": "1200 Example Ave, Austin, TX 78701",
+    "phone": "+1 512 555 0142",
+    "phone_display": "(512) 555-0142",
+    "email": "hello@northwind-plumbing.example",
+    "website": "https://northwind-plumbing.example/",
+    "hours": "Mon-Sat 07:00-19:00",
+    "area": ["Austin", "Round Rock", "Cedar Park", "Pflugerville"],
+    "google": { "rating": 4.8, "reviews": 127 }
+  },
+  "brand": {
+    "logo": "assets/logo.png",
+    "logo_light": "assets/logo-light.png (same logo, light version for dark backgrounds)",
+    "colors": { "navy": "#17324D", "deep": "#0F2236", "copper": "#D9822B", "cream": "#F7F2EA" },
+    "color_source": "Logo and van livery (navy body, copper stripe); the old site's blue #2B5D8A was a template colour, not their brand",
+    "fonts": ["Archivo (headings, condensed 80%)", "Archivo (body)"],
+    "photos": ["assets/van.jpg", "assets/technician.jpg", "assets/under-sink.jpg", "assets/water-heater.jpg"],
+    "photo_note": "Demo illustrations standing in for the business's own photos.",
+    "map": "assets/service-area-map.png (static image, no live map embed)"
+  },
+  "services": [
+    { "name": "Leak & pipe repair", "source": "old site homepage: 'Repairs'" },
+    { "name": "Drain cleaning", "source": "old site homepage: 'drains'" },
+    { "name": "Water heaters", "source": "old site homepage + Google category 'Water heater installation service'" },
+    { "name": "Fixture installs", "source": "job.json business.google.categories (demo)" },
+    { "name": "Repiping", "source": "job.json (demo)" },
+    { "name": "Urgent repairs", "source": "job.json (demo)" }
+  ],
+  "reviews": [
+    { "name": "Maria G.", "rating": 5, "text": "Our water heater died on a Sunday night. They were here Monday morning and had it replaced by lunch.", "source": "Google review sample in job.json", "date": "2026-08-03" },
+    { "name": "Tom R.", "rating": 5, "text": "Explained the problem, gave me the price up front and stuck to it. Tidy work, too.", "source": "Google review sample in job.json", "date": "2026-06-19" },
+    { "name": "Priya S.", "rating": 5, "text": "Third time we have used Northwind. Friendly, on time, and the kitchen drain finally drains.", "source": "Google review sample in job.json", "date": "2026-05-02" }
+  ],
+  "sources": [
+    { "fact": "Family owned, serving Austin since 1998", "source": "old site homepage, About Us (examples/demo/old-site/index.html)" },
+    { "fact": "Rating 4.8 from 127 reviews", "source": "job.json business.google" },
+    { "fact": "Phone, address, hours", "source": "job.json business (Google listing)" },
+    { "fact": "Owner Dana Whitfield, master plumber", "source": "job.json business.owner (about page)" },
+    { "fact": "Service towns", "source": "project area (Austin metro) and job.json" },
+    { "fact": "Quote form error, newsletter pop-up, services page under construction, footer 2017", "source": "screenshots/evidence and current-site.png, captured 2026-10-12" }
+  ]
+}

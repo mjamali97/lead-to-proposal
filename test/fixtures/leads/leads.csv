@@ -1,0 +1,8 @@
+Business Name,Phone,Website,Address,City,Category,Email
+Northwind Plumbing,(512) 555-0123,northwind-plumbing.example,100 Example St,Austin,Plumber,hello@northwind-plumbing.example
+"Northwind Plumbing & Drain",+1 512-555-0123 ext. 4,https://www.northwind-plumbing.example/contact,,Austin,Plumbing,
+Bluebird Bakery,512.555.0142,,200 Sample Ave,Round Rock,Bakery,orders@bluebird-bakery.example
+Redwood Dental,512-555-0177,https://redwood-dental.example,300 Demo Rd,Austin,Dentist,
+Faraway Roofing,512-555-0190,https://faraway-roofing.example,1 Distant Ln,Dallas,Roofing,
+Cedar Hair Studio,512-555-0155,https://www.instagram.com/cedar.hair.studio/,5 Mock Blvd,Austin,Hair salon,
+,512-555-0199,,,Austin,,

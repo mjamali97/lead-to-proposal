@@ -1,0 +1,58 @@
+{
+  "_help": "UI strings of the proposal template. Add a language by copying this file to <lang>.json (e.g. de.json) and translating the values; missing keys fall back to English. _dir is ltr or rtl. _fonts_css is an optional extra stylesheet URL (e.g. Google Fonts for Arabic script) and _font_stack an optional font family put first. {name} placeholders are filled in by the template.",
+  "_dir": "ltr",
+  "_fonts_css": "",
+  "_font_stack": "",
+
+  "doc_title": "{business} · Website proposal from {agency}",
+  "prepared_for": "Prepared for",
+  "page_of": "{n} / {total}",
+  "your_new_website": "your new website",
+
+  "cover_ribbon_title": "Your new page · {price}",
+  "cover_ribbon_ready": "Ready in {days} days",
+
+  "today_kicker": "What customers find today",
+  "then_they_see": "Then they see this:",
+
+  "cost_kicker": "What it costs",
+  "cost_title": "Every missed visitor has a price.",
+  "cost_page_label": "Your new page",
+  "source": "Source",
+
+  "new_kicker": "Your new page",
+  "new_title": "Already designed.",
+  "new_title_em": "Just for you.",
+  "new_mobile_note": "Built for phones first, with the call button always in reach.",
+
+  "change_kicker": "What changes",
+  "change_title": "Before and after.",
+  "badge_today": "Today",
+  "badge_new": "Your new page",
+  "values_title": "What you get",
+
+  "google_kicker": "Google readiness",
+  "google_title": "Your Google check-up",
+  "google_checks_note": "8 checks on your homepage, explained in plain words.",
+  "google_presence_note": "8 checks on how customers find you online today.",
+  "score_out_of": "out of 100",
+  "no_website": "No website",
+  "no_website_sub": "yet",
+  "problem_n": "Problem {n}",
+  "what_works": "What works",
+
+  "offer_kicker": "Your options",
+  "offer_title": "Pick your plan.",
+  "plan_foot_rec": "One time · Best value",
+  "plan_foot": "One time",
+  "plan_foot_quote": "Quoted for you",
+  "plan_price_quote": "Let’s talk",
+  "care_plan": "Care plan",
+  "delivery": "Live in {days} days",
+  "trust_1": "You’ve seen it already",
+  "trust_2": "You approve it before launch",
+  "trust_3": "No long contract",
+  "prepared_by": "Prepared by {name}",
+  "cta_title": "Reply “Yes” to start",
+  "cta_or_call": "or call {name}"
+}

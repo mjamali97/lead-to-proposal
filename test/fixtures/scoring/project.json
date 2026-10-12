@@ -1,0 +1,23 @@
+{
+  "name": "scoring-fixture",
+  "agency": {
+    "name": "Example Studio",
+    "color": "#2E5E4E"
+  },
+  "market": {
+    "country": "US",
+    "currency": "USD"
+  },
+  "sources": [],
+  "scoring": {
+    "disqualify": {
+      "chain_patterns": [
+        "rooterco"
+      ]
+    }
+  },
+  "compliance": {
+    "regime": "CAN-SPAM",
+    "sender_identity": "Pat Example, Example Studio, 1 Example Way"
+  }
+}

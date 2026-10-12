@@ -1,0 +1,8 @@
+# Made by python/render.py (run it to regenerate); only the inputs are committed.
+*.pdf
+proposal/
+logs/
+status.json
+agent-report.json
+landing-page/screenshots/landing-*.png
+landing-page/screenshots/.landing-pdf.png

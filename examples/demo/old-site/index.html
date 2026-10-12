@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!-- Fictional "today" website for the demo (Northwind Plumbing is not a real business).
+     Deliberately dated so the demo proposal has something to show. make_assets.py screenshots it. -->
+<html><head><meta charset="utf-8"><title>Home</title>
+<style>
+body{margin:0;font:13px Verdana,Arial,sans-serif;background:#d9dde2;color:#333}
+.wrap{width:960px;margin:0 auto;background:#fff}
+.top{background:#2b5d8a;color:#fff;padding:18px 20px;display:flex;align-items:center;gap:14px}
+.top img{height:44px;background:#fff;padding:4px}
+.top h1{font:bold 22px Georgia,serif;margin:0}
+.nav{background:#1d4466;padding:0 12px}
+.nav a{display:inline-block;color:#dbe7f2;padding:10px 12px;text-decoration:none;font-size:12px;text-transform:uppercase}
+.slider{height:330px;background:linear-gradient(#5d8fb8,#2b5d8a);position:relative;overflow:hidden}
+.slider img{position:absolute;right:20px;top:20px;width:400px;opacity:.85}
+.slider .cap{position:absolute;left:30px;top:90px;color:#fff;font:italic 30px Georgia,serif;width:440px}
+.slider .dots{position:absolute;left:30px;bottom:20px;color:#fff;letter-spacing:6px}
+.cols{display:flex;gap:20px;padding:20px}
+.cols div{flex:1;font-size:12px;line-height:1.6}
+.cols h3{color:#2b5d8a;font:bold 15px Georgia,serif;border-bottom:1px dotted #999}
+.foot{background:#1d4466;color:#9fb3c6;text-align:center;font-size:11px;padding:16px}
+.pop{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:999;display:flex;align-items:center;justify-content:center}
+.pop .box{background:#fff;width:420px;padding:26px;border:4px solid #2b5d8a;text-align:center;font:14px Verdana,sans-serif}
+.pop h2{font:bold 22px Georgia,serif;color:#2b5d8a;margin:0 0 10px}
+.pop input{width:80%;padding:8px;margin:12px 0;border:1px solid #999}
+.pop button{background:#d9822b;color:#fff;border:0;padding:9px 22px;font-weight:bold}
+</style></head><body>
+<div class="wrap">
+  <div class="top"><img src="../package/landing-page/assets/logo.png" alt=""><h1>Northwind Plumbing</h1></div>
+  <div class="nav"><a href="#">Home</a><a href="#">About Us</a><a href="services.html">Services</a><a href="contact.html">Contact</a></div>
+  <div class="slider"><img src="../package/landing-page/assets/van.jpg" alt=""><div class="cap">Welcome to our website!</div><div class="dots">● ○ ○</div></div>
+  <div class="cols">
+    <div><h3>About Us</h3>We are a family owned company serving Austin since 1998. We take pride in our work and our customers. Please browse our site to learn more about the services we offer.</div>
+    <div><h3>Our Services</h3>Repairs, drains, water heaters and more. Please see our services page for a full list of what we can do for you and your home.</div>
+    <div><h3>News</h3>Check back soon for news and specials from our team. We will be posting updates here regularly.</div>
+  </div>
+  <div class="foot">© 2017 Northwind Plumbing. All rights reserved.</div>
+</div>
+<div class="pop"><div class="box"><h2>Join our newsletter!</h2>Get plumbing tips and special offers in your inbox.<br><input placeholder="Your email"><br><button>SUBSCRIBE</button></div></div>
+</body></html>

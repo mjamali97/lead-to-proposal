@@ -1,0 +1,245 @@
+{
+  "_help": "Defaults merged under every project.json (deep merge; arrays are replaced, not merged).",
+  "name": "my-project",
+  "agency": {
+    "name": "",
+    "contact_name": "",
+    "phone": "",
+    "email": "",
+    "website": "",
+    "logo": "",
+    "color": "#1F4E79"
+  },
+  "market": {
+    "country": "US",
+    "currency": "USD",
+    "currency_symbol": "$",
+    "language": "en",
+    "paper": "Letter",
+    "timezone": "America/Chicago"
+  },
+  "area": {
+    "name": "",
+    "bbox": null,
+    "center": null,
+    "radius_km": null,
+    "cities": []
+  },
+  "offer": {
+    "summary": "A new mobile-first website built from the business's own brand, live in 14 days",
+    "plans": [
+      {
+        "name": "Launch",
+        "price": "$750",
+        "tag": "Most popular",
+        "rec": true,
+        "items": [
+          "This exact page, finished with you",
+          "Call, text and quote buttons",
+          "Live in 14 days"
+        ]
+      },
+      {
+        "name": "Growth",
+        "price": "$1,500",
+        "tag": "Get found on Google",
+        "rec": false,
+        "items": [
+          "Everything in Launch",
+          "Google Business Profile tune-up",
+          "Local service pages"
+        ]
+      },
+      {
+        "name": "Custom",
+        "price": "Quote",
+        "tag": "Bigger projects",
+        "rec": false,
+        "items": [
+          "Booking, ordering or several locations",
+          "Scoped on a call"
+        ]
+      }
+    ],
+    "care_plan": "$39/month hosting, small edits and Google profile updates",
+    "delivery_days": 14
+  },
+  "sources": [],
+  "google_lookup": {
+    "enabled": false,
+    "budget_usd": 5,
+    "price_per_lookup_usd": 0.004
+  },
+  "crawl": {
+    "max_pages": 5,
+    "gap_ms": 1000,
+    "concurrency": 6,
+    "timeout_ms": 15000,
+    "respect_robots": true,
+    "wayback": false,
+    "wayback_endpoint": "https://web.archive.org/cdx/search/cdx"
+  },
+  "categories": {
+    "groups": {
+      "trades": [
+        "plumb",
+        "hvac",
+        "heating",
+        "air condition",
+        "electric",
+        "roof",
+        "drain",
+        "furnace",
+        "contractor",
+        "renovat",
+        "pest"
+      ],
+      "food": [
+        "restaurant",
+        "cafe",
+        "bakery",
+        "pizza",
+        "catering",
+        "grill",
+        "kitchen"
+      ],
+      "beauty": [
+        "salon",
+        "barber",
+        "spa",
+        "nail",
+        "beauty",
+        "lash",
+        "brow"
+      ],
+      "health": [
+        "dentist",
+        "dental",
+        "clinic",
+        "physio",
+        "chiropract",
+        "optometr",
+        "medical"
+      ],
+      "legal": [
+        "law",
+        "lawyer",
+        "attorney",
+        "notary",
+        "immigration"
+      ],
+      "auto": [
+        "auto",
+        "mechanic",
+        "car wash",
+        "tire",
+        "body shop",
+        "detailing"
+      ],
+      "real_estate": [
+        "real estate",
+        "realtor",
+        "realty",
+        "mortgage",
+        "broker"
+      ],
+      "professional": [
+        "account",
+        "bookkeep",
+        "tax",
+        "insurance",
+        "consult"
+      ]
+    },
+    "ticket": {
+      "trades": "premium",
+      "health": "premium",
+      "legal": "premium",
+      "real_estate": "premium",
+      "auto": "mid",
+      "beauty": "mid",
+      "professional": "mid",
+      "food": "low"
+    },
+    "ads_benchmark_industry": {"trades": "home_services", "food": "food", "beauty": "beauty", "health": "medical", "legal": "legal", "auto": "auto", "real_estate": "real_estate", "professional": "finance_insurance"}
+  },
+  "scoring": {
+    "weights": {},
+    "tiers": {
+      "A": 55,
+      "B": 38,
+      "C": 24
+    },
+    "disqualify": {
+      "chain_patterns": [],
+      "competitor_patterns": [
+        "web design",
+        "seo agency",
+        "digital marketing",
+        "marketing agency",
+        "web development"
+      ],
+      "well_served": {
+        "min_seo": 70,
+        "min_footer_year": 2024,
+        "requires_form_or_widget": true,
+        "modern_builders": []
+      },
+      "brand_patterns": [],
+      "max_locations": 3
+    },
+    "legal_page_countries": [
+      "DE",
+      "AT"
+    ]
+  },
+  "community": {
+    "enabled": false,
+    "mode": "boost",
+    "script_regex": "",
+    "name_tokens": [],
+    "bonus": 10
+  },
+  "compliance": {
+    "regime": "CAN-SPAM",
+    "sender_identity": "Your Name, Your Studio, mailing address",
+    "honor_no_cem_statement": true
+  },
+  "proposals": {
+    "tiers": [
+      "A",
+      "B"
+    ],
+    "limit": 25,
+    "language": "en",
+    "secondary_language": "",
+    "concurrency": 2,
+    "minutes_per_package": 40
+  },
+  "outreach": {
+    "new_per_week": 20,
+    "touch_days": [
+      0,
+      1,
+      3,
+      6,
+      9,
+      14
+    ],
+    "channels": [
+      "phone",
+      "whatsapp",
+      "email"
+    ],
+    "max_touches": 6
+  },
+  "merge": {
+    "shared_hosts": [],
+    "corporate_hosts": [],
+    "directory_hosts": [],
+    "switchboard_names": 4,
+    "name_geo_m": 150,
+    "name_sim": 0.9,
+    "toll_free_name_sim": 0.6
+  }
+}

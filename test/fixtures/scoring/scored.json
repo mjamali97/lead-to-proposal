@@ -1,0 +1,1352 @@
+{
+  "updated": "2026-10-12",
+  "items": [
+    {
+      "id": "b_000000000001",
+      "names": [
+        "Northwind Plumbing"
+      ],
+      "category": "Plumber",
+      "category_group": "trades",
+      "ticket": "premium",
+      "address": "10 Example St",
+      "city": "Austin",
+      "region": "TX",
+      "postcode": "78701",
+      "country": "US",
+      "lat": 30.27,
+      "lng": -97.74,
+      "phones": [
+        {
+          "e164": "+15125550123",
+          "key": "1:5125550123",
+          "cc": "1",
+          "nsn": "5125550123",
+          "ext": "",
+          "valid": true,
+          "raw": "(512) 555-0123",
+          "type": ""
+        }
+      ],
+      "emails": [],
+      "website": "https://www.northwind.example",
+      "website_kind": "site",
+      "socials": {
+        "instagram": "https://instagram.com/northwind.example",
+        "facebook": "",
+        "linkedin": "",
+        "tiktok": "",
+        "youtube": "",
+        "x": "",
+        "whatsapp": "",
+        "telegram": ""
+      },
+      "owner": {
+        "name": "Dana Fields",
+        "role": "Owner",
+        "source": "about page",
+        "confidence": "high"
+      },
+      "hours": "",
+      "sources": [
+        {
+          "source": "osm",
+          "url": "https://osm.example/listing/1",
+          "id": "osm:1"
+        },
+        {
+          "source": "google_maps",
+          "url": "https://google_maps.example/listing/2",
+          "id": "google_maps:2"
+        },
+        {
+          "source": "csv",
+          "url": "https://csv.example/listing/3",
+          "id": "csv:3"
+        }
+      ],
+      "google": {
+        "place_id": "place-0",
+        "name": "Northwind Plumbing",
+        "rating": 4.7,
+        "reviews": 85,
+        "phone": "(512) 555-0199",
+        "website": "",
+        "maps_url": "https://maps.example/place/0",
+        "categories": [],
+        "status": "OPERATIONAL",
+        "claimed": true,
+        "photos_count": null,
+        "match": {
+          "basis": "phone",
+          "confidence": "high"
+        },
+        "reviews_sample": [
+          {
+            "date": "2026-10-01",
+            "rating": 5,
+            "text": "Great",
+            "owner_reply": true
+          },
+          {
+            "date": "2026-09-20",
+            "rating": 5,
+            "text": "Fast",
+            "owner_reply": true
+          },
+          {
+            "date": "2026-09-05",
+            "rating": 4,
+            "text": "Good",
+            "owner_reply": false
+          },
+          {
+            "date": "2026-08-28",
+            "rating": 5,
+            "text": "Nice",
+            "owner_reply": true
+          },
+          {
+            "date": "2026-08-15",
+            "rating": 5,
+            "text": "Top",
+            "owner_reply": false
+          }
+        ]
+      },
+      "flags": [],
+      "name": "Northwind Plumbing",
+      "phone": "(512) 555-0123",
+      "site_key": "northwind.example",
+      "site_state": "ok",
+      "seo_score": 38,
+      "seo_band": "Critical",
+      "seo_measured_pct": 85,
+      "seo_issues": [
+        "No page title",
+        "No business details for Google (structured data)"
+      ],
+      "builder": "WordPress",
+      "footer_year": 2019,
+      "wayback_last_change": null,
+      "ads": [
+        "Google Ads"
+      ],
+      "incumbent_agency": "",
+      "community_match": null,
+      "need": 100,
+      "interest": 86,
+      "priority": 93,
+      "tier": "A",
+      "need_reasons": [
+        {
+          "id": "loved_but_weak_site",
+          "points": 22,
+          "text": "85 Google reviews at 4.7, but a weak website"
+        },
+        {
+          "id": "low_seo",
+          "points": 16,
+          "text": "SEO score 38/100 (Critical)"
+        },
+        {
+          "id": "stale_site",
+          "points": 14,
+          "text": "Footer still says 2019"
+        },
+        {
+          "id": "not_responsive",
+          "points": 11,
+          "text": "Not built for phones (no mobile layout)"
+        },
+        {
+          "id": "no_booking",
+          "points": 11,
+          "text": "No way to book or request a quote online"
+        },
+        {
+          "id": "no_https",
+          "points": 8,
+          "text": "No secure connection (browsers show \"Not secure\")"
+        },
+        {
+          "id": "phone_mismatch",
+          "points": 8,
+          "text": "Phone on the website differs from Google"
+        },
+        {
+          "id": "no_tel_link",
+          "points": 7,
+          "text": "Phone number cannot be tapped to call on a mobile"
+        },
+        {
+          "id": "slow_page",
+          "points": 7,
+          "text": "Page speed checks score 35/100"
+        },
+        {
+          "id": "dead_ua_tag",
+          "points": 6,
+          "text": "Still runs Google Universal Analytics, which stopped working in July 2023"
+        }
+      ],
+      "interest_reasons": [
+        {
+          "id": "google_ads",
+          "points": 18,
+          "text": "Already pays for Google Ads"
+        },
+        {
+          "id": "replies_reviews",
+          "points": 15,
+          "text": "Replied to 3 of the last 5 Google reviews"
+        },
+        {
+          "id": "ticket",
+          "points": 12,
+          "text": "High-value customers (premium ticket)"
+        },
+        {
+          "id": "multi_source",
+          "points": 10,
+          "text": "Listed on 3 sources"
+        },
+        {
+          "id": "review_velocity",
+          "points": 7,
+          "text": "About 2.6 new Google reviews a month"
+        },
+        {
+          "id": "instagram",
+          "points": 7,
+          "text": "Has an Instagram profile"
+        },
+        {
+          "id": "owner_named",
+          "points": 7,
+          "text": "Owner known: Dana Fields"
+        },
+        {
+          "id": "fresh_review",
+          "points": 5,
+          "text": "Reviewed in the last 30 days"
+        },
+        {
+          "id": "email_own_domain",
+          "points": 5,
+          "text": "Uses an email address on their own domain"
+        }
+      ],
+      "negatives": [],
+      "disqualified": null,
+      "phone_check": {
+        "verdict": "MISMATCH",
+        "site": "(512) 555-0123",
+        "google": "(512) 555-0199",
+        "note": ""
+      },
+      "why_they_need_you": "85 Google reviews at 4.7, but a weak website; SEO score 38/100 (Critical); Footer still says 2019.",
+      "why_they_care": "Already pays for Google Ads; Replied to 3 of the last 5 Google reviews; High-value customers (premium ticket).",
+      "risk": "",
+      "email_ok": true,
+      "email": "office@northwind.example",
+      "email_page": "http://northwind.example/contact",
+      "channel": "email",
+      "outreach_rule": "CAN-SPAM: email allowed. Use your real identity and postal address (Pat Example, Example Studio, 1 Example Way), an honest subject line, and an opt-out honoured within 10 business days."
+    },
+    {
+      "id": "b_000000000006",
+      "names": [
+        "Lark Salon"
+      ],
+      "category": "Hair salon",
+      "category_group": "beauty",
+      "ticket": "mid",
+      "address": "60 Example St",
+      "city": "Austin",
+      "region": "TX",
+      "postcode": "78701",
+      "country": "US",
+      "lat": 30.27,
+      "lng": -97.74,
+      "phones": [
+        {
+          "e164": "+15125550128",
+          "key": "1:5125550128",
+          "cc": "1",
+          "nsn": "5125550128",
+          "ext": "",
+          "valid": true,
+          "raw": "512-555-0128",
+          "type": ""
+        }
+      ],
+      "emails": [],
+      "website": "https://larksalon.freesites.example",
+      "website_kind": "free_subdomain",
+      "socials": {
+        "instagram": "",
+        "facebook": "",
+        "linkedin": "",
+        "tiktok": "",
+        "youtube": "",
+        "x": "",
+        "whatsapp": "",
+        "telegram": ""
+      },
+      "owner": {
+        "name": "",
+        "role": "",
+        "source": "",
+        "confidence": ""
+      },
+      "hours": "",
+      "sources": [
+        {
+          "source": "osm",
+          "url": "https://osm.example/listing/1",
+          "id": "osm:1"
+        },
+        {
+          "source": "csv",
+          "url": "https://csv.example/listing/2",
+          "id": "csv:2"
+        }
+      ],
+      "google": null,
+      "flags": [],
+      "name": "Lark Salon",
+      "phone": "(512) 555-0128",
+      "site_key": "larksalon.freesites.example",
+      "site_state": "ok",
+      "seo_score": null,
+      "seo_band": "",
+      "seo_measured_pct": null,
+      "seo_issues": [],
+      "builder": "",
+      "footer_year": 2021,
+      "wayback_last_change": null,
+      "ads": [],
+      "incumbent_agency": "",
+      "community_match": null,
+      "need": 43,
+      "interest": 26,
+      "priority": 33,
+      "tier": "C",
+      "need_reasons": [
+        {
+          "id": "free_subdomain",
+          "points": 18,
+          "text": "Only a free subdomain page (larksalon.freesites.example)"
+        },
+        {
+          "id": "stale_site",
+          "points": 14,
+          "text": "Footer still says 2021"
+        },
+        {
+          "id": "no_booking",
+          "points": 11,
+          "text": "No way to book or request a quote online"
+        }
+      ],
+      "interest_reasons": [
+        {
+          "id": "tried_diy",
+          "points": 14,
+          "text": "Already tried a do-it-yourself site"
+        },
+        {
+          "id": "ticket",
+          "points": 6,
+          "text": "Mid-value customers"
+        },
+        {
+          "id": "multi_source",
+          "points": 6,
+          "text": "Listed on 2 sources"
+        }
+      ],
+      "negatives": [],
+      "disqualified": null,
+      "phone_check": {
+        "verdict": "NOT CHECKED",
+        "site": "(512) 555-0128",
+        "google": "",
+        "note": "no Google match to compare with"
+      },
+      "why_they_need_you": "Only a free subdomain page (larksalon.freesites.example); Footer still says 2021; No way to book or request a quote online.",
+      "why_they_care": "Already tried a do-it-yourself site; Mid-value customers; Listed on 2 sources.",
+      "risk": "",
+      "email_ok": false,
+      "email": "",
+      "email_page": "",
+      "channel": "phone",
+      "outreach_rule": "CAN-SPAM: no email address found; call or visit."
+    },
+    {
+      "id": "b_000000000002",
+      "names": [
+        "Bluebell Bakery"
+      ],
+      "category": "Bakery",
+      "category_group": "food",
+      "ticket": "low",
+      "address": "20 Example St",
+      "city": "Austin",
+      "region": "TX",
+      "postcode": "78701",
+      "country": "US",
+      "lat": 30.27,
+      "lng": -97.74,
+      "phones": [
+        {
+          "e164": "+15125550124",
+          "key": "1:5125550124",
+          "cc": "1",
+          "nsn": "5125550124",
+          "ext": "",
+          "valid": true,
+          "raw": "512-555-0124",
+          "type": ""
+        }
+      ],
+      "emails": [],
+      "website": "",
+      "website_kind": "none",
+      "socials": {
+        "instagram": "https://instagram.com/bluebell.test",
+        "facebook": "",
+        "linkedin": "",
+        "tiktok": "",
+        "youtube": "",
+        "x": "",
+        "whatsapp": "",
+        "telegram": ""
+      },
+      "owner": {
+        "name": "",
+        "role": "",
+        "source": "",
+        "confidence": ""
+      },
+      "hours": "",
+      "sources": [
+        {
+          "source": "osm",
+          "url": "https://osm.example/listing/1",
+          "id": "osm:1"
+        },
+        {
+          "source": "google_maps",
+          "url": "https://google_maps.example/listing/2",
+          "id": "google_maps:2"
+        }
+      ],
+      "google": {
+        "place_id": "place-1",
+        "name": "Bluebell Bakery",
+        "rating": 4.6,
+        "reviews": 120,
+        "phone": "512-555-0124",
+        "website": "",
+        "maps_url": "https://maps.example/place/1",
+        "categories": [],
+        "status": "OPERATIONAL",
+        "claimed": false,
+        "photos_count": null,
+        "match": {
+          "basis": "phone",
+          "confidence": "high"
+        },
+        "reviews_sample": []
+      },
+      "flags": [],
+      "name": "Bluebell Bakery",
+      "phone": "(512) 555-0124",
+      "site_key": "",
+      "site_state": "none",
+      "seo_score": null,
+      "seo_band": "",
+      "seo_measured_pct": null,
+      "seo_issues": [],
+      "builder": "",
+      "footer_year": null,
+      "wayback_last_change": null,
+      "ads": null,
+      "incumbent_agency": "",
+      "community_match": null,
+      "need": 52,
+      "interest": 20,
+      "priority": 32,
+      "tier": "C",
+      "need_reasons": [
+        {
+          "id": "no_website",
+          "points": 24,
+          "text": "No website at all"
+        },
+        {
+          "id": "loved_but_weak_site",
+          "points": 22,
+          "text": "120 Google reviews at 4.6, but a weak website"
+        },
+        {
+          "id": "unclaimed_google",
+          "points": 6,
+          "text": "Google Business Profile not claimed"
+        }
+      ],
+      "interest_reasons": [
+        {
+          "id": "instagram",
+          "points": 7,
+          "text": "Has an Instagram profile"
+        },
+        {
+          "id": "well_reviewed",
+          "points": 6,
+          "text": "120 Google reviews"
+        },
+        {
+          "id": "multi_source",
+          "points": 6,
+          "text": "Listed on 2 sources"
+        },
+        {
+          "id": "ticket",
+          "points": 1,
+          "text": "Low-value customers"
+        }
+      ],
+      "negatives": [],
+      "disqualified": null,
+      "phone_check": {
+        "verdict": "NO WEBSITE",
+        "site": "",
+        "google": "(512) 555-0124",
+        "note": ""
+      },
+      "why_they_need_you": "No website at all; 120 Google reviews at 4.6, but a weak website; Google Business Profile not claimed.",
+      "why_they_care": "Has an Instagram profile; 120 Google reviews; Listed on 2 sources.",
+      "risk": "",
+      "email_ok": false,
+      "email": "",
+      "email_page": "",
+      "channel": "phone",
+      "outreach_rule": "CAN-SPAM: no email address found; call or visit."
+    },
+    {
+      "id": "b_000000000007",
+      "names": [
+        "Maple Auto Repair"
+      ],
+      "category": "Auto repair",
+      "category_group": "auto",
+      "ticket": "mid",
+      "address": "70 Example St",
+      "city": "Austin",
+      "region": "TX",
+      "postcode": "78701",
+      "country": "US",
+      "lat": 30.27,
+      "lng": -97.74,
+      "phones": [
+        {
+          "e164": "+15125550129",
+          "key": "1:5125550129",
+          "cc": "1",
+          "nsn": "5125550129",
+          "ext": "",
+          "valid": true,
+          "raw": "512-555-0129",
+          "type": ""
+        }
+      ],
+      "emails": [],
+      "website": "https://maple-auto.example",
+      "website_kind": "site",
+      "socials": {
+        "instagram": "https://instagram.com/mapleauto.test",
+        "facebook": "",
+        "linkedin": "",
+        "tiktok": "",
+        "youtube": "",
+        "x": "",
+        "whatsapp": "",
+        "telegram": ""
+      },
+      "owner": {
+        "name": "",
+        "role": "",
+        "source": "",
+        "confidence": ""
+      },
+      "hours": "",
+      "sources": [
+        {
+          "source": "osm",
+          "url": "https://osm.example/listing/1",
+          "id": "osm:1"
+        }
+      ],
+      "google": null,
+      "flags": [],
+      "name": "Maple Auto Repair",
+      "phone": "(512) 555-0129",
+      "site_key": "maple-auto.example",
+      "site_state": "dns",
+      "seo_score": null,
+      "seo_band": "",
+      "seo_measured_pct": null,
+      "seo_issues": [],
+      "builder": "",
+      "footer_year": null,
+      "wayback_last_change": null,
+      "ads": null,
+      "incumbent_agency": "",
+      "community_match": null,
+      "need": 20,
+      "interest": 23,
+      "priority": 21,
+      "tier": "D",
+      "need_reasons": [
+        {
+          "id": "broken_site",
+          "points": 20,
+          "text": "Their domain no longer resolves"
+        }
+      ],
+      "interest_reasons": [
+        {
+          "id": "instagram_dead_site",
+          "points": 10,
+          "text": "Keeps an Instagram profile while the website is down"
+        },
+        {
+          "id": "instagram",
+          "points": 7,
+          "text": "Has an Instagram profile"
+        },
+        {
+          "id": "ticket",
+          "points": 6,
+          "text": "Mid-value customers"
+        }
+      ],
+      "negatives": [],
+      "disqualified": null,
+      "phone_check": {
+        "verdict": "SITE UNREACHABLE",
+        "site": "",
+        "google": "",
+        "note": "site dns"
+      },
+      "why_they_need_you": "Their domain no longer resolves.",
+      "why_they_care": "Keeps an Instagram profile while the website is down; Has an Instagram profile; Mid-value customers.",
+      "risk": "",
+      "email_ok": false,
+      "email": "",
+      "email_page": "",
+      "channel": "phone",
+      "outreach_rule": "CAN-SPAM: no email address found; call or visit."
+    },
+    {
+      "id": "b_000000000010",
+      "names": [
+        "مخبز الياسمين",
+        "Jasmine Bakery"
+      ],
+      "category": "Bakery",
+      "category_group": "food",
+      "ticket": "low",
+      "address": "100 Example St",
+      "city": "Austin",
+      "region": "TX",
+      "postcode": "78701",
+      "country": "US",
+      "lat": 30.27,
+      "lng": -97.74,
+      "phones": [
+        {
+          "e164": "+15125550131",
+          "key": "1:5125550131",
+          "cc": "1",
+          "nsn": "5125550131",
+          "ext": "",
+          "valid": true,
+          "raw": "512-555-0131",
+          "type": ""
+        }
+      ],
+      "emails": [],
+      "website": "https://facebook.example/jasmine",
+      "website_kind": "social",
+      "socials": {
+        "instagram": "",
+        "facebook": "",
+        "linkedin": "",
+        "tiktok": "",
+        "youtube": "",
+        "x": "",
+        "whatsapp": "",
+        "telegram": ""
+      },
+      "owner": {
+        "name": "",
+        "role": "",
+        "source": "",
+        "confidence": ""
+      },
+      "hours": "",
+      "sources": [
+        {
+          "source": "osm",
+          "url": "https://osm.example/listing/1",
+          "id": "osm:1"
+        }
+      ],
+      "google": null,
+      "flags": [],
+      "name": "مخبز الياسمين",
+      "phone": "(512) 555-0131",
+      "site_key": "",
+      "site_state": "none",
+      "seo_score": null,
+      "seo_band": "",
+      "seo_measured_pct": null,
+      "seo_issues": [],
+      "builder": "",
+      "footer_year": null,
+      "wayback_last_change": null,
+      "ads": null,
+      "incumbent_agency": "",
+      "community_match": null,
+      "need": 20,
+      "interest": 9,
+      "priority": 13,
+      "tier": "D",
+      "need_reasons": [
+        {
+          "id": "aggregator_only",
+          "points": 20,
+          "text": "No website of their own, only a social media page"
+        }
+      ],
+      "interest_reasons": [
+        {
+          "id": "rents_platform",
+          "points": 8,
+          "text": "Rents their web presence from a platform"
+        },
+        {
+          "id": "ticket",
+          "points": 1,
+          "text": "Low-value customers"
+        }
+      ],
+      "negatives": [],
+      "disqualified": null,
+      "phone_check": {
+        "verdict": "NO WEBSITE",
+        "site": "",
+        "google": "",
+        "note": ""
+      },
+      "why_they_need_you": "No website of their own, only a social media page.",
+      "why_they_care": "Rents their web presence from a platform.",
+      "risk": "",
+      "email_ok": false,
+      "email": "",
+      "email_page": "",
+      "channel": "phone",
+      "outreach_rule": "CAN-SPAM: no email address found; call or visit."
+    },
+    {
+      "id": "b_000000000008",
+      "names": [
+        "Orchid Law"
+      ],
+      "category": "Lawyer",
+      "category_group": "legal",
+      "ticket": "premium",
+      "address": "80 Example St",
+      "city": "Austin",
+      "region": "TX",
+      "postcode": "78701",
+      "country": "US",
+      "lat": 30.27,
+      "lng": -97.74,
+      "phones": [
+        {
+          "e164": "+15125550130",
+          "key": "1:5125550130",
+          "cc": "1",
+          "nsn": "5125550130",
+          "ext": "",
+          "valid": true,
+          "raw": "512-555-0130",
+          "type": ""
+        }
+      ],
+      "emails": [],
+      "website": "",
+      "website_kind": "none",
+      "socials": {
+        "instagram": "",
+        "facebook": "",
+        "linkedin": "",
+        "tiktok": "",
+        "youtube": "",
+        "x": "",
+        "whatsapp": "",
+        "telegram": ""
+      },
+      "owner": {
+        "name": "",
+        "role": "",
+        "source": "",
+        "confidence": ""
+      },
+      "hours": "",
+      "sources": [
+        {
+          "source": "osm",
+          "url": "https://osm.example/listing/1",
+          "id": "osm:1"
+        }
+      ],
+      "google": {
+        "place_id": "place-7",
+        "name": "Orchid Law",
+        "rating": 4.1,
+        "reviews": 12,
+        "phone": "512-555-0130",
+        "website": "",
+        "maps_url": "https://maps.example/place/7",
+        "categories": [],
+        "status": "CLOSED_PERMANENTLY",
+        "claimed": true,
+        "photos_count": null,
+        "match": {
+          "basis": "phone",
+          "confidence": "high"
+        },
+        "reviews_sample": []
+      },
+      "flags": [],
+      "name": "Orchid Law",
+      "phone": "(512) 555-0130",
+      "site_key": "",
+      "site_state": "none",
+      "seo_score": null,
+      "seo_band": "",
+      "seo_measured_pct": null,
+      "seo_issues": [],
+      "builder": "",
+      "footer_year": null,
+      "wayback_last_change": null,
+      "ads": null,
+      "incumbent_agency": "",
+      "community_match": null,
+      "need": 24,
+      "interest": 12,
+      "priority": 17,
+      "tier": "D",
+      "need_reasons": [
+        {
+          "id": "no_website",
+          "points": 24,
+          "text": "No website at all"
+        }
+      ],
+      "interest_reasons": [
+        {
+          "id": "ticket",
+          "points": 12,
+          "text": "High-value customers (premium ticket)"
+        }
+      ],
+      "negatives": [],
+      "disqualified": {
+        "reason": "closed",
+        "detail": "Permanently closed on Google"
+      },
+      "phone_check": {
+        "verdict": "NO WEBSITE",
+        "site": "",
+        "google": "(512) 555-0130",
+        "note": ""
+      },
+      "why_they_need_you": "No website at all.",
+      "why_they_care": "High-value customers (premium ticket).",
+      "risk": "",
+      "email_ok": false,
+      "email": "",
+      "email_page": "",
+      "channel": "phone",
+      "outreach_rule": "CAN-SPAM: no email address found; call or visit."
+    },
+    {
+      "id": "b_000000000004",
+      "names": [
+        "RooterCo Austin"
+      ],
+      "category": "Plumber",
+      "category_group": "trades",
+      "ticket": "premium",
+      "address": "40 Example St",
+      "city": "Austin",
+      "region": "TX",
+      "postcode": "78701",
+      "country": "US",
+      "lat": 30.27,
+      "lng": -97.74,
+      "phones": [
+        {
+          "e164": "+15125550126",
+          "key": "1:5125550126",
+          "cc": "1",
+          "nsn": "5125550126",
+          "ext": "",
+          "valid": true,
+          "raw": "512-555-0126",
+          "type": ""
+        }
+      ],
+      "emails": [],
+      "website": "https://rooterco.example",
+      "website_kind": "site",
+      "socials": {
+        "instagram": "",
+        "facebook": "",
+        "linkedin": "",
+        "tiktok": "",
+        "youtube": "",
+        "x": "",
+        "whatsapp": "",
+        "telegram": ""
+      },
+      "owner": {
+        "name": "",
+        "role": "",
+        "source": "",
+        "confidence": ""
+      },
+      "hours": "",
+      "sources": [
+        {
+          "source": "osm",
+          "url": "https://osm.example/listing/1",
+          "id": "osm:1"
+        }
+      ],
+      "google": null,
+      "flags": [],
+      "name": "RooterCo Austin",
+      "phone": "(512) 555-0126",
+      "site_key": "rooterco.example",
+      "site_state": "ok",
+      "seo_score": 60,
+      "seo_band": "Needs significant work",
+      "seo_measured_pct": null,
+      "seo_issues": [],
+      "builder": "",
+      "footer_year": 2026,
+      "wayback_last_change": null,
+      "ads": [],
+      "incumbent_agency": "",
+      "community_match": null,
+      "need": 15,
+      "interest": 12,
+      "priority": 13,
+      "tier": "D",
+      "need_reasons": [
+        {
+          "id": "no_phone_on_site",
+          "points": 9,
+          "text": "No phone number anywhere on the website"
+        },
+        {
+          "id": "low_seo",
+          "points": 6,
+          "text": "SEO score 60/100 (Needs significant work)"
+        }
+      ],
+      "interest_reasons": [
+        {
+          "id": "ticket",
+          "points": 12,
+          "text": "High-value customers (premium ticket)"
+        }
+      ],
+      "negatives": [],
+      "disqualified": {
+        "reason": "chain",
+        "detail": "Chain or franchise brand (matches \"rooterco\")"
+      },
+      "phone_check": {
+        "verdict": "NO PHONE ON WEBSITE",
+        "site": "",
+        "google": "",
+        "note": ""
+      },
+      "why_they_need_you": "No phone number anywhere on the website; SEO score 60/100 (Needs significant work).",
+      "why_they_care": "High-value customers (premium ticket).",
+      "risk": "",
+      "email_ok": false,
+      "email": "",
+      "email_page": "",
+      "channel": "phone",
+      "outreach_rule": "CAN-SPAM: no email address found; call or visit."
+    },
+    {
+      "id": "b_000000000009",
+      "names": [
+        "Quiet Holdings"
+      ],
+      "category": "Consultant",
+      "category_group": "professional",
+      "ticket": "mid",
+      "address": "",
+      "city": "Austin",
+      "region": "TX",
+      "postcode": "78701",
+      "country": "US",
+      "lat": 30.27,
+      "lng": -97.74,
+      "phones": [],
+      "emails": [],
+      "website": "",
+      "website_kind": "none",
+      "socials": {
+        "instagram": "",
+        "facebook": "",
+        "linkedin": "",
+        "tiktok": "",
+        "youtube": "",
+        "x": "",
+        "whatsapp": "",
+        "telegram": ""
+      },
+      "owner": {
+        "name": "",
+        "role": "",
+        "source": "",
+        "confidence": ""
+      },
+      "hours": "",
+      "sources": [
+        {
+          "source": "csv",
+          "url": "https://csv.example/listing/1",
+          "id": "csv:1"
+        }
+      ],
+      "google": null,
+      "flags": [],
+      "name": "Quiet Holdings",
+      "phone": "",
+      "site_key": "",
+      "site_state": "none",
+      "seo_score": null,
+      "seo_band": "",
+      "seo_measured_pct": null,
+      "seo_issues": [],
+      "builder": "",
+      "footer_year": null,
+      "wayback_last_change": null,
+      "ads": null,
+      "incumbent_agency": "",
+      "community_match": null,
+      "need": 24,
+      "interest": 6,
+      "priority": 12,
+      "tier": "D",
+      "need_reasons": [
+        {
+          "id": "no_website",
+          "points": 24,
+          "text": "No website at all"
+        }
+      ],
+      "interest_reasons": [
+        {
+          "id": "ticket",
+          "points": 6,
+          "text": "Mid-value customers"
+        }
+      ],
+      "negatives": [],
+      "disqualified": {
+        "reason": "unreachable",
+        "detail": "No phone, email, social profile or address"
+      },
+      "phone_check": {
+        "verdict": "NO WEBSITE",
+        "site": "",
+        "google": "",
+        "note": ""
+      },
+      "why_they_need_you": "No website at all.",
+      "why_they_care": "Mid-value customers.",
+      "risk": "",
+      "email_ok": false,
+      "email": "",
+      "email_page": "",
+      "channel": "walk-in",
+      "outreach_rule": "CAN-SPAM: no email address found; call or visit."
+    },
+    {
+      "id": "b_000000000005",
+      "names": [
+        "Pixel Web Design Studio"
+      ],
+      "category": "Web design",
+      "category_group": "professional",
+      "ticket": "mid",
+      "address": "50 Example St",
+      "city": "Austin",
+      "region": "TX",
+      "postcode": "78701",
+      "country": "US",
+      "lat": 30.27,
+      "lng": -97.74,
+      "phones": [
+        {
+          "e164": "+15125550127",
+          "key": "1:5125550127",
+          "cc": "1",
+          "nsn": "5125550127",
+          "ext": "",
+          "valid": true,
+          "raw": "512-555-0127",
+          "type": ""
+        }
+      ],
+      "emails": [],
+      "website": "https://pixelweb.example",
+      "website_kind": "site",
+      "socials": {
+        "instagram": "",
+        "facebook": "",
+        "linkedin": "",
+        "tiktok": "",
+        "youtube": "",
+        "x": "",
+        "whatsapp": "",
+        "telegram": ""
+      },
+      "owner": {
+        "name": "",
+        "role": "",
+        "source": "",
+        "confidence": ""
+      },
+      "hours": "",
+      "sources": [
+        {
+          "source": "osm",
+          "url": "https://osm.example/listing/1",
+          "id": "osm:1"
+        }
+      ],
+      "google": null,
+      "flags": [],
+      "name": "Pixel Web Design Studio",
+      "phone": "(512) 555-0127",
+      "site_key": "pixelweb.example",
+      "site_state": "ok",
+      "seo_score": 95,
+      "seo_band": "Excellent",
+      "seo_measured_pct": null,
+      "seo_issues": [],
+      "builder": "",
+      "footer_year": 2026,
+      "wayback_last_change": null,
+      "ads": [],
+      "incumbent_agency": "",
+      "community_match": null,
+      "need": 9,
+      "interest": 6,
+      "priority": 7,
+      "tier": "D",
+      "need_reasons": [
+        {
+          "id": "no_phone_on_site",
+          "points": 9,
+          "text": "No phone number anywhere on the website"
+        }
+      ],
+      "interest_reasons": [
+        {
+          "id": "ticket",
+          "points": 6,
+          "text": "Mid-value customers"
+        }
+      ],
+      "negatives": [],
+      "disqualified": {
+        "reason": "competitor",
+        "detail": "Web, SEO or marketing business (matches \"web design\")"
+      },
+      "phone_check": {
+        "verdict": "NO PHONE ON WEBSITE",
+        "site": "",
+        "google": "",
+        "note": ""
+      },
+      "why_they_need_you": "No phone number anywhere on the website.",
+      "why_they_care": "Mid-value customers.",
+      "risk": "",
+      "email_ok": false,
+      "email": "",
+      "email_page": "",
+      "channel": "phone",
+      "outreach_rule": "CAN-SPAM: no email address found; call or visit."
+    },
+    {
+      "id": "b_000000000003",
+      "names": [
+        "Cedar Dental"
+      ],
+      "category": "Dentist",
+      "category_group": "health",
+      "ticket": "premium",
+      "address": "30 Example St",
+      "city": "Austin",
+      "region": "TX",
+      "postcode": "78701",
+      "country": "US",
+      "lat": 30.27,
+      "lng": -97.74,
+      "phones": [
+        {
+          "e164": "+15125550125",
+          "key": "1:5125550125",
+          "cc": "1",
+          "nsn": "5125550125",
+          "ext": "",
+          "valid": true,
+          "raw": "512-555-0125",
+          "type": ""
+        }
+      ],
+      "emails": [
+        "hello@cedardental.example"
+      ],
+      "website": "https://cedardental.example",
+      "website_kind": "site",
+      "socials": {
+        "instagram": "",
+        "facebook": "",
+        "linkedin": "",
+        "tiktok": "",
+        "youtube": "",
+        "x": "",
+        "whatsapp": "",
+        "telegram": ""
+      },
+      "owner": {
+        "name": "",
+        "role": "",
+        "source": "",
+        "confidence": ""
+      },
+      "hours": "",
+      "sources": [
+        {
+          "source": "osm",
+          "url": "https://osm.example/listing/1",
+          "id": "osm:1"
+        }
+      ],
+      "google": {
+        "place_id": "place-2",
+        "name": "Cedar Dental",
+        "rating": 4.9,
+        "reviews": 300,
+        "phone": "512-555-0125",
+        "website": "",
+        "maps_url": "https://maps.example/place/2",
+        "categories": [],
+        "status": "OPERATIONAL",
+        "claimed": true,
+        "photos_count": null,
+        "match": {
+          "basis": "phone",
+          "confidence": "high"
+        },
+        "reviews_sample": []
+      },
+      "flags": [],
+      "name": "Cedar Dental",
+      "phone": "(512) 555-0125",
+      "site_key": "cedardental.example",
+      "site_state": "ok",
+      "seo_score": 88,
+      "seo_band": "Good",
+      "seo_measured_pct": 90,
+      "seo_issues": [],
+      "builder": "Webflow",
+      "footer_year": 2026,
+      "wayback_last_change": null,
+      "ads": [
+        "Meta Pixel"
+      ],
+      "incumbent_agency": "",
+      "community_match": null,
+      "need": 0,
+      "interest": 43,
+      "priority": 0,
+      "tier": "D",
+      "need_reasons": [],
+      "interest_reasons": [
+        {
+          "id": "meta_pixel",
+          "points": 14,
+          "text": "Meta (Facebook) Pixel installed"
+        },
+        {
+          "id": "ticket",
+          "points": 12,
+          "text": "High-value customers (premium ticket)"
+        },
+        {
+          "id": "booking_widget",
+          "points": 6,
+          "text": "Already buys booking software (BookingTool)"
+        },
+        {
+          "id": "well_reviewed",
+          "points": 6,
+          "text": "300 Google reviews"
+        },
+        {
+          "id": "email_own_domain",
+          "points": 5,
+          "text": "Uses an email address on their own domain"
+        }
+      ],
+      "negatives": [],
+      "disqualified": {
+        "reason": "well_served",
+        "detail": "Modern site that already converts (SEO 88, Webflow)"
+      },
+      "phone_check": {
+        "verdict": "MATCH",
+        "site": "(512) 555-0125",
+        "google": "(512) 555-0125",
+        "note": ""
+      },
+      "why_they_need_you": "No website problem found yet; research before calling.",
+      "why_they_care": "Meta (Facebook) Pixel installed; High-value customers (premium ticket); Already buys booking software (BookingTool).",
+      "risk": "",
+      "email_ok": true,
+      "email": "hello@cedardental.example",
+      "email_page": "https://cedardental.example/contact",
+      "channel": "email",
+      "outreach_rule": "CAN-SPAM: email allowed. Use your real identity and postal address (Pat Example, Example Studio, 1 Example Way), an honest subject line, and an opt-out honoured within 10 business days."
+    }
+  ]
+}

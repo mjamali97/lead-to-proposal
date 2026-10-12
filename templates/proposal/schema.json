@@ -1,0 +1,151 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/mjamali97/lead-to-proposal/templates/proposal/schema.json",
+  "title": "proposal-data.json",
+  "description": "Data for templates/proposal/proposal.mjs. Text lengths and list sizes are limited by limits.json. Every image path is relative to the package folder. Agency, market and offer come from job.json, not from this file.",
+  "type": "object",
+  "required": ["business", "landing", "seo", "sales"],
+  "properties": {
+    "language": { "type": "string", "pattern": "^[a-z]{2,3}(-[A-Za-z0-9]+)?$", "description": "UI language of the proposal (strings/<language>.json). Default: job.market.language." },
+    "date": { "type": "string", "description": "Shown on the cover, e.g. \"October 2026\". Default: job.date_label." },
+    "strings": { "type": "object", "additionalProperties": { "type": "string" }, "description": "Optional overrides of single UI strings for this package." },
+    "business": {
+      "type": "object",
+      "required": ["name", "logo"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1, "description": "Real business name, exactly as in job.json." },
+        "person": { "type": "string", "description": "Owner or decision maker the proposal is for (only if verified)." },
+        "category": { "type": "string", "description": "Plain category, e.g. \"Plumber\"." },
+        "city": { "type": "string" },
+        "phone": { "type": "string", "description": "Their main phone, as customers see it." },
+        "website": { "type": "string", "description": "Their own domain without https://, or empty when they have none (never someone else's domain)." },
+        "logo": { "type": "string", "minLength": 1, "description": "Their logo file, or a wordmark PNG of their name when they have no logo." },
+        "logo_bg": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$", "description": "Chip colour behind the logo on the cover (default white)." },
+        "brand_color": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$", "description": "Their main brand colour (from logo, sign or site)." }
+      },
+      "additionalProperties": true
+    },
+    "landing": {
+      "type": "object",
+      "required": ["desktop", "mobile", "current"],
+      "properties": {
+        "desktop": { "type": "string", "description": "landing-page/screenshots/landing-desktop-fold.png" },
+        "desktop_full": { "type": "string" },
+        "mobile": { "type": "string", "description": "landing-page/screenshots/landing-mobile-fold.png" },
+        "mobile_full": { "type": "string" },
+        "current": { "type": "string", "description": "What customers see today: their homepage first screen (pop-ups removed) or the page they rely on when there is no site." },
+        "current_url": { "type": "string", "description": "Address bar text for the today screenshot when it is not their website, e.g. google.com/maps." },
+        "pdf": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "seo": {
+      "type": "object",
+      "required": ["score", "band", "categories"],
+      "properties": {
+        "score": { "type": ["integer", "null"], "minimum": 0, "maximum": 100, "description": "Site.seo.score, or null when there is no website (categories are then online-presence checks scored 100/0)." },
+        "band": { "type": "string" },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["label", "score"],
+            "properties": { "label": { "type": "string" }, "score": { "type": "integer", "minimum": 0, "maximum": 100 } },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "sales": {
+      "type": "object",
+      "required": ["cover_headline", "journey_title", "found", "evidence", "leave", "fact", "markers", "values", "before", "after", "seo_line", "seo_big"],
+      "properties": {
+        "cover_headline": { "type": "string", "minLength": 8, "description": "Specific to this business. The first sentence is highlighted." },
+        "cover_sub": { "type": "string" },
+        "journey_title": { "type": "string" },
+        "found": {
+          "type": "array",
+          "items": { "type": "object", "required": ["label", "sub"], "properties": { "label": { "type": "string" }, "sub": { "type": "string" } }, "additionalProperties": false }
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["img", "label"],
+            "properties": { "img": { "type": "string" }, "label": { "type": "string" }, "url": { "type": "string" } },
+            "additionalProperties": false
+          }
+        },
+        "leave": { "type": "string" },
+        "fact": { "$ref": "#/$defs/fact" },
+        "stats": { "type": "array", "items": { "$ref": "#/$defs/fact" } },
+        "markers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["x", "y", "label"],
+            "properties": { "x": { "type": "number", "minimum": 0, "maximum": 100 }, "y": { "type": "number", "minimum": 0, "maximum": 100 }, "label": { "type": "string" } },
+            "additionalProperties": false
+          }
+        },
+        "values": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["icon", "title", "detail"],
+            "properties": {
+              "icon": { "enum": ["shield", "search", "phone", "trend", "globe", "clock", "user", "star", "calendar", "map", "chat", "camera"] },
+              "title": { "type": "string" },
+              "detail": { "type": "string" }
+            },
+            "additionalProperties": false
+          }
+        },
+        "before": { "type": "array", "items": { "type": "string" } },
+        "after": { "type": "array", "items": { "type": "string" } },
+        "seo_title": { "type": "string" },
+        "seo_line": { "type": "string" },
+        "seo_big": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              { "type": "string" },
+              { "type": "object", "required": ["text"], "properties": { "text": { "type": "string" }, "good": { "type": "boolean" } }, "additionalProperties": false }
+            ]
+          },
+          "description": "3 headline findings. Use {\"text\", \"good\": true} for a strength so it is never shown as a problem."
+        },
+        "plans": {
+          "type": "array",
+          "description": "Optional. Same names and prices as job.offer.plans (qa.py checks); item wording may be adapted to this business. Omit to use job.offer.plans as they are.",
+          "items": {
+            "type": "object",
+            "required": ["name", "price", "items"],
+            "properties": {
+              "name": { "type": "string" }, "price": { "type": "string" }, "tag": { "type": "string" }, "rec": { "type": "boolean" },
+              "items": { "type": "array", "items": { "type": "string" } }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "fact": {
+      "type": "object",
+      "required": ["number", "text", "source", "fact_id"],
+      "properties": {
+        "fact_id": { "type": "string", "description": "Id from job.facts: a web fact id, or \"ads:<industry key>\" for an ads benchmark." },
+        "number": { "type": "string", "description": "Exactly as in the fact (rounded money is fine)." },
+        "text": { "type": "string" },
+        "text2": { "type": "string" },
+        "source": { "type": "string", "description": "The fact's source line from job.facts (publisher must appear)." }
+      },
+      "additionalProperties": false
+    }
+  }
+}

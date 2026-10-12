@@ -1,0 +1,157 @@
+{
+  "_help": "Copy of this file lives in your project folder as project.json (`l2p init` writes it). Keys starting with _ are notes. Anything you leave out falls back to config/defaults.json.",
+
+  "name": "plumbers-austin",
+
+  "agency": {
+    "name": "Your Studio",
+    "contact_name": "Your Name",
+    "phone": "+1 512 555 0100",
+    "email": "you@yourstudio.example",
+    "website": "yourstudio.example",
+    "logo": "",
+    "color": "#1F4E79"
+  },
+
+  "market": {
+    "country": "US",
+    "currency": "USD",
+    "currency_symbol": "$",
+    "language": "en",
+    "paper": "Letter",
+    "timezone": "America/Chicago"
+  },
+
+  "area": {
+    "name": "Austin metro",
+    "_help": "Any of: bbox [south, west, north, east], center + radius_km, cities (lower-case names). A listing is kept if it matches any one.",
+    "bbox": [30.0, -98.1, 30.7, -97.4],
+    "center": null,
+    "radius_km": null,
+    "cities": ["austin", "round rock", "cedar park", "pflugerville", "georgetown", "kyle", "buda"]
+  },
+
+  "offer": {
+    "summary": "A new mobile-first website built from the business's own brand, live in 14 days",
+    "plans": [
+      { "name": "Launch", "price": "$750", "tag": "Most popular", "rec": true,
+        "items": ["This exact page, finished with you", "Call, text and quote buttons", "Live in 14 days"] },
+      { "name": "Growth", "price": "$1,500", "tag": "Get found on Google", "rec": false,
+        "items": ["Everything in Launch", "Google Business Profile tune-up", "Local service pages"] },
+      { "name": "Custom", "price": "Quote", "tag": "Bigger projects", "rec": false,
+        "items": ["Booking, ordering or several locations", "Scoped on a call"] }
+    ],
+    "care_plan": "$39/month hosting, small edits and Google profile updates",
+    "delivery_days": 14
+  },
+
+  "sources": [
+    {
+      "type": "google_maps",
+      "_help": "Paid, via Apify (compass~crawler-google-places). Dry run unless --go. Stops at budget_usd.",
+      "enabled": true,
+      "budget_usd": 10,
+      "max_reviews": 0,
+      "segments": [
+        { "key": "plumbing", "tier": "A", "ticket": "premium", "search": ["plumber", "drain cleaning"], "locations": ["Austin, TX", "Round Rock, TX"], "max_per_search": 40 },
+        { "key": "hvac", "tier": "A", "ticket": "premium", "search": ["hvac contractor", "furnace repair"], "locations": ["Austin, TX"], "max_per_search": 40 }
+      ]
+    },
+    {
+      "type": "osm",
+      "_help": "Free. OpenStreetMap via the Overpass API, inside area.bbox. Tags from wiki.openstreetmap.org/wiki/Map_features.",
+      "enabled": false,
+      "tags": [["craft", "plumber"], ["craft", "hvac"]]
+    },
+    {
+      "type": "directory",
+      "_help": "Free. Any business directory with a sitemap and listing pages that carry JSON-LD or microdata. Only use sites you are allowed to crawl.",
+      "enabled": false,
+      "name": "example-directory",
+      "sitemap": "https://directory.example/sitemap.xml",
+      "url_pattern": "^https://directory\\.example/listing/",
+      "max_pages": 2000
+    },
+    {
+      "type": "csv",
+      "_help": "Free. Your own list. map = your column names.",
+      "enabled": false,
+      "file": "my-leads.csv",
+      "map": { "name": "Business Name", "phone": "Phone", "website": "Website", "address": "Address", "city": "City", "category": "Category", "email": "Email" }
+    }
+  ],
+
+  "google_lookup": {
+    "_help": "Paid. Looks up each non-Google business on Google Maps (rating, reviews, phone, website). One lookup per business, never repeated.",
+    "enabled": false,
+    "budget_usd": 5,
+    "price_per_lookup_usd": 0.004
+  },
+
+  "crawl": {
+    "max_pages": 5,
+    "gap_ms": 1000,
+    "concurrency": 6,
+    "timeout_ms": 15000,
+    "respect_robots": true,
+    "wayback": false
+  },
+
+  "categories": {
+    "_help": "category_group = first group whose keywords appear in the category or name. ticket = how much one client is worth.",
+    "groups": {
+      "trades": ["plumb", "hvac", "heating", "air condition", "electric", "roof", "drain", "furnace", "contractor", "renovat", "pest"],
+      "food": ["restaurant", "cafe", "bakery", "pizza", "catering", "grill", "kitchen"],
+      "beauty": ["salon", "barber", "spa", "nail", "beauty", "lash", "brow"],
+      "health": ["dentist", "dental", "clinic", "physio", "chiropract", "optometr", "medical"],
+      "legal": ["law", "lawyer", "attorney", "notary", "immigration"],
+      "auto": ["auto", "mechanic", "car wash", "tire", "body shop", "detailing"],
+      "real_estate": ["real estate", "realtor", "realty", "mortgage", "broker"],
+      "professional": ["account", "bookkeep", "tax", "insurance", "consult"]
+    },
+    "ticket": { "trades": "premium", "health": "premium", "legal": "premium", "real_estate": "premium", "auto": "mid", "beauty": "mid", "professional": "mid", "food": "low" },
+    "ads_benchmark_industry": {"trades": "home_services", "food": "food", "beauty": "beauty", "health": "medical", "legal": "legal", "auto": "auto", "real_estate": "real_estate", "professional": "finance_insurance"}
+  },
+
+  "scoring": {
+    "_help": "Default signals and weights live in lib/score.mjs (DEFAULT_SIGNALS) and are listed in docs/SCORING.md. Put {\"signal_id\": weight} here to override; 0 switches a signal off.",
+    "weights": {},
+    "tiers": { "A": 55, "B": 38, "C": 24 },
+    "disqualify": {
+      "chain_patterns": ["mr\\.? rooter", "roto-?rooter", "home depot"],
+      "competitor_patterns": ["web design", "seo agency", "digital marketing", "marketing agency"],
+      "well_served": { "min_seo": 70, "min_footer_year": 2024, "requires_form_or_widget": true }
+    }
+  },
+
+  "community": {
+    "_help": "Optional lens for one language community: boost or filter businesses whose names or reviews use a script.",
+    "enabled": false,
+    "mode": "boost",
+    "script_regex": "",
+    "name_tokens": [],
+    "bonus": 10
+  },
+
+  "compliance": {
+    "regime": "CAN-SPAM",
+    "_help": "CAN-SPAM (US), CASL (Canada), GDPR + national law (EU), PECR + UK-GDPR (UK), Spam Act (AU). See docs/COMPLIANCE.md.",
+    "sender_identity": "Your Name, Your Studio, mailing address",
+    "honor_no_cem_statement": true
+  },
+
+  "proposals": {
+    "tiers": ["A", "B"],
+    "limit": 25,
+    "language": "en",
+    "secondary_language": "",
+    "concurrency": 2,
+    "minutes_per_package": 40
+  },
+
+  "outreach": {
+    "new_per_week": 20,
+    "touch_days": [0, 1, 3, 6, 9, 14],
+    "channels": ["phone", "whatsapp", "email"]
+  }
+}

@@ -1,0 +1,186 @@
+{
+  "language": "en",
+  "date": "October 2026",
+  "business": {
+    "name": "Northwind Plumbing",
+    "person": "Dana Whitfield",
+    "category": "Plumber",
+    "city": "Austin, TX",
+    "phone": "(512) 555-0142",
+    "website": "northwind-plumbing.example",
+    "logo": "landing-page/assets/logo.png",
+    "brand_color": "#17324D"
+  },
+  "landing": {
+    "desktop": "landing-page/screenshots/landing-desktop-fold.png",
+    "desktop_full": "landing-page/screenshots/landing-desktop-full.png",
+    "mobile": "landing-page/screenshots/landing-mobile-fold.png",
+    "mobile_full": "landing-page/screenshots/landing-mobile-full.png",
+    "current": "landing-page/screenshots/current-site.png",
+    "pdf": "Northwind Plumbing - Landing Page.pdf"
+  },
+  "seo": {
+    "score": 41,
+    "band": "Needs significant work",
+    "categories": [
+      {
+        "label": "Google can find your pages",
+        "score": 90
+      },
+      {
+        "label": "Your title in Google results",
+        "score": 40
+      },
+      {
+        "label": "A clear main headline",
+        "score": 30
+      },
+      {
+        "label": "Your photos are described",
+        "score": 20
+      },
+      {
+        "label": "Opens fast on phones",
+        "score": 55
+      },
+      {
+        "label": "Rating, hours & address for Google",
+        "score": 0
+      },
+      {
+        "label": "Links between pages work",
+        "score": 60
+      },
+      {
+        "label": "Fits phone screens",
+        "score": 0
+      }
+    ]
+  },
+  "sales": {
+    "cover_headline": "Since 1998 in Austin. Online, it still says 2017.",
+    "cover_sub": "We already designed your new page, from your own logo, colours and van. Here it is.",
+    "journey_title": "What a new customer finds today",
+    "found": [
+      {
+        "label": "They need a plumber",
+        "sub": "and search on Google"
+      },
+      {
+        "label": "4.8 of 5 on Google",
+        "sub": "127 reviews. They click."
+      }
+    ],
+    "evidence": [
+      {
+        "img": "landing-page/screenshots/evidence/1-quote-form-error.png",
+        "label": "The quote form shows an error",
+        "url": "northwind-plumbing.example/contact"
+      },
+      {
+        "img": "landing-page/screenshots/evidence/2-newsletter-popup.png",
+        "label": "A pop-up covers the page"
+      },
+      {
+        "img": "landing-page/screenshots/evidence/3-under-construction.png",
+        "label": "Services page: “coming soon”",
+        "url": "northwind-plumbing.example/services"
+      }
+    ],
+    "leave": "They close the tab and call someone else.",
+    "fact": {
+      "fact_id": "ads:home_services",
+      "number": "$91",
+      "text": "What a home services business pays Google Ads for ONE lead, on average (US data).",
+      "text2": "Your new page costs $750 once, and brings in leads every day.",
+      "source": "WordStream by LocaliQ, Google Ads Benchmarks 2026 (median of US campaigns, USD)"
+    },
+    "stats": [
+      {
+        "fact_id": "brightlocal-54pct-visit-website-after-reviews",
+        "number": "54%",
+        "text": "of people visit a business's website after reading its good reviews.",
+        "source": "BrightLocal, Local Consumer Review Survey 2026"
+      },
+      {
+        "fact_id": "click-to-call-70pct-47pct",
+        "number": "47%",
+        "text": "of mobile searchers look at other businesses when no phone number is shown.",
+        "source": "Google / Ipsos, The Role of Click to Call in the Path to Purchase, 2013"
+      }
+    ],
+    "markers": [
+      {
+        "x": 45.5,
+        "y": 27.5,
+        "label": "Since 1998, in the headline"
+      },
+      {
+        "x": 47.5,
+        "y": 63.5,
+        "label": "Quote or call in one tap"
+      },
+      {
+        "x": 8.5,
+        "y": 77.5,
+        "label": "4.8 stars, 127 reviews, up top"
+      },
+      {
+        "x": 91.5,
+        "y": 45.0,
+        "label": "Your own van and colours"
+      }
+    ],
+    "values": [
+      {
+        "icon": "shield",
+        "title": "Instant trust",
+        "detail": "Rating and 28 years up top"
+      },
+      {
+        "icon": "search",
+        "title": "Found on Google",
+        "detail": "Rating, hours, address built in"
+      },
+      {
+        "icon": "phone",
+        "title": "More calls",
+        "detail": "Call, text or quote in one tap"
+      },
+      {
+        "icon": "chat",
+        "title": "Quotes that arrive",
+        "detail": "A form that actually sends"
+      },
+      {
+        "icon": "star",
+        "title": "Your brand",
+        "detail": "Your logo, colours and van"
+      },
+      {
+        "icon": "clock",
+        "title": "Live in 14 days",
+        "detail": "One short call with you"
+      }
+    ],
+    "before": [
+      "Form shows an error",
+      "Pop-up first",
+      "Footer says © 2017"
+    ],
+    "after": [
+      "Quote in one tap",
+      "4.8 stars up top",
+      "Made for phones"
+    ],
+    "seo_line": "Google finds your site, but can't tell what you do or where. Your new page fixes that.",
+    "seo_big": [
+      "Page title just says “Home”",
+      "Doesn't fit phone screens",
+      {
+        "text": "Google finds your pages",
+        "good": true
+      }
+    ]
+  }
+}

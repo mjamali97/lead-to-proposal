@@ -1,0 +1,4 @@
+:root { --primary: #2A6F97; --ink: #222222; }
+body { color: #333; background: #fff; font-family: "Inter", sans-serif; }
+.btn { background: var(--primary); color: #fff; }
+@media (max-width: 700px) { nav { display: none; } }
