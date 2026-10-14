@@ -28,7 +28,7 @@ Short project name (`"plumbers-austin"`). Used in logs and file names.
 
 | Key | Example | Notes |
 |---|---|---|
-| `country` | `"US"` | ISO 3166 two-letter code (required). Drives phone parsing and defaults |
+| `country` | `"US"` | ISO 3166 two-letter code (required). Drives phone parsing and defaults: numbers written the national way (`0912 555 0123` with `"IR"`, `(512) 555-0123` with `"US"`) are read as that country's. Persian, Arabic and other non-Latin digits are understood everywhere |
 | `currency` | `"USD"` | ISO 4217 code (required) |
 | `currency_symbol` | `"$"` | Shown in prices |
 | `language` | `"en"` | Default language of proposals |

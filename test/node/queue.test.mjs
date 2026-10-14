@@ -159,3 +159,25 @@ test('a reply stops the sequence; booked demos show up on their day; lost needs 
   assert.equal(touches(p)[id].status, 'won');
   await assert.rejects(q(p, { won: 'b_nope' }), /No lead with id/);
 });
+
+test('stop list: Iranian numbers match however they are typed (0917…, ۰۹۱۷…, +98…)', async () => {
+  const ir = (n, phone) => lead(n, 'beauty', 'A', 80 - n, { country: 'IR', email: '', emails: [],
+    phones: [{ e164: phone, raw: phone, key: `98:${phone.slice(3)}`, valid: true }], phone });
+  const rows = [ir(1, '+989175550101'), ir(2, '+989175550102'), ir(3, '+982185550103'), ir(4, '+989175550104')];
+  const p = setup(rows);
+  const cfg = readJSON(path.join(p.dir, 'project.json'));
+  cfg.market = { ...cfg.market, country: 'IR', currency: 'IRR' };
+  writeJSON(path.join(p.dir, 'project.json'), cfg);
+  const P = loadProject(p.dir);
+  await q(P, { stop: '0917 555 0101', today: '2026-10-12' });           // national form, as the owner says it
+  await q(P, { stop: '۰۹۱۷۵۵۵۰۱۰۲', today: '2026-10-12' });             // Persian digits
+  await q(P, { stop: '٠٢١-٨٥٥٥٠١٠٣', today: '2026-10-12' });            // Arabic-Indic digits, landline
+  const s = readJSON(P.paths.suppression).entries;
+  assert.deepEqual(s.map(e => e.value), ['989175550101', '989175550102', '982185550103']);
+  const r = await q(P, { n: 20, today: '2026-10-12' });
+  assert.deepEqual(r.items.map(i => i.id), [rows[3].id]);
+  // An entry saved by 1.0.0 as plain national digits still matches.
+  writeJSON(P.paths.suppression, { entries: [{ kind: 'phone', value: '09175550104', added: '2026-10-01' }] });
+  const r2 = await q(P, { n: 20, today: '2026-10-12' });
+  assert.ok(!r2.items.some(i => i.id === rows[3].id));
+});

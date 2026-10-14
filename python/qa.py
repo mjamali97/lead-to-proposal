@@ -10,7 +10,7 @@ words in sales copy; statistics only from facts/ with matching source lines; pri
 in job.json; business name and phone consistent with job.json; no other business's name; landing-page
 basics (one h1, title, description, Open Graph, JSON-LD, viewport, alt text, self-contained).
 """
-import json, math, pathlib, re, sys
+import json, math, pathlib, re, sys, unicodedata
 from html.parser import HTMLParser
 
 HERE = pathlib.Path(__file__).resolve().parent
@@ -45,8 +45,13 @@ def safe_name(s):
     return re.sub(r'\s+', ' ', s).strip()[:80] or 'Business'
 
 
+def ascii_digits(s):
+    """۰۹۱۲ / ٠٩١٢ (Persian, Arabic-Indic or any other Unicode digits) -> 0912; everything else unchanged."""
+    return ''.join(str(unicodedata.decimal(ch)) if ch.isdecimal() and not '0' <= ch <= '9' else ch for ch in str(s or ''))
+
+
 def digits(s):
-    return re.sub(r'\D', '', str(s or ''))
+    return re.sub(r'[^0-9]', '', ascii_digits(s))
 
 
 def pdf_pages(path):

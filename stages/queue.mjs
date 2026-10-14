@@ -13,6 +13,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { load, writeJSON, toCSV, num, log, fail, slugify } from '../lib/io.mjs';
+import { parsePhone, normDigits } from '../lib/normalize.mjs';
 
 export const CHANNELS = ['phone', 'whatsapp', 'email', 'sms', 'walk-in', 'dm', 'telegram'];
 const ENDED = ['replied', 'booked', 'won', 'lost', 'stopped'];
@@ -28,12 +29,23 @@ const addDays = (d, n) => new Date(Date.parse(d) + n * DAY).toISOString().slice(
 const daysBetween = (a, b) => Math.round((Date.parse(b) - Date.parse(a)) / DAY);
 
 // ---- contact keys ----
-const digits = s => String(s ?? '').replace(/\D+/g, '');
+// Digits of any script (۰۹۱۲…, ٠٩١٢…) count; everything else is dropped.
+const digits = s => normDigits(s).replace(/\D+/g, '');
 const lc = s => String(s ?? '').toLowerCase().trim();
+// One phone → international digits ("989125550123") when it parses for the country, else its plain digits.
+// So "0912 555 0123", "۰۹۱۲۵۵۵۰۱۲۳" and "+98 912 555 0123" are the same number.
+export function phoneKey(v, country) {
+  const p = v && typeof v === 'object' ? v : parsePhone(v, { country });
+  if (p?.valid && p.e164) return digits(p.e164);
+  return digits(typeof v === 'object' ? v?.raw || v?.e164 : v);
+}
 // Scored rows carry a flattened `phone` / `email` plus the full `phones` / `emails` lists.
 const rowEmails = r => [...new Set([r.email, ...(r.emails || [])].map(e => lc(typeof e === 'string' ? e : e?.email)).filter(Boolean))];
-const rowPhones = r => [r.phone, ...(r.phones || [])].flatMap(p => (typeof p === 'string' ? [p] : [p?.e164, p?.raw, p?.key?.split(':').join('')]))
-  .map(digits).filter(d => d.length >= 7);
+const rowPhones = (r, country) => [...new Set([r.phone, ...(r.phones || [])].flatMap(p => {
+  if (!p) return [];
+  if (typeof p === 'string') return [phoneKey(p, r.country || country), digits(p)];
+  return [p.e164 ? digits(p.e164) : '', p.raw ? phoneKey(p.raw, r.country || country) : '', digits(p.raw), p.key ? digits(p.key) : ''];
+}).filter(d => d.length >= 7))];
 const firstPhone = r => { if (r.phone) return r.phone; const p = (r.phones || [])[0]; return typeof p === 'string' ? p : (p?.e164 || p?.raw || ''); };
 const phoneMatch = (a, b) => a === b || (a.length >= 9 && b.length >= 9 && (a.endsWith(b) || b.endsWith(a)));
 
@@ -47,19 +59,21 @@ export function loadState(project) {
 }
 const saveTouches = (project, t, day) => writeJSON(project.paths.touches, { ...t, updated: day });
 
-export function isSuppressed(row, suppression) {
-  const emails = rowEmails(row), phones = rowPhones(row);
+// `country` reads entries typed in national form ("0917…" in Iran, "(512)…" in the US); entries are
+// compared in international form, so old entries saved as plain digits still match.
+export function isSuppressed(row, suppression, { country } = {}) {
+  const emails = rowEmails(row), phones = rowPhones(row, country);
   return suppression.entries.some(e =>
     (e.kind === 'id' && e.value === row.id) ||
     (e.kind === 'email' && emails.includes(e.value)) ||
-    (e.kind === 'phone' && phones.some(p => phoneMatch(p, e.value))));
+    (e.kind === 'phone' && [phoneKey(e.value, row.country || country), digits(e.value)].some(v => v.length >= 7 && phones.some(p => phoneMatch(p, v)))));
 }
 
 function settings(project) {
   const o = project.config.outreach || {};
   const touchDays = Array.isArray(o.touch_days) && o.touch_days.length ? o.touch_days.map(Number) : [0, 1, 3, 6, 9, 14];
   const maxTouches = Math.min(num(o.max_touches, touchDays.length), touchDays.length);
-  return { touchDays, maxTouches, perWeek: num(o.new_per_week, 20), tz: project.config.market?.timezone };
+  return { touchDays, maxTouches, perWeek: num(o.new_per_week, 20), tz: project.config.market?.timezone, country: project.config.market?.country };
 }
 
 // When is touch number (k+1) due? Relative to the first touch, but never closer to the
@@ -124,13 +138,13 @@ export function balance(rows, n) {
   return out;
 }
 
-export function select(rows, { n, tiers, group, touches, suppression }) {
+export function select(rows, { n, tiers, group, touches, suppression, country }) {
   const pool = rows.filter(r => r.id && !r.disqualified)
     .filter(r => (tiers ? tiers.includes(r.tier) : ['A', 'B', 'C'].includes(r.tier)))
     .filter(r => !group || r.category_group === group)
     .filter(r => !touches.leads[r.id])                        // never queued twice once a sequence exists
-    .filter(r => !isSuppressed(r, suppression))
-    .filter(r => rowPhones(r).length || rowEmails(r).length || r.socials?.whatsapp || r.socials?.instagram || r.socials?.facebook || r.address);
+    .filter(r => !isSuppressed(r, suppression, { country }))
+    .filter(r => rowPhones(r, country).length || rowEmails(r).length || r.socials?.whatsapp || r.socials?.instagram || r.socials?.facebook || r.address);
   return balance(pool, n);
 }
 
@@ -147,20 +161,20 @@ function record(touches, row) {
   return rec;
 }
 
-function stop(project, value, rows, state, day) {
+function stop(project, value, rows, state, day, country) {
   const v = String(value ?? '').trim();
   if (!v || v === 'true') fail('Usage: l2p queue --stop <email|phone|id>');
   let kind, key;
   if (v.includes('@')) { kind = 'email'; key = lc(v); }
   else if (rows.some(r => r.id === v) || /^b_[0-9a-f]+$/i.test(v)) { kind = 'id'; key = v; }
-  else if (digits(v).length >= 7) { kind = 'phone'; key = digits(v); }
+  else if (digits(v).length >= 7) { kind = 'phone'; key = phoneKey(v, country); }   // "0917…", "۰۹۱۷…" → "98917…"
   else fail(`"${v}" is not an email, a phone number, or a lead id.`);
   const s = state.suppression;
   if (!s.entries.some(e => e.kind === kind && e.value === key)) s.entries.push({ kind, value: key, added: day });
   writeJSON(project.paths.suppression, { ...s, updated: day });
   // Close any sequence this touches. Suppression is checked again before every queue and touch.
   let closed = 0;
-  for (const r of rows) if (isSuppressed(r, { entries: [{ kind, value: key }] })) {
+  for (const r of rows) if (isSuppressed(r, { entries: [{ kind, value: key }] }, { country })) {
     const rec = record(state.touches, r);
     if (rec.status !== 'stopped') { rec.status = 'stopped'; rec.events.push({ type: 'stopped', date: day, by: kind }); closed++; }
   }
@@ -174,7 +188,7 @@ function sent(project, id, args, rows, state, cfg, day) {
   const row = findRow(rows, id);
   const channel = lc(args.channel);
   if (!CHANNELS.includes(channel)) fail(`--channel must be one of: ${CHANNELS.join(', ')}`);
-  if (isSuppressed(row, state.suppression)) fail(`${row.name} is on the suppression list. Do not contact them.`);
+  if (isSuppressed(row, state.suppression, { country: cfg.country })) fail(`${row.name} is on the suppression list. Do not contact them.`);
   const rec = record(state.touches, row);
   if (ENDED.includes(rec.status)) fail(`${row.name}: sequence already ended (${rec.status}). Track the conversation in your CRM sheet, or use --booked / --won / --lost.`);
   if (rec.touches.length >= cfg.maxTouches) fail(`${row.name} has had ${rec.touches.length} touches, the maximum. Stop here; a polite "closing your file" was the last one.`);
@@ -218,7 +232,7 @@ function due(project, rows, state, cfg, day) {
   const items = [];
   for (const rec of Object.values(state.touches.leads)) {
     const row = byId.get(rec.id);
-    if (row && isSuppressed(row, state.suppression)) continue;
+    if (row && isSuppressed(row, state.suppression, { country: cfg.country })) continue;
     if (rec.status === 'booked' && rec.booked_at && String(rec.booked_at).slice(0, 10) === day) {
       items.push({ kind: 'demo', id: rec.id, name: rec.name, when: rec.booked_at, overdue: 0 });
       continue;
@@ -244,7 +258,7 @@ function build(project, args, rows, state, cfg, day) {
   const n = num(args.n, cfg.perWeek);
   const tiers = args.tier && args.tier !== true ? String(args.tier).toUpperCase().split(',').map(s => s.trim()).filter(Boolean) : null;
   const group = args.group && args.group !== true ? String(args.group) : null;
-  const picked = select(rows, { n, tiers, group, touches: state.touches, suppression: state.suppression });
+  const picked = select(rows, { n, tiers, group, touches: state.touches, suppression: state.suppression, country: cfg.country });
   const pk = packages(project);
   const compliance = project.config.compliance || {};
 
@@ -255,7 +269,7 @@ function build(project, args, rows, state, cfg, day) {
       group: r.category_group || '', category: r.category || '', city: r.city || '',
       phone: firstPhone(r), email: rowEmails(r)[0] || '', email_ok: r.email_ok ?? '', website: r.website || '', owner: r.owner?.name || '',
       rating: r.google?.rating ?? '', reviews: r.google?.reviews ?? '', seo_score: r.seo_score ?? '',
-      channel: r.channel || (rowPhones(r).length ? 'phone' : rowEmails(r).length ? 'email' : 'walk-in'),
+      channel: r.channel || (rowPhones(r, cfg.country).length ? 'phone' : rowEmails(r).length ? 'email' : 'walk-in'),
       outreach_rule: r.outreach_rule || '',
       why_they_need_you: r.why_they_need_you || ev.need.join('; '), why_they_care: r.why_they_care || ev.care.join('; '),
       evidence: ev.need.join('; '), cautions: ev.warn.join(' '),
@@ -325,7 +339,7 @@ export async function run(project, args = {}) {
   const rows = load(project.paths.scored, { items: [] }).items || [];
   const state = loadState(project);
 
-  if (args.stop !== undefined) return stop(project, args.stop, rows, state, day);
+  if (args.stop !== undefined) return stop(project, args.stop, rows, state, day, cfg.country);
   if (!rows.length) fail('No scored leads yet. Run `l2p score` first.');
   if (args.sent !== undefined) return sent(project, String(args.sent), args, rows, state, cfg, day);
   for (const type of ['replied', 'booked', 'won', 'lost'])

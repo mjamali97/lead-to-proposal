@@ -153,3 +153,16 @@ test('footer year and agency credit edge cases', () => {
   assert.equal(agencyCredit('<footer>Website by <a href="https://shop.example/about">Shop</a></footer>', 'https://shop.example/').name, '');
   assert.equal(agencyCredit('<footer><a href="https://webcraft.example/">Website by Webcraft Co</a></footer>', 'https://shop.example/').host, 'webcraft.example');
 });
+
+test('phones on a Persian page: Persian digits, Persian labels, fax dropped', () => {
+  const body = `<html lang="fa" dir="rtl"><body><footer>
+    <p>تلفن: ۰۲۱-۸۵۵۵۰۱۲۳</p>
+    <p>موبایل: ۰۹۱۲ ۵۵۵ ۰۱۲۴</p>
+    <p>فکس: ۰۲۱-۸۵۵۵۰۱۹۹</p>
+    <a href="tel:+989125550125">۰۹۱۲ ۵۵۵ ۰۱۲۵</a>
+  </footer></body></html>`;
+  const c = { country: 'IR', pages: [{ url: 'https://salon-yas.example/', kind: 'home', body }] };
+  const got = extractPhones(c, 'IR').map(p => [p.e164, p.how]);
+  assert.deepEqual(got.map(x => x[0]).sort(), ['+982185550123', '+989125550124', '+989125550125']);
+  assert.ok(!got.some(x => x[0] === '+982185550199'), 'fax is not a phone');
+});

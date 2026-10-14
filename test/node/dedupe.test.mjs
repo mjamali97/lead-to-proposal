@@ -131,3 +131,11 @@ test('assertNoDuplicates lists what is still duplicated', () => {
   const b = { id: 'b_2', name: 'Two', phones: ['(512) 555-0123'], sources: [{ id: 'x:2' }] };
   assert.throws(() => assertNoDuplicates([a, b], config), /ph:1:5125550123: One \(b_1\) \| Two \(b_2\)/);
 });
+
+test('Iran: Persian-digit and national numbers are kept and merge with +98 listings', () => {
+  const ir = { ...config, market: { country: 'IR' }, area: {} };
+  const l = normalizeListing(L({ name: 'Yas Salon', phone: '۰۹۱۲۵۵۵۰۱۲۳ یا ۰۲۱-۸۵۵۵۰۱۲۳' }), ir);
+  assert.deepEqual(l.phones.map(p => p.e164), ['+989125550123', '+982185550123']);
+  const { items } = dedupe([L({ name: 'Yas Salon', phones: ['0912 555 0123'] }), L({ name: 'سالن یاس', phones: ['+98 912 555 0123'] })], ir);
+  assert.equal(items.length, 1);
+});
