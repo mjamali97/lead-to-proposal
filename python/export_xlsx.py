@@ -16,6 +16,7 @@ Working columns (Called on, Outcome, ...) typed into an earlier leads.xlsx are c
 No formulas: every value is a measurement taken on the collection date.
 """
 import datetime
+import hashlib
 import json
 import os
 import re
@@ -230,6 +231,26 @@ def duplicates(rows):
 
 
 # ---------- carry working columns over from the previous workbook ----------
+def id_aliases(r):
+    """Ids this business may have had (lib/dedupe.mjs idAliases): ids merged into it, and the id each of its
+    listings would have had alone (1.0.0 re-derived ids from the first source)."""
+    out = list(r.get('former_ids') or [])
+    out += ['b_' + hashlib.sha1(str(s.get('id')).encode('utf-8')).hexdigest()[:12] for s in r.get('sources') or [] if s.get('id')]
+    return [a for a in dict.fromkeys(out) if a and a != r.get('id')]
+
+
+def carry_work(rows, work):
+    """Notes typed under an id the business no longer has follow it to its current id."""
+    current = {r.get('id') for r in rows}
+    for r in rows:
+        if r.get('id') in work:
+            continue
+        old = next((a for a in id_aliases(r) if a not in current and a in work), None)
+        if old:
+            work[r['id']] = work[old]
+    return work
+
+
 def previous_work(path):
     work = {}
     if not path.exists():
@@ -458,7 +479,7 @@ def main(argv):
         return 1
 
     out = project / 'out' / 'leads.xlsx'
-    work = previous_work(out)
+    work = carry_work(rows, previous_work(out))
     head = header_style(cfg.get('agency', {}).get('color'))
     rank = lambda r: (-(r.get('priority') or 0), -(r.get('need') or 0), str(r.get('name') or ''))   # noqa: E731
     live = sorted([r for r in rows if not r.get('disqualified')], key=rank)

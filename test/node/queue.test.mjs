@@ -6,6 +6,7 @@ import path from 'node:path';
 import { writeJSON, readJSON, parseCSV } from '../../lib/io.mjs';
 import { initProject, loadProject } from '../../lib/project.mjs';
 import { run, nextDue, balance } from '../../stages/queue.mjs';
+import { naturalId } from '../../lib/dedupe.mjs';
 
 // Fictional businesses only. `.example` domains, 555 numbers.
 const lead = (n, group, tier, priority, extra = {}) => ({
@@ -180,4 +181,31 @@ test('stop list: Iranian numbers match however they are typed (0917…, ۰۹۱۷
   writeJSON(P.paths.suppression, { entries: [{ kind: 'phone', value: '09175550104', added: '2026-10-01' }] });
   const r2 = await q(P, { n: 20, today: '2026-10-12' });
   assert.ok(!r2.items.some(i => i.id === rows[3].id));
+});
+
+test('records saved under an old id follow the business (merged ids, ids 1.0.0 re-derived)', async () => {
+  // Lead 1 now has two sources; 1.0.0 had given it the id of its other listing. Lead 2 absorbed a business.
+  const oldId1 = naturalId('csv:old-listing');
+  const rows = [lead(1, 'trades', 'A', 80, { sources: [{ source: 'dir', id: 'a:new-listing' }, { source: 'csv', id: 'csv:old-listing' }] }),
+    lead(2, 'trades', 'A', 75, { former_ids: ['b_00000000ffff'] }), lead(3, 'trades', 'A', 70, { former_ids: ['b_0000000000aa'] })];
+  const p = setup(rows);
+  writeJSON(p.paths.touches, { updated: '2026-10-05', leads: {
+    [oldId1]: { id: oldId1, name: rows[0].name, status: 'active', touches: [{ step: 1, date: '2026-10-05', channel: 'phone' }], events: [] } } });
+  writeJSON(p.paths.suppression, { entries: [{ kind: 'id', value: 'b_00000000ffff', added: '2026-10-01' }] });
+  const pkg = path.join(p.paths.proposals, 'Lead Three');
+  fs.mkdirSync(pkg, { recursive: true });
+  writeJSON(path.join(pkg, 'job.json'), { id: 'b_0000000000aa', business: { id: 'b_0000000000aa' } });   // package made before a merge
+  fs.writeFileSync(path.join(pkg, 'Lead Three - Proposal.pdf'), '%PDF');
+  const r = await q(p, { n: 20, today: '2026-10-12' });
+  const ids = r.items.map(i => i.id);
+  assert.ok(!ids.includes(rows[0].id), 'lead 1 is already in a sequence (saved under its old id)');
+  assert.ok(!ids.includes(rows[1].id), 'lead 2 is stopped (stop-list entry under the id merged into it)');
+  assert.ok(r.items.find(i => i.id === rows[2].id).proposal_pdf.endsWith('Lead Three - Proposal.pdf'));
+  const t = touches(p);
+  assert.ok(t[rows[0].id] && !t[oldId1], 'the record moved to the current id');
+  assert.deepEqual(t[rows[0].id].former_ids, [oldId1]);
+  const due = await q(p, { due: true, today: '2026-10-06' });
+  assert.equal(due.items[0].id, rows[0].id);
+  await q(p, { sent: oldId1, channel: 'phone', today: '2026-10-06' });   // the old id still works on the command line
+  assert.equal(touches(p)[rows[0].id].touches.length, 2);
 });

@@ -11,6 +11,7 @@ import { spawn, spawnSync } from 'node:child_process';
 import { writeJSON, load, safeName, slugify, today, num, log, fail, sleep } from '../lib/io.mjs';
 import { PLUGIN } from '../lib/project.mjs';
 import { python, runPython } from '../lib/python.mjs';
+import { idAliases } from '../lib/dedupe.mjs';
 
 const MAX_ATTEMPTS = 2;   // one retry
 const STAGES = ['queued', 'working', 'done', 'failed', 'skipped'];
@@ -115,9 +116,11 @@ export function queue(project, args = {}) {
   let order = 0;
   for (const row of picked) {
     order++;
+    // A package made under an id the business had before a merge is still its package.
+    const mine = f => !owner.has(f) || owner.get(f) === row.id || idAliases(row).includes(owner.get(f));
     let folder = safeName(row.name);
-    if (owner.has(folder) && owner.get(folder) !== row.id) folder = safeName(`${row.name} (${row.city || row.id.slice(-4)})`);
-    if (owner.has(folder) && owner.get(folder) !== row.id) folder = safeName(`${row.name} (${row.id})`);
+    if (!mine(folder)) folder = safeName(`${row.name} (${row.city || row.id.slice(-4)})`);
+    if (!mine(folder)) folder = safeName(`${row.name} (${row.id})`);
     owner.set(folder, row.id);
     const dir = path.join(P.proposals, folder);
     const st = load(path.join(dir, 'status.json'), null);

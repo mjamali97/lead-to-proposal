@@ -46,6 +46,7 @@ my-project/
   data/
     raw/<source>.json     per-source listings, resumable
     businesses.json       merged businesses (one per real business)
+    ids.json              stable business ids: which business each source listing belongs to
     merge-report.json     every merge decision + clusters to review
     dropped.json          listings outside the area, with reasons
     google.json           Google lookups (paid, never repeated)
@@ -77,7 +78,7 @@ export async function run(project, args) { ... }   // project = loadProject() re
 `project` (from `lib/project.mjs`):
 ```js
 { dir, config /* project.json merged over defaults */, paths: { data, raw, out, proposals, cache,
-  businesses, sites, scored, google, mergeReport, dropped, workbook, touches, suppression, runLog },
+  businesses, sites, scored, google, mergeReport, dropped, workbook, touches, suppression, ids, runLog },
   env /* process.env + .env */, plugin /* repo root */ }
 ```
 
@@ -91,11 +92,23 @@ Python scripts take the project dir as first positional argument and read the sa
 `Listing` = any subset of the Business fields below plus
 `{ "source": "<source label>", "source_url": "<listing url>", "source_id": "<stable id>" }`.
 
+### Business ids (`data/ids.json`)
+
+A business keeps the id it was first given. `l2p merge` (and the Google pass) reads the registry
+`{ version, sources: { <source_id>: <business id> }, ids: { <business id>: <order> }, aliases: { <old id>: <id> } }`:
+a merged group keeps the id most of its listings carried (the older id on a tie), and only a group
+with no known listing gets a new one (hash of its alphabetically first `source_id`, as in 1.0.0).
+When two known businesses become one, the id that disappears goes to `former_ids` and `aliases`,
+and `l2p queue` and the workbook move records saved under it to the surviving id. A project made
+before the registry existed gets one from its current `businesses.json` on the next merge, so every
+id stays as it is.
+
 ### Business (`data/businesses.json` → `{ "updated", "items": [Business] }`)
 
 ```json
 {
-  "id": "b_<12 hex>",                       // stable: hash of first source_id
+  "id": "b_<12 hex>",                       // stable: kept for life (data/ids.json); new businesses get the hash of their first source_id
+  "former_ids": [],                         // optional: ids of businesses merged into this one (old touches, stop-list entries, packages and notes follow them)
   "name": "Northwind Plumbing",
   "names": ["Northwind Plumbing", "Northwind Plumbing & Drain"],
   "category": "Plumber",                   // most specific label seen

@@ -14,6 +14,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { load, writeJSON, toCSV, num, log, fail, slugify } from '../lib/io.mjs';
 import { parsePhone, normDigits } from '../lib/normalize.mjs';
+import { idAliases } from '../lib/dedupe.mjs';
 
 export const CHANNELS = ['phone', 'whatsapp', 'email', 'sms', 'walk-in', 'dm', 'telegram'];
 const ENDED = ['replied', 'booked', 'won', 'lost', 'stopped'];
@@ -49,13 +50,42 @@ const rowPhones = (r, country) => [...new Set([r.phone, ...(r.phones || [])].fla
 const firstPhone = r => { if (r.phone) return r.phone; const p = (r.phones || [])[0]; return typeof p === 'string' ? p : (p?.e164 || p?.raw || ''); };
 const phoneMatch = (a, b) => a === b || (a.length >= 9 && b.length >= 9 && (a.endsWith(b) || b.endsWith(a)));
 
+// ---- old ids → current rows ----
+// A business keeps its id across merges (data/ids.json), but an id can still disappear when two known
+// businesses become one, and 1.0.0 could re-derive an id when a source was added. Every id a row may
+// have had (lib/dedupe.mjs idAliases) points to that row, unless it is another row's current id.
+export function aliasMap(rows) {
+  const current = new Set(rows.map(r => r.id)), out = new Map(), clash = new Set();
+  for (const r of rows) for (const a of idAliases(r)) {
+    if (current.has(a)) continue;
+    if (out.has(a) && out.get(a) !== r.id) clash.add(a); else out.set(a, r.id);
+  }
+  for (const a of clash) out.delete(a);
+  return out;
+}
+
 // ---- state files ----
-export function loadState(project) {
+export function loadState(project, rows = [], day = null) {
   const touches = load(project.paths.touches, { updated: null, leads: {} });
   touches.leads ??= {};
   const suppression = load(project.paths.suppression, { updated: null, entries: [] });
   suppression.entries ??= [];
-  return { touches, suppression };
+  // Records and stop-list entries saved under an id the business no longer has follow it to its new id.
+  const aliases = aliasMap(rows);
+  let moved = 0;
+  for (const [old, rec] of Object.entries(touches.leads)) {
+    const now = aliases.get(old);
+    if (!now || touches.leads[now]) continue;
+    touches.leads[now] = { ...rec, id: now, former_ids: [...new Set([...(rec.former_ids || []), old])] };
+    delete touches.leads[old]; moved++;
+  }
+  if (moved) {
+    writeJSON(project.paths.touches, { ...touches, updated: day || touches.updated });
+    log(`Moved ${moved} outreach record(s) to the current id of their business (the old ids merged or changed).`);
+  }
+  for (const e of [...suppression.entries]) if (e.kind === 'id' && aliases.has(e.value) && !suppression.entries.some(x => x.kind === 'id' && x.value === aliases.get(e.value)))
+    suppression.entries.push({ kind: 'id', value: aliases.get(e.value), added: e.added, via: e.value });   // kept with the list the next time it is saved
+  return { touches, suppression, aliases };
 }
 const saveTouches = (project, t, day) => writeJSON(project.paths.touches, { ...t, updated: day });
 
@@ -149,8 +179,8 @@ export function select(rows, { n, tiers, group, touches, suppression, country })
 }
 
 // ---- the commands ----
-function findRow(rows, id) {
-  const r = rows.find(x => x.id === id);
+function findRow(rows, id, aliases = new Map()) {
+  const r = rows.find(x => x.id === id) || rows.find(x => x.id === aliases.get(id));
   if (!r) fail(`No lead with id "${id}" in data/scored.json. Ids look like b_1a2b3c4d5e6f (see the queue file or the workbook).`);
   return r;
 }
@@ -166,7 +196,7 @@ function stop(project, value, rows, state, day, country) {
   if (!v || v === 'true') fail('Usage: l2p queue --stop <email|phone|id>');
   let kind, key;
   if (v.includes('@')) { kind = 'email'; key = lc(v); }
-  else if (rows.some(r => r.id === v) || /^b_[0-9a-f]+$/i.test(v)) { kind = 'id'; key = v; }
+  else if (rows.some(r => r.id === v) || /^b_[0-9a-f]+$/i.test(v)) { kind = 'id'; key = rows.some(r => r.id === v) ? v : state.aliases?.get(v) || v; }
   else if (digits(v).length >= 7) { kind = 'phone'; key = phoneKey(v, country); }   // "0917…", "۰۹۱۷…" → "98917…"
   else fail(`"${v}" is not an email, a phone number, or a lead id.`);
   const s = state.suppression;
@@ -185,7 +215,7 @@ function stop(project, value, rows, state, day, country) {
 }
 
 function sent(project, id, args, rows, state, cfg, day) {
-  const row = findRow(rows, id);
+  const row = findRow(rows, id, state.aliases);
   const channel = lc(args.channel);
   if (!CHANNELS.includes(channel)) fail(`--channel must be one of: ${CHANNELS.join(', ')}`);
   if (isSuppressed(row, state.suppression, { country: cfg.country })) fail(`${row.name} is on the suppression list. Do not contact them.`);
@@ -202,7 +232,7 @@ function sent(project, id, args, rows, state, cfg, day) {
 }
 
 function outcome(project, type, id, args, rows, state, day) {
-  const row = findRow(rows, id);
+  const row = findRow(rows, id, state.aliases);
   const rec = record(state.touches, row);
   const ev = { type, date: day };
   if (type === 'booked') {
@@ -263,7 +293,7 @@ function build(project, args, rows, state, cfg, day) {
   const compliance = project.config.compliance || {};
 
   const items = picked.map((r, i) => {
-    const ev = evidence(r), p = pk.get(r.id) || {};
+    const ev = evidence(r), p = pk.get(r.id) || idAliases(r).filter(a => !rows.some(x => x.id === a) && state.aliases.get(a) === r.id).map(a => pk.get(a)).find(Boolean) || {};
     return {
       rank: i + 1, id: r.id, name: r.name, tier: r.tier, priority: r.priority, need: r.need, interest: r.interest,
       group: r.category_group || '', category: r.category || '', city: r.city || '',
@@ -337,7 +367,7 @@ export async function run(project, args = {}) {
   const cfg = settings(project);
   const day = isDate(args.on) ? args.on : isDate(args.today) ? args.today : todayIn(cfg.tz);
   const rows = load(project.paths.scored, { items: [] }).items || [];
-  const state = loadState(project);
+  const state = loadState(project, rows, day);
 
   if (args.stop !== undefined) return stop(project, args.stop, rows, state, day, cfg.country);
   if (!rows.length) fail('No scored leads yet. Run `l2p score` first.');
