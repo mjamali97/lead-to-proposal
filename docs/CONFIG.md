@@ -65,6 +65,11 @@ Full detail and examples: `skills/find-leads/references/sources.md`.
 
 ### `google_maps` (paid)
 
+Off in a new project (`l2p init`), so nothing paid runs and `l2p doctor` asks for no token. To use
+it: set `"enabled": true`, put `APIFY_TOKEN=...` in `.env`, run `l2p doctor`, then `l2p collect`
+(a dry run that prints the cost) and `l2p collect --go`. OpenStreetMap is the source a new
+project starts with.
+
 | Key | Notes |
 |---|---|
 | `budget_usd` | Hard stop for this source |

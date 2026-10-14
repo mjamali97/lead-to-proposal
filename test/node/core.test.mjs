@@ -142,3 +142,17 @@ test('doctor: a broken project.json is reported, not "none here yet"', () => {
   assert.match(d.stdout, /2-letter country code/);
   assert.doesNotMatch(d.stdout, /none here yet/);
 });
+
+test('init: the paid source is off, so a fresh project needs no Apify token', () => {
+  const dir = path.join(tmp(), 'fresh');
+  initProject(dir);
+  const p = loadProject(dir);
+  const gm = p.config.sources.find(s => s.type === 'google_maps');
+  assert.equal(gm.enabled, false);
+  assert.match(readJSON(path.join(dir, 'project.json')).sources.find(s => s.type === 'google_maps')._help, /enabled to true.*APIFY_TOKEN/);
+  assert.ok(p.config.sources.some(s => s.enabled !== false), 'a free source is on, so `l2p collect` has something to run');
+  assert.ok(!p.config.google_lookup.enabled);
+  const d = spawnSync(process.execPath, [CLI, 'doctor', '--project', dir], { encoding: 'utf8' });
+  assert.match(d.stdout, /ok +APIFY_TOKEN +not needed/);
+  assert.doesNotMatch(d.stdout, /FIX +(APIFY_TOKEN|project\.json)/);
+});
