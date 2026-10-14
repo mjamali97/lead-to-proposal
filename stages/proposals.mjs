@@ -2,8 +2,9 @@
 // render, QA, and report status. State lives in proposals/<folder>/status.json, so every step resumes.
 //   l2p proposals queue [--tiers A,B] [--limit N] [--only <id|name>] [--force] [--retry-failed]
 //   l2p proposals run [--concurrency N] [--model <m>] [--limit N] [--only <id|name>]
-//   l2p proposals render <package-dir>      screenshots + PDFs for one package
-//   l2p proposals qa <package-dir>          check one package
+//   l2p proposals render <package>          screenshots + PDFs for one package
+//   l2p proposals qa <package>              check one package
+//     <package> = the package folder, or (inside a project) the business name, its slug or id
 //   l2p proposals status
 import fs from 'node:fs';
 import path from 'node:path';
@@ -263,11 +264,33 @@ export async function runAll(project, args = {}) {
 }
 
 // ---------- render / qa / status ----------
+const isPackage = d => fs.existsSync(path.join(d, 'proposal-data.json')) || fs.existsSync(path.join(d, 'job.json'));
+
+// A package folder path, or inside a project: the folder name, the business name (any of its names),
+// its slug ("northwind-plumbing") or its id, matched against proposals/*/job.json.
+export function findPackage(project, a) {
+  for (const d of [path.resolve(a), project && path.join(project.paths.proposals, a)].filter(Boolean)) if (isPackage(d)) return d;
+  const root = project?.paths.proposals;
+  if (root && fs.existsSync(root)) {
+    const want = String(a).trim().toLowerCase(), slug = slugify(a);
+    const folders = fs.readdirSync(root, { withFileTypes: true }).filter(d => d.isDirectory() && !d.name.startsWith('.')).map(d => d.name);
+    const hits = folders.filter(f => {
+      const job = load(path.join(root, f, 'job.json'), null);
+      if (!job) return false;
+      const b = job.business || {};
+      return [f, job.folder, job.slug, job.id, b.id, b.name, ...(b.names || [])].some(k => k && (String(k).trim().toLowerCase() === want || slugify(k) === slug));
+    });
+    if (hits.length === 1) return path.join(root, hits[0]);
+    if (hits.length > 1) fail(`"${a}" matches ${hits.length} packages: ${hits.join(', ')}. Use the folder name.`);
+    fail(`No package found for "${a}" in ${path.relative(process.cwd(), root) || root}. Packages: ${folders.join(', ') || 'none yet (l2p proposals queue)'}`);
+  }
+  fail(`No package found at ${a}. Pass the package folder, or run this inside your project folder to use the business name.`);
+}
+
 function pkgDir(project, args) {
   const a = args._[1];
-  if (!a) fail(`Usage: l2p proposals ${args._[0]} <package-dir or business folder name>`);
-  for (const d of [path.resolve(a), project && path.join(project.paths.proposals, a)].filter(Boolean)) if (fs.existsSync(path.join(d, 'proposal-data.json')) || fs.existsSync(path.join(d, 'job.json'))) return d;
-  fail(`No package found at ${a}`);
+  if (!a || a === true) fail(`Usage: l2p proposals ${args._[0]} <package folder, or the business name inside a project>`);
+  return findPackage(project, String(a));
 }
 
 function renderOne(project, args) {

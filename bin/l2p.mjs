@@ -27,8 +27,8 @@ const HELP = `lead-to-proposal (l2p)
 
   l2p proposals queue [--tiers A,B] [--limit N] [--only <id>]
   l2p proposals run [--concurrency N]   build queued packages with headless Claude
-  l2p proposals render <package-dir>    screenshots + PDFs for one package
-  l2p proposals qa <package-dir>        check one package
+  l2p proposals render <package>        screenshots + PDFs for one package (folder, or business name in a project)
+  l2p proposals qa <package>            check one package
   l2p proposals status
 
   l2p queue [--n 20] [--tier A,B] [--group trades]   this week's outreach list (never sends anything)
@@ -95,9 +95,11 @@ async function main() {
   const file = path.join(PLUGIN, 'stages', `${mod}.mjs`);
   if (!fs.existsSync(file)) throw new UserError(`Stage "${cmd}" is not installed (${file} missing).`);
   const stage = await import(file);
-  // `proposals render|qa <package>` works on any package folder, inside a project or not.
+  // `proposals render|qa <package>` works on any package folder, inside a project or not; inside one,
+  // the business name (or slug, or id) is enough.
   const standalone = cmd === 'demo' || (cmd === 'proposals' && ['render', 'qa'].includes(args._[0]) && !args.project);
-  const project = standalone ? null : loadProject(args.project);
+  let project = standalone ? null : loadProject(args.project);
+  if (standalone && cmd !== 'demo' && findProjectDir()) { try { project = loadProject(); } catch { /* a broken project.json must not block a render */ } }
   const t0 = Date.now();
   const result = await stage.run(project, args);
   if (project && cmd !== 'status') logRun(project, { stage: cmd, args: Object.fromEntries(Object.entries(args).filter(([k]) => k !== '_')), ms: Date.now() - t0, ...(result?.log || {}) });

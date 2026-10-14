@@ -5,7 +5,8 @@ import os from 'node:os';
 import path from 'node:path';
 import { writeJSON, readJSON } from '../../lib/io.mjs';
 import { initProject, loadProject, PLUGIN } from '../../lib/project.mjs';
-import { queue, selectRows, factsFor, workerArgs, readBrief } from '../../stages/proposals.mjs';
+import { queue, selectRows, factsFor, workerArgs, readBrief, findPackage } from '../../stages/proposals.mjs';
+import { spawnSync } from 'node:child_process';
 import { renderProposal, loadStrings, esc, hasDigit, textDir, fontsFor } from '../../templates/proposal/proposal.mjs';
 
 // Fictional businesses only: .example domains, 555 numbers.
@@ -148,4 +149,17 @@ test('right-to-left and Persian text: no letter-spacing, Persian font declared f
   assert.match(fa, /<link rel="stylesheet" href="https:\/\/fonts\.googleapis\.com\/css2\?family=Vazirmatn/);
   assert.match(fa, /--serif:"L2P Serif","Vazirmatn"/, 'big headings get the Persian font, not a system fallback');
   assert.match(fa, /--sans:"Vazirmatn"/);
+});
+
+test('render/qa take the business name, its slug or id inside a project', () => {
+  const p = project();
+  quiet(() => queue(p, { _: ['queue'] }));
+  const dir = path.join(p.paths.proposals, 'Test Plumbing 1');
+  for (const name of ['Test Plumbing 1', 'test plumbing 1', 'test-plumbing-1', 'b_000000000001', dir]) assert.equal(findPackage(p, name).toLowerCase(), dir.toLowerCase(), name);   // case: macOS folders
+  assert.throws(() => findPackage(p, 'Nobody'), /No package found for "Nobody".*Packages: Test Plumbing 1/);
+  assert.throws(() => findPackage(null, 'Test Plumbing 1'), /inside your project folder/);
+  // The CLI finds the project from the current folder, as the redesign-proposal skill documents.
+  const r = spawnSync(process.execPath, [path.join(PLUGIN, 'bin', 'l2p.mjs'), 'proposals', 'qa', 'Test Plumbing 1'], { cwd: p.dir, encoding: 'utf8', timeout: 60000 });
+  assert.doesNotMatch(r.stderr + r.stdout, /No package found/);
+  assert.match(r.stdout, /QA FAILED/);                                       // found it: nothing is built in it yet
 });
