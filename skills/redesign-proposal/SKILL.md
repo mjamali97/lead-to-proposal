@@ -73,7 +73,9 @@ photos are really theirs. Fixes and QA messages: `references/troubleshooting.md`
 - Agency name, logo, colour, contact: `project.json` → `agency`. Paper (Letter/A4), currency:
   `market`. Plans, care plan, delivery days: `offer`. Re-render after changes.
 - UI strings: `<plugin-root>/templates/proposal/strings/en.json`. Add a language by copying it to
-  `<lang>.json` (`_dir: "rtl"` for right-to-left) and set `proposals.language`. One-off wording:
+  `<lang>.json` (`_dir: "rtl"` for right-to-left; Persian and Arabic get the Vazirmatn font unless
+  `_font_stack` names another) and set `proposals.language`. Prices may use any digits
+  (`"۱۸ میلیون تومان"`, up to 24 characters). One-off wording:
   `proposals.strings` in `project.json` or `strings` in a package's `proposal-data.json`.
 - Template changes: edit `templates/proposal/proposal.mjs`, then prove nothing overflows with
   `python python/stress_test.py` (both paper sizes, max and min content) before shipping.

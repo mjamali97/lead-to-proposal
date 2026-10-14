@@ -52,7 +52,7 @@ A listing is kept if it matches **any one** of these. Set at least one.
 | Key | Notes |
 |---|---|
 | `summary` | One sentence |
-| `plans[]` | Usually three. Each: `name`, `price` (a string with currency, e.g. `"$900"` or `"Quote"`), `tag` (short label), `rec` (true for the recommended plan), `items` (bullet list) |
+| `plans[]` | Usually three. Each: `name`, `price` (a string with currency, e.g. `"$900"`, `"۱۸ میلیون تومان"` or `"Quote"`; up to 24 characters, digits in any script; it is shrunk to fit its box and shown in its own reading direction), `tag` (short label), `rec` (true for the recommended plan), `items` (bullet list) |
 | `care_plan` | Monthly plan, one line (`""` for none) |
 | `delivery_days` | Days from materials received to site ready |
 

@@ -92,8 +92,11 @@ def variant(data, job, kind):
         if path in ('sales.fact.number', 'sales.stats[].number'):
             continue
         set_path(ctx, path.split('.'), n)
+    # Prices at the limit: a right-to-left one in Persian digits (max) and a long Latin one (ev3).
+    long_price = {'max': '۱۲۵٬۵۰۰٬۰۰۰ تومان ماهانه', 'ev3': 'US$12,500.00 one payment'}.get(kind, '$12,500.00')
+    assert len(long_price) <= lim['chars']['offer.plans[].price']
     for p in S['plans'] + j['offer']['plans']:
-        p['price'] = '$12,500.00'
+        p['price'] = long_price
     for i, p in enumerate(S['plans']):
         p['name'], p['tag'], p['price'] = j['offer']['plans'][i]['name'], j['offer']['plans'][i].get('tag', ''), j['offer']['plans'][i]['price']
     S['fact']['number'] = 'US$1,234'

@@ -28,7 +28,9 @@ JARGON = re.compile(r'\b(H1|H2|alt[ -]?text|alt tags?|schema|structured data|JSO
                     r'core web vitals|above the fold|CTA|UX|UI|responsive|backlinks?|SERP|bounce rate)\b', re.I)
 FORMULA = re.compile(r'\b(clients|customers|patients|people)\s+(love|rate|trust)\s+you\b.*\bwebsite\b.*\b(hides?|should|doesn.t)', re.I)
 PLACEHOLDER = re.compile(r'lorem ipsum|\bTODO\b|\bTBD\b|\[your |\{\{|xxx-xxx|placeholder text', re.I)
-MONEY = re.compile(r'(?:US\$|CA\$|A\$|NZ\$|[$€£¥₹]|CHF\s?|kr\s?)\s?\d[\d,.  ]*|\d[\d,.  ]*\s?(?:€|kr|zł|CHF|Kč|lei)')
+# Prices in any digits: "$750", "1.500 €", "۱۸ میلیون تومان" (\d matches Persian/Arabic digits too).
+MONEY = re.compile(r'(?:US\$|CA\$|A\$|NZ\$|[$€£¥₹]|CHF\s?|kr\s?)\s?\d[\d,.  ٫٬]*'
+                   r'|\d[\d,.  ٫٬]*\s?(?:(?:هزار|میلیون|میلیارد)\s?)?(?:€|kr|zł|CHF|Kč|lei|تومان|تومن|ریال)')
 PERCENT = re.compile(r'\d+(?:[.,]\d+)?\s?%')
 SKIP_REASONS = {'permanently closed', 'not a local business', 'wrong listing'}
 
@@ -414,7 +416,7 @@ def check(d):
         for i, (a, b) in enumerate(zip(S['plans'], oplans)):
             need(a.get('name') == b.get('name') and str(a.get('price')) == str(b.get('price')),
                  f'sales.plans[{i}] is {a.get("name")} {a.get("price")}, the offer says {b.get("name")} {b.get("price")}')
-    norm = lambda s: re.sub(r'[\s  ]', '', s).rstrip('.,')
+    norm = lambda s: re.sub(r'[\s  ‌‎‏]', '', ascii_digits(s)).rstrip('.,٫٬')
     allowed = {norm(m) for p in oplans for m in MONEY.findall(str(p.get('price', '')))}
     allowed |= {norm(m) for m in MONEY.findall(str(offer.get('care_plan', '')))}
     allowed |= {norm(f.get('number', '')) for _, f in facts if f}
