@@ -3,7 +3,7 @@
 // only when it provably is that business. Paid (Apify); dry run unless --go. Never looks anything up twice.
 import { load, writeJSON, today, log, warn, num, UserError } from '../lib/io.mjs';
 import { parsePhone, hostname, regDomain, classifyUrl, bestNameSim, normName, haversineKm } from '../lib/normalize.mjs';
-import { dedupe } from '../lib/dedupe.mjs';
+import { dedupe, loadIds, saveIds } from '../lib/dedupe.mjs';
 import { GOOGLE_MAPS_ACTOR, spendGuard, runOnce, ratesFor } from '../lib/apify.mjs';
 import { googleFromItem } from '../sources/google-maps.mjs';
 
@@ -153,8 +153,9 @@ export async function run(project, args = {}) {
 
   // Attach matches and merge pass 2: businesses that turned out to be the same Google place become one.
   const attached = attachGoogle(biz.items, gstate);
-  const { items, report } = dedupe(biz.items, c);
+  const { items, report, ids } = dedupe(biz.items, c, { ids: loadIds(project).reg });
   writeJSON(project.paths.businesses, { updated: today(), items });
+  saveIds(project, ids);
   const mr = load(project.paths.mergeReport, {});
   mr.google_pass = { at: today(), attached, merged: biz.items.length - items.length, keys_used: report.keys_used, clusters: report.clusters.filter(x => x.keys.includes('place_id')) };
   writeJSON(project.paths.mergeReport, mr);

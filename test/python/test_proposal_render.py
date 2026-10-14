@@ -180,3 +180,39 @@ def test_limits_and_schema_helpers():
     bad['sales']['markers'][0]['x'] = 140
     assert any('sales.values has 5 items' in p for p in qa.check_limits(bad, job))
     assert any('out of range' in e for e in qa.validate(bad, schema, schema))
+
+
+def test_persian_prices_render_and_pass_qa(rendered, tmp_path):
+    """Prices in Persian digits reach the cover, read right-to-left, fit their boxes and pass QA."""
+    pkg = tmp_path / NAME
+    shutil.copytree(rendered, pkg)
+    shutil.copy(DEMO / 'agency-logo.png', tmp_path / 'agency-logo.png')
+    job = json.loads((pkg / 'job.json').read_text())
+    for p, price in zip(job['offer']['plans'], ['۱۸ میلیون تومان', '۳۲٬۵۰۰٬۰۰۰ تومان', 'توافقی']):
+        p['price'] = price
+    job['offer']['care_plan'] = '۹۰۰ هزار تومان ماهانه: میزبانی و ویرایش‌های کوچک'
+    (pkg / 'job.json').write_text(json.dumps(job, ensure_ascii=False))
+    data = json.loads((pkg / 'proposal-data.json').read_text())
+    data['sales']['fact']['text2'] = 'صفحهٔ تازه‌تان یک‌بار 18 میلیون تومان است و هر روز مشتری می‌آورد.'
+    (pkg / 'proposal-data.json').write_text(json.dumps(data, ensure_ascii=False))
+    assert qa.check_limits(data, job) == []                       # 15 characters: within the price limit
+    assert run('render.py', pkg, '--proposal-only').returncode == 0
+    rep = json.loads((pkg / 'proposal' / 'layout-report.json').read_text())
+    assert rep['issues'] == [], rep['issues']
+    html = (pkg / 'proposal' / 'proposal.html').read_text()
+    cover = html.split('class="ribbon"', 1)[1].split('</b>', 1)[0]
+    assert '<bdi dir="rtl" class="n">۱۸ میلیون تومان</bdi>' in cover, 'the recommended price is on the cover, right-to-left'
+    assert '<bdi dir="ltr" class="n">+1 512 555 0100</bdi>' in html, 'phones stay left-to-right'
+    r = run('qa.py', pkg)
+    assert r.returncode == 0 and 'QA PASSED' in r.stdout, r.stdout
+    # A Persian price that is not in the offer is still caught.
+    data['sales']['fact']['text2'] = 'صفحهٔ تازه‌تان فقط ۲۰ میلیون تومان است.'
+    (pkg / 'proposal-data.json').write_text(json.dumps(data, ensure_ascii=False))
+    out = json.loads(run('qa.py', pkg, '--json').stdout)
+    assert any('price ۲۰ میلیون تومان is not in the offer' in p for p in out['problems']), out['problems']
+
+
+def test_qa_reads_any_digits():
+    assert qa.digits('۰۹۱۲ ۵۵۵ ۰۱۲۳') == '09125550123'
+    assert qa.digits('٠٢١-٨٥٥٥٠١٢٣') == '02185550123'
+    assert qa.MONEY.findall('فقط ۱۸ میلیون تومان، یا $750') == ['۱۸ میلیون تومان', '$750']

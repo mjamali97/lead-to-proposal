@@ -85,7 +85,25 @@ function agencyLogo(logo, dirs) {
   return f ? dataURI(f) : '';
 }
 
-const priceOf = plans => (plans.find(p => p.rec && /\d/.test(p.price)) || plans.find(p => /\d/.test(p.price)) || {}).price || '';
+// Digits of any script count: "$750", "۱۸ میلیون تومان", "١٥٠٠ درهم".
+export const hasDigit = s => /\p{Nd}/u.test(String(s ?? ''));
+// Right-to-left script letters (Hebrew, Arabic, Persian, Urdu …); digits alone (۱۸) are not.
+const RTL_LETTERS = /(?=\p{L})[\p{Script=Arabic}\p{Script=Hebrew}\p{Script=Syriac}\p{Script=Thaana}\p{Script=Nko}]/u;
+export const textDir = s => (RTL_LETTERS.test(String(s ?? '')) ? 'rtl' : 'ltr');
+const priceOf = plans => (plans.find(p => p.rec && hasDigit(p.price)) || plans.find(p => hasDigit(p.price)) || {}).price || '';
+
+// Fonts declared by a language's strings (`_fonts_css` + `_font_stack`). Persian and Arabic default to
+// Vazirmatn (Google Fonts, OFL) so headings never fall back to whatever the system has.
+const SCRIPT_FONTS = {
+  fa: { css: 'https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300..700&display=block', stack: 'Vazirmatn, Vazir, Tahoma' },
+  ar: { css: 'https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300..700&display=block', stack: 'Vazirmatn, Tahoma' },
+};
+export function fontsFor(T, lang) {
+  const def = SCRIPT_FONTS[String(lang || '').toLowerCase().split('-')[0]] || {};
+  const css = T._fonts_css || (T._font_stack ? '' : def.css || '');
+  const stack = String(T._font_stack || def.stack || '').split(',').map(f => f.trim().replace(/^["']|["']$/g, '')).filter(Boolean);
+  return { css, families: stack.map(f => `"${f.replace(/["\\<>]/g, '')}"`).join(',') };
+}
 
 // ---- the document ----
 export function renderProposal({ data, job = {}, pkgDir = '.', projectDir = '' }) {
@@ -105,7 +123,9 @@ export function renderProposal({ data, job = {}, pkgDir = '.', projectDir = '' }
   const agencyName = agency.name || '';
   const site = B.website || '';
   const date = d.date || job.date_label || job.date || '';
-  const ltr = s => `<bdi dir="ltr" class="n">${esc(s)}</bdi>`;   // phones, prices, domains, numbers inside RTL text
+  const ltr = s => `<bdi dir="ltr" class="n">${esc(s)}</bdi>`;   // phones, domains, numbers inside RTL text
+  // Prices are isolated with their own direction: "$750" left-to-right, "۱۸ میلیون تومان" right-to-left (never "میلیون ۱۸").
+  const money = s => `<bdi dir="${textDir(s)}" class="n">${esc(s)}</bdi>`;
 
   const brandMark = (cls = '') => logo
     ? `<span class="ag ${cls}"><img src="${esc(logo)}" alt="${esc(agencyName)}"></span>`
@@ -126,7 +146,7 @@ export function renderProposal({ data, job = {}, pkgDir = '.', projectDir = '' }
   <h1 class="headline">${headline}</h1>
   ${S.cover_sub ? `<p class="csub">${esc(S.cover_sub)}</p>` : ''}
   <div class="devices">${browser(L.desktop, { cls: 'dev-desk' })}<div class="phone"><img src="${esc(rel(L.mobile))}" alt=""></div></div>
-  <div class="ribbon" data-box><b>${fill(esc(T.cover_ribbon_title), { price: `<span class="pr">${ltr(price)}</span>` })}</b>
+  <div class="ribbon" data-box><b data-fit>${fill(esc(T.cover_ribbon_title), { price: `<span class="pr">${money(price)}</span>` })}</b>
     <span>${t('cover_ribbon_ready', { days })}<br>${esc(agency.contact_name)}${agency.contact_name && agency.phone ? ' · ' : ''}${ltr(agency.phone)}</span></div>`, true);
 
   // 2 today
@@ -144,7 +164,7 @@ export function renderProposal({ data, job = {}, pkgDir = '.', projectDir = '' }
   const F = S.fact || {};
   const cost = page(3, 'cost', `${kicker('cost_kicker')}<h2>${t('cost_title')}</h2>
   <div class="bigfact" data-box><b data-fit>${ltr(F.number)}</b><p>${esc(F.text)}</p><small>${t('source')}: ${esc(F.source)}</small></div>
-  ${F.text2 ? `<div class="vs"><p data-box>${esc(F.text2)}</p><div data-box><span>${t('cost_page_label')}</span><b data-fit>${ltr(price)}</b></div></div>` : ''}
+  ${F.text2 ? `<div class="vs"><p data-box>${esc(F.text2)}</p><div data-box><span>${t('cost_page_label')}</span><b data-fit>${money(price)}</b></div></div>` : ''}
   ${(S.stats || []).length ? `<div class="stats n${S.stats.length}">${S.stats.map(s => factBox(s, '')).join('')}</div>` : ''}`);
 
   // 4 the new page
@@ -183,10 +203,10 @@ export function renderProposal({ data, job = {}, pkgDir = '.', projectDir = '' }
   <div class="probs">${big}</div>`);
 
   // 7 offer
-  const foot = p => p.note ? esc(p.note) : !/\d/.test(p.price) ? t('plan_foot_quote') : /\//.test(p.price) ? '' : p.rec ? t('plan_foot_rec') : t('plan_foot');
+  const foot = p => p.note ? esc(p.note) : !hasDigit(p.price) ? t('plan_foot_quote') : /\//.test(p.price) ? '' : p.rec ? t('plan_foot_rec') : t('plan_foot');
   const offerPage = page(7, 'offer', `${kicker('offer_kicker')}<h2>${t('offer_title')}</h2>
   <div class="plans n${plans.length}">${plans.map(p => `<div class="plan${p.rec ? ' rec' : ''}" data-box>${p.tag ? `<span class="tag">${esc(p.tag)}</span>` : ''}<h3>${esc(p.name)}</h3>
-    <div class="price" data-fit>${/\d/.test(p.price) ? ltr(p.price) : esc(p.price || T.plan_price_quote)}</div>
+    <div class="price" data-fit>${hasDigit(p.price) ? money(p.price) : esc(p.price || T.plan_price_quote)}</div>
     <ul>${p.items.map(x => `<li><span class="ok">${CHECK}</span>${esc(x)}</li>`).join('')}</ul><div class="foot">${foot(p)}</div></div>`).join('')}</div>
   <div class="extras">${offer.care_plan ? `<div data-box><b>${t('care_plan')}</b>${esc(offer.care_plan)}</div>` : ''}<div data-box><b>${icon('clock')}</b>${t('delivery', { days })}</div></div>
   <div class="trust3">${['trust_1', 'trust_2', 'trust_3'].map(k => `<div data-box><span class="ok">${CHECK}</span>${t(k)}</div>`).join('')}</div>
@@ -194,9 +214,10 @@ export function renderProposal({ data, job = {}, pkgDir = '.', projectDir = '' }
   <div class="cta" data-box><b>${t('cta_title')}</b><span>${t('cta_or_call', { name: agency.contact_name || agencyName })}<br><strong>${ltr(agency.phone)}</strong>${agency.email ? `<br>${ltr(agency.email)}` : ''}${agency.website ? `<br>${ltr(agency.website)}` : ''}</span></div>`);
 
   const W = A4 ? 794 : 816, H = A4 ? 1123 : 1056;
+  const fonts = fontsFor(T, lang), extra = fonts.families ? `${fonts.families},` : '';
   return `<!doctype html><html lang="${esc(lang)}" dir="${dir}"><head><meta charset="utf-8">
 <title>${t('doc_title', { business: B.name, agency: agencyName })}</title>
-${T._fonts_css ? `<link rel="stylesheet" href="${esc(T._fonts_css)}">` : ''}
+${fonts.css ? `<link rel="stylesheet" href="${esc(fonts.css)}">` : ''}
 <style>
 ${fontFaces()}
 @page{size:${A4 ? 'A4' : 'Letter'};margin:0}
@@ -204,12 +225,17 @@ ${fontFaces()}
   --accent:${accent};--on-accent:${onColor(accent)};--accent-soft:${mix(accent, '#FFFFFF', 0.9)};--accent-tint:${mix(accent, '#FFFFFF', 0.78)};
   --accent-deep:${mix(accent, '#07090C', 0.78)};--accent-light:${mix(accent, '#FFFFFF', 0.55)};--accent-text:${lum(accent) > 0.35 ? mix(accent, '#000000', 0.45) : accent};
   --brand:${brand};--good:#177A4F;--good-soft:#E5F2EA;--bad:#BF3F12;--bad-soft:#FBEBE3;--warn:#B26B00;
-  --serif:"L2P Serif",Georgia,"Times New Roman",serif;--sans:${T._font_stack ? `"${esc(T._font_stack)}",` : ''}"L2P Sans","Helvetica Neue",Arial,sans-serif;--mono:"L2P Mono",ui-monospace,Menlo,monospace}
+  --serif:"L2P Serif",${extra}Georgia,"Times New Roman",serif;--sans:${extra}"L2P Sans","Helvetica Neue",Arial,sans-serif;--mono:"L2P Mono",${extra}ui-monospace,Menlo,monospace}
 *{box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 html,body{margin:0;background:#D9D8D3}
 body{font:16px/1.45 var(--sans);color:var(--ink);font-kerning:normal;-webkit-font-smoothing:antialiased}
 bdi{unicode-bidi:isolate}
 bdi.n{display:inline-block}
+/* Arabic-script letters join: letter-spacing tears the words apart and the mono labels have no such glyphs.
+   Whole right-to-left documents, and any Persian/Arabic text inside an English one (tagged .ar by the script below). */
+html[dir=rtl] *,:lang(fa),:lang(ar),:lang(ur),:lang(ps),:lang(ckb),.ar{letter-spacing:0!important}
+html[dir=rtl]{--mono:var(--sans)}
+.ar-sans{font-family:var(--sans)!important}
 /* right-to-left pages: each text takes its own direction, so a Latin name or quote is never mirrored */
 html[dir=rtl] :is(h1,h2,h3,p,li,figcaption,small,b,.legend span,.chips div,.ticks div,.probs div){unicode-bidi:plaintext}
 /* No CSS shadows or filters anywhere: some PDF viewers draw them as grey boxes. */
@@ -266,9 +292,9 @@ h2 em{font-style:italic;color:var(--muted)}
 .cover .dev-desk img{height:100%;object-fit:cover;object-position:top}
 .cover .devices .phone{position:absolute;inset-inline-end:0;top:-10px;width:168px}
 .ribbon{position:absolute;left:56px;right:56px;bottom:84px;display:flex;justify-content:space-between;align-items:center;gap:24px;background:#fff;color:var(--ink);border-radius:16px;padding:20px 26px}
-.ribbon b{font:400 33px/1.05 var(--serif);letter-spacing:-.01em}
+.ribbon b{font:400 33px/1.05 var(--serif);letter-spacing:-.01em;white-space:nowrap;flex:1 1 auto;min-width:0}
 .ribbon .pr{color:var(--accent-text)}
-.ribbon>span{font:600 13.5px/1.5 var(--sans);text-align:end;color:var(--ink2)}
+.ribbon>span{font:600 13.5px/1.5 var(--sans);text-align:end;color:var(--ink2);flex:none}
 
 /* 2 today */
 .today h2{margin-bottom:22px}
@@ -401,6 +427,12 @@ ${google}
 ${offerPage}
 <script>
 (async () => {
+  // Persian/Arabic text inside a left-to-right document: no letter-spacing, and not in the Latin-only mono face.
+  const RTL = /[\u0590-\u08FF\uFB1D-\uFDFF\uFE70-\uFEFF]/, walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  for (let n = walker.nextNode(); n; n = walker.nextNode()) if (RTL.test(n.data) && n.parentElement) {
+    const el = n.parentElement; el.classList.add('ar');
+    if (getComputedStyle(el).fontFamily.includes('L2P Mono')) el.classList.add('ar-sans');
+  }
   await document.fonts.ready;
   await Promise.all([...document.images].map(i => i.decode ? i.decode().catch(() => {}) : 0));
   // Screenshots wider than their frame are shown whole (never cut at the sides): the frame gets shorter instead.

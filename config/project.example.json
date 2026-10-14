@@ -48,8 +48,8 @@
   "sources": [
     {
       "type": "google_maps",
-      "_help": "Paid, via Apify (compass~crawler-google-places). Dry run unless --go. Stops at budget_usd.",
-      "enabled": true,
+      "_help": "Paid, via Apify (compass~crawler-google-places). OFF by default. To use it: set enabled to true, put APIFY_TOKEN=... in .env (l2p doctor checks it), then `l2p collect` shows the cost (dry run) and `l2p collect --go` spends, stopping at budget_usd.",
+      "enabled": false,
       "budget_usd": 10,
       "max_reviews": 0,
       "segments": [
@@ -59,8 +59,8 @@
     },
     {
       "type": "osm",
-      "_help": "Free. OpenStreetMap via the Overpass API, inside area.bbox. Tags from wiki.openstreetmap.org/wiki/Map_features.",
-      "enabled": false,
+      "_help": "Free, on by default. OpenStreetMap via the Overpass API, inside area.bbox. Tags from wiki.openstreetmap.org/wiki/Map_features.",
+      "enabled": true,
       "tags": [["craft", "plumber"], ["craft", "hvac"]]
     },
     {

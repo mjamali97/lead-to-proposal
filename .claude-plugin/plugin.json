@@ -1,6 +1,6 @@
 {
   "name": "lead-to-proposal",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Find local businesses that need a better website, score them, export a call list, build each top lead a redesign from their own brand plus a sales proposal PDF, and close them with a tested sales playbook.",
   "author": { "name": "Mohammad Jamali" },
   "homepage": "https://github.com/mjamali97/lead-to-proposal",

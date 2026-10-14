@@ -5,8 +5,9 @@ import os from 'node:os';
 import path from 'node:path';
 import { writeJSON, readJSON } from '../../lib/io.mjs';
 import { initProject, loadProject, PLUGIN } from '../../lib/project.mjs';
-import { queue, selectRows, factsFor, workerArgs, readBrief } from '../../stages/proposals.mjs';
-import { renderProposal, loadStrings, esc } from '../../templates/proposal/proposal.mjs';
+import { queue, selectRows, factsFor, workerArgs, readBrief, findPackage } from '../../stages/proposals.mjs';
+import { spawnSync } from 'node:child_process';
+import { renderProposal, loadStrings, esc, hasDigit, textDir, fontsFor } from '../../templates/proposal/proposal.mjs';
 
 // Fictional businesses only: .example domains, 555 numbers.
 const row = (n, tier, priority, extra = {}) => ({
@@ -119,4 +120,46 @@ test('worker gets the brief inline, file tools, and the model', () => {
   assert.equal(a[a.indexOf('--append-system-prompt') + 1], brief);
   assert.ok(a.includes('Bash') && a.includes('WebFetch') && a.includes('--add-dir'));
   assert.equal(a[a.indexOf('--model') + 1], 'opus');
+});
+
+test('prices in Persian digits: on the cover, right-to-left, not mistaken for "Quote"', () => {
+  const { data, job } = demo();
+  job.offer.plans[0].price = '۱۸ میلیون تومان';
+  job.offer.plans[1].price = '18 میلیون تومان';
+  const html = renderProposal({ data, job, pkgDir: DEMO });
+  const ribbon = html.split('class="ribbon"')[1].split('</b>')[0];
+  assert.ok(ribbon.includes('<bdi dir="rtl" class="n">۱۸ میلیون تومان</bdi>'), 'recommended price on the cover');
+  assert.ok(html.includes('<bdi dir="rtl" class="n">18 میلیون تومان</bdi>'), 'Latin digits with a Persian unit read right-to-left too');
+  assert.ok(!html.split('class="plan rec"')[1].split('</div></div>')[0].includes(loadStrings('en').plan_foot_quote), 'a Persian price is a price, not "Quoted for you"');
+  assert.ok(hasDigit('۱۸') && hasDigit('٣') && hasDigit('$7') && !hasDigit('Quote') && !hasDigit('توافقی'));
+  assert.equal(textDir('$1,500'), 'ltr'); assert.equal(textDir('۱۸ میلیون تومان'), 'rtl'); assert.equal(textDir('۱۸'), 'ltr');
+});
+
+test('right-to-left and Persian text: no letter-spacing, Persian font declared for headings', () => {
+  const { data, job } = demo();
+  const en = renderProposal({ data, job, pkgDir: DEMO });
+  assert.ok(!en.includes('<link rel="stylesheet"'), 'English loads no web font');
+  assert.match(en, /html\[dir=rtl\] \*,:lang\(fa\)[^{]*\{letter-spacing:0!important\}/);
+  assert.match(en, /classList\.add\('ar'\)/, 'Persian text inside an English proposal is tagged at render time');
+  const f = fontsFor({}, 'fa');
+  assert.match(f.css, /fonts\.googleapis\.com\/css2\?family=Vazirmatn/);
+  assert.equal(fontsFor({ _font_stack: 'Sahel' }, 'fa').css, '', 'a declared local font is not replaced');
+  data.language = 'fa';
+  const fa = renderProposal({ data, job, pkgDir: DEMO });
+  assert.match(fa, /<link rel="stylesheet" href="https:\/\/fonts\.googleapis\.com\/css2\?family=Vazirmatn/);
+  assert.match(fa, /--serif:"L2P Serif","Vazirmatn"/, 'big headings get the Persian font, not a system fallback');
+  assert.match(fa, /--sans:"Vazirmatn"/);
+});
+
+test('render/qa take the business name, its slug or id inside a project', () => {
+  const p = project();
+  quiet(() => queue(p, { _: ['queue'] }));
+  const dir = path.join(p.paths.proposals, 'Test Plumbing 1');
+  for (const name of ['Test Plumbing 1', 'test plumbing 1', 'test-plumbing-1', 'b_000000000001', dir]) assert.equal(findPackage(p, name).toLowerCase(), dir.toLowerCase(), name);   // case: macOS folders
+  assert.throws(() => findPackage(p, 'Nobody'), /No package found for "Nobody".*Packages: Test Plumbing 1/);
+  assert.throws(() => findPackage(null, 'Test Plumbing 1'), /inside your project folder/);
+  // The CLI finds the project from the current folder, as the redesign-proposal skill documents.
+  const r = spawnSync(process.execPath, [path.join(PLUGIN, 'bin', 'l2p.mjs'), 'proposals', 'qa', 'Test Plumbing 1'], { cwd: p.dir, encoding: 'utf8', timeout: 60000 });
+  assert.doesNotMatch(r.stderr + r.stdout, /No package found/);
+  assert.match(r.stdout, /QA FAILED/);                                       // found it: nothing is built in it yet
 });

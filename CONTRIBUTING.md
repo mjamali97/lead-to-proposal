@@ -95,7 +95,9 @@ A signal has two halves: detection (what the crawler sees) and scoring (what it'
 1. Copy `templates/proposal/strings/en.json` to `<lang>.json` (ISO 639-1, e.g. `de.json`)
    and translate the values. Keep `{placeholders}` exactly. Missing keys fall back to English.
 2. Set `_dir` (`ltr` or `rtl`). For non-Latin scripts set `_fonts_css` (a Google Fonts URL)
-   and `_font_stack`.
+   and `_font_stack` (one family or a comma-separated list; it is used for headings, text and
+   labels). Persian and Arabic default to Vazirmatn. Right-to-left documents get no
+   letter-spacing (it breaks joined letters) and prices keep their own reading direction.
 3. Render the demo package in that language (`proposals.language: "<lang>"` in a test
    project) and check both Letter and A4: long words must not overflow. The limits in
    `templates/proposal/limits.json` are checked by the QA step.

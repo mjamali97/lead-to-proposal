@@ -118,6 +118,23 @@ def test_working_columns_survive_reexport(built):
     assert ws2.cell(2, col(ws2, 'Notes')).value == 'Call back Tuesday'
 
 
+def test_working_columns_follow_a_changed_id(built):
+    """A note typed under an id that merged into another business (former_ids) stays with that business."""
+    project, rows, wb = built
+    ws = wb['Call list']
+    old = ws.cell(2, col(ws, 'ID')).value
+    ws.cell(2, col(ws, 'Notes')).value = 'Owner prefers WhatsApp'
+    wb.save(project / 'out' / 'leads.xlsx')
+    doc = json.loads((project / 'data' / 'scored.json').read_text())
+    row = next(r for r in doc['items'] if r['id'] == old)
+    row['id'], row['former_ids'] = 'b_0000000000ab', [old]
+    (project / 'data' / 'scored.json').write_text(json.dumps(doc))
+    assert export(project).returncode == 0
+    ws2 = load_workbook(project / 'out' / 'leads.xlsx')['Call list']
+    r2 = next(i for i in range(2, ws2.max_row + 1) if ws2.cell(i, col(ws2, 'ID')).value == 'b_0000000000ab')
+    assert ws2.cell(r2, col(ws2, 'Notes')).value == 'Owner prefers WhatsApp'
+
+
 def test_missing_sites_and_google(tmp_path):
     def strip(items):
         for r in items:

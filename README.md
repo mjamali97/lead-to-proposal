@@ -90,7 +90,8 @@ Other things to ask:
 
 ```bash
 l2p init plumbers-austin && cd plumbers-austin   # creates project.json and .env
-# edit project.json (or let Claude do it); put APIFY_TOKEN in .env for Google Maps
+# edit project.json (or let Claude do it). Google Maps (paid) is off by default: to use it,
+# set its "enabled": true and put APIFY_TOKEN in .env
 l2p doctor
 l2p collect                    # dry run: prints the cost, spends nothing
 l2p collect --go --limit 20    # small paid pilot

@@ -7,6 +7,10 @@ Copies the demo package, fills every text field in templates/proposal/limits.jso
 (and every list to its maximum and minimum size), renders the proposal on Letter and A4, and fails if
 render.py reports any layout issue (text off the page, into the footer, clipped, spilling out of a box,
 boxes overlapping, images not loading). Run it after changing proposal.mjs or limits.json.
+
+The landing-page screenshots the proposal shows are build outputs (git-ignored). On a fresh clone they are
+missing, so the copy is rendered once in full (render.py makes them from landing-page/index.html, offline)
+before the stress runs.
 """
 import copy, json, pathlib, shutil, subprocess, sys, tempfile
 
@@ -88,8 +92,11 @@ def variant(data, job, kind):
         if path in ('sales.fact.number', 'sales.stats[].number'):
             continue
         set_path(ctx, path.split('.'), n)
+    # Prices at the limit: a right-to-left one in Persian digits (max) and a long Latin one (ev3).
+    long_price = {'max': '۱۲۵٬۵۰۰٬۰۰۰ تومان ماهانه', 'ev3': 'US$12,500.00 one payment'}.get(kind, '$12,500.00')
+    assert len(long_price) <= lim['chars']['offer.plans[].price']
     for p in S['plans'] + j['offer']['plans']:
-        p['price'] = '$12,500.00'
+        p['price'] = long_price
     for i, p in enumerate(S['plans']):
         p['name'], p['tag'], p['price'] = j['offer']['plans'][i]['name'], j['offer']['plans'][i].get('tag', ''), j['offer']['plans'][i]['price']
     S['fact']['number'] = 'US$1,234'
@@ -115,6 +122,16 @@ def main(argv):
     data = json.loads((pkg / 'proposal-data.json').read_text())
     job = json.loads((pkg / 'job.json').read_text())
     failed = 0
+    missing = [p for p in (data.get('landing') or {}).values() if isinstance(p, str) and p.endswith('.png') and not (pkg / p).exists()]
+    if missing:
+        print(f'making {len(missing)} missing screenshot(s) first: {", ".join(pathlib.Path(p).name for p in missing)}')
+        r = subprocess.run([sys.executable, str(HERE / 'render.py'), str(pkg)], capture_output=True, text=True)
+        still = [p for p in missing if not (pkg / p).exists()]
+        if r.returncode or still:
+            print('could not make them (is Playwright with Chromium installed? `l2p doctor`):', (r.stdout + r.stderr)[-600:])
+            shutil.rmtree(base, ignore_errors=True)
+            print('STRESS TEST FAILED (setup)')
+            return 1
     for kind in ('max', 'min', 'ev2', 'ev3'):
         d, j = variant(data, job, kind)
         probs = qa.check_limits(d, j)

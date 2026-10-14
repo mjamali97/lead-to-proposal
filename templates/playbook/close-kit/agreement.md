@@ -44,6 +44,9 @@ the site files and help move it.
 
 ## 8. Showing your site
 {With your permission, we may show the finished site in our portfolio. Tick to agree: ☐}
+{Founding clients only: the founding price is given in exchange for a short testimonial we may
+quote and permission to show the site as a case study. Whether you leave a review on Google or
+anywhere else is entirely up to you and does not affect the price or the service.}
 
 ## 9. Ending early
 Either side may end this agreement in writing. You pay for work done up to that date; the

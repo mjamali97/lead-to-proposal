@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { dedupe, assertNoDuplicates, normalizeListing } from '../../lib/dedupe.mjs';
+import { dedupe, assertNoDuplicates, normalizeListing, naturalId, idsFromBusinesses, idAliases } from '../../lib/dedupe.mjs';
 
 const config = {
   market: { country: 'US' },
@@ -130,4 +130,71 @@ test('assertNoDuplicates lists what is still duplicated', () => {
   const a = { id: 'b_1', name: 'One', phones: ['512-555-0123'], sources: [{ id: 'x:1' }] };
   const b = { id: 'b_2', name: 'Two', phones: ['(512) 555-0123'], sources: [{ id: 'x:2' }] };
   assert.throws(() => assertNoDuplicates([a, b], config), /ph:1:5125550123: One \(b_1\) \| Two \(b_2\)/);
+});
+
+test('Iran: Persian-digit and national numbers are kept and merge with +98 listings', () => {
+  const ir = { ...config, market: { country: 'IR' }, area: {} };
+  const l = normalizeListing(L({ name: 'Yas Salon', phone: '۰۹۱۲۵۵۵۰۱۲۳ یا ۰۲۱-۸۵۵۵۰۱۲۳' }), ir);
+  assert.deepEqual(l.phones.map(p => p.e164), ['+989125550123', '+982185550123']);
+  const { items } = dedupe([L({ name: 'Yas Salon', phones: ['0912 555 0123'] }), L({ name: 'سالن یاس', phones: ['+98 912 555 0123'] })], ir);
+  assert.equal(items.length, 1);
+});
+
+test('stable ids: adding a source never changes an existing business id', () => {
+  const first = [{ source: 'csv', source_id: 'm:northwind', name: 'Northwind Plumbing', phones: ['512-555-0123'] }];
+  const one = dedupe(first, config);
+  const id = one.items[0].id;
+  assert.equal(id, naturalId('m:northwind'));                      // a new business: the 1.0.0 rule
+  assert.equal(one.ids.sources['m:northwind'], id);
+  // A new source whose id sorts first lists the same business. 1.0.0 re-derived the id from it.
+  const more = [...first, { source: 'dir', source_id: 'a:nw-1', name: 'Northwind Plumbing & Drain', phones: ['(512) 555-0123'] }];
+  assert.notEqual(dedupe(more, config).items[0].id, id, 'without the registry the id would change');
+  const two = dedupe(more, config, { ids: one.ids });
+  assert.equal(two.items.length, 1);
+  assert.equal(two.items[0].id, id);
+  assert.equal(two.ids.sources['a:nw-1'], id);
+  assert.deepEqual(two.report.id_changes, []);
+  // Order of listings and re-running on its own output change nothing.
+  assert.equal(dedupe([...more].reverse(), config, { ids: two.ids }).items[0].id, id);
+  assert.equal(dedupe(two.items, config, { ids: two.ids }).items[0].id, id);
+});
+
+test('stable ids: two known businesses merge, the bigger keeps its id, the other becomes an alias', () => {
+  const a = [{ source: 'csv', source_id: 'c:1', name: 'Maple Tax', phones: ['512-555-0131'] }, { source: 'dir', source_id: 'd:1', name: 'Maple Tax Co', phones: ['512-555-0131'] }];
+  const b = [{ source: 'csv', source_id: 'c:0', name: 'Maple Tax Services', website: 'maple-tax.example' }];
+  const before = dedupe([...a, ...b], config);
+  assert.equal(before.items.length, 2);
+  const idA = before.items.find(x => x.sources.length === 2).id, idB = before.items.find(x => x.sources.length === 1).id;
+  // Later a listing shows they are one business (same phone and same website).
+  const link = { source: 'dir', source_id: 'd:2', name: 'Maple Tax', phones: ['512-555-0131'], website: 'https://maple-tax.example/' };
+  const after = dedupe([...a, ...b, link], config, { ids: before.ids });
+  assert.equal(after.items.length, 1);
+  assert.equal(after.items[0].id, idA);
+  assert.deepEqual(after.items[0].former_ids, [idB]);
+  assert.equal(after.ids.aliases[idB], idA);
+  assert.deepEqual(after.report.id_changes, [{ id: idA, name: after.items[0].name, from: [idB] }]);
+  assert.ok(idAliases(after.items[0]).includes(idB));
+  // The same thing when the input is already-merged businesses (the Google pass) with no registry at all.
+  const again = dedupe([...before.items, link], config);
+  assert.equal(again.items[0].id, idA);
+});
+
+test('stable ids: a split keeps the id on one side and mints a fresh one for the other', () => {
+  const ls = [{ source: 'csv', source_id: 'c:1', name: 'Cedar Hair Studio', phones: ['512-555-0141'] }, { source: 'csv', source_id: 'c:2', name: 'Cedar Hair Studio', phones: ['512-555-0141'] }];
+  const before = dedupe(ls, config);
+  assert.equal(before.items.length, 1);
+  const id = before.items[0].id;
+  const split = dedupe([ls[0], { ...ls[1], name: 'Cedar Hair Studio North', phones: ['512-555-0142'] }], config, { ids: before.ids });
+  assert.equal(split.items.length, 2);
+  assert.equal(split.items.find(x => x.sources[0].id === 'c:1').id, id, 'the listing the id came from keeps it');
+  assert.notEqual(split.items[0].id, split.items[1].id);
+});
+
+test('stable ids: data from 1.0.0 (no registry) keeps its ids', () => {
+  const old = dedupe([{ source: 'csv', source_id: 'm:1', name: 'Redwood Dental', phones: ['512-555-0151'] }], config).items;
+  const reg = idsFromBusinesses(old);
+  assert.equal(reg.sources['m:1'], old[0].id);
+  const now = dedupe([{ source: 'csv', source_id: 'm:1', name: 'Redwood Dental', phones: ['512-555-0151'] },
+    { source: 'osm', source_id: 'a:9', name: 'Redwood Dental Clinic', phones: ['+1 512 555 0151'] }], config, { ids: reg });
+  assert.equal(now.items[0].id, old[0].id);
 });

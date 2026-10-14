@@ -10,7 +10,7 @@ words in sales copy; statistics only from facts/ with matching source lines; pri
 in job.json; business name and phone consistent with job.json; no other business's name; landing-page
 basics (one h1, title, description, Open Graph, JSON-LD, viewport, alt text, self-contained).
 """
-import json, math, pathlib, re, sys
+import json, math, pathlib, re, sys, unicodedata
 from html.parser import HTMLParser
 
 HERE = pathlib.Path(__file__).resolve().parent
@@ -28,7 +28,9 @@ JARGON = re.compile(r'\b(H1|H2|alt[ -]?text|alt tags?|schema|structured data|JSO
                     r'core web vitals|above the fold|CTA|UX|UI|responsive|backlinks?|SERP|bounce rate)\b', re.I)
 FORMULA = re.compile(r'\b(clients|customers|patients|people)\s+(love|rate|trust)\s+you\b.*\bwebsite\b.*\b(hides?|should|doesn.t)', re.I)
 PLACEHOLDER = re.compile(r'lorem ipsum|\bTODO\b|\bTBD\b|\[your |\{\{|xxx-xxx|placeholder text', re.I)
-MONEY = re.compile(r'(?:US\$|CA\$|A\$|NZ\$|[$€£¥₹]|CHF\s?|kr\s?)\s?\d[\d,.  ]*|\d[\d,.  ]*\s?(?:€|kr|zł|CHF|Kč|lei)')
+# Prices in any digits: "$750", "1.500 €", "۱۸ میلیون تومان" (\d matches Persian/Arabic digits too).
+MONEY = re.compile(r'(?:US\$|CA\$|A\$|NZ\$|[$€£¥₹]|CHF\s?|kr\s?)\s?\d[\d,.  ٫٬]*'
+                   r'|\d[\d,.  ٫٬]*\s?(?:(?:هزار|میلیون|میلیارد)\s?)?(?:€|kr|zł|CHF|Kč|lei|تومان|تومن|ریال)')
 PERCENT = re.compile(r'\d+(?:[.,]\d+)?\s?%')
 SKIP_REASONS = {'permanently closed', 'not a local business', 'wrong listing'}
 
@@ -45,8 +47,13 @@ def safe_name(s):
     return re.sub(r'\s+', ' ', s).strip()[:80] or 'Business'
 
 
+def ascii_digits(s):
+    """۰۹۱۲ / ٠٩١٢ (Persian, Arabic-Indic or any other Unicode digits) -> 0912; everything else unchanged."""
+    return ''.join(str(unicodedata.decimal(ch)) if ch.isdecimal() and not '0' <= ch <= '9' else ch for ch in str(s or ''))
+
+
 def digits(s):
-    return re.sub(r'\D', '', str(s or ''))
+    return re.sub(r'[^0-9]', '', ascii_digits(s))
 
 
 def pdf_pages(path):
@@ -409,7 +416,7 @@ def check(d):
         for i, (a, b) in enumerate(zip(S['plans'], oplans)):
             need(a.get('name') == b.get('name') and str(a.get('price')) == str(b.get('price')),
                  f'sales.plans[{i}] is {a.get("name")} {a.get("price")}, the offer says {b.get("name")} {b.get("price")}')
-    norm = lambda s: re.sub(r'[\s  ]', '', s).rstrip('.,')
+    norm = lambda s: re.sub(r'[\s  ‌‎‏]', '', ascii_digits(s)).rstrip('.,٫٬')
     allowed = {norm(m) for p in oplans for m in MONEY.findall(str(p.get('price', '')))}
     allowed |= {norm(m) for m in MONEY.findall(str(offer.get('care_plan', '')))}
     allowed |= {norm(f.get('number', '')) for _, f in facts if f}

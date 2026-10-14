@@ -35,7 +35,7 @@
     "sales.seo_big[]": 34,
     "sales.seo_big[].text": 34,
     "sales.plans[].name": 16,
-    "sales.plans[].price": 10,
+    "sales.plans[].price": 24,
     "sales.plans[].tag": 22,
     "sales.plans[].items[]": 40,
     "agency.name": 32,
@@ -45,7 +45,7 @@
     "agency.website": 32,
     "offer.care_plan": 90,
     "offer.plans[].name": 16,
-    "offer.plans[].price": 10,
+    "offer.plans[].price": 24,
     "offer.plans[].tag": 22,
     "offer.plans[].items[]": 40
   },

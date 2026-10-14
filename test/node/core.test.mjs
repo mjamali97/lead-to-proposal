@@ -6,7 +6,7 @@ import path from 'node:path';
 import http from 'node:http';
 import { spawnSync } from 'node:child_process';
 import { parseCSV, toCSV, parseArgs, slugify, safeName, writeJSON, readJSON, pool } from '../../lib/io.mjs';
-import { deepMerge, initProject, loadProject, validate } from '../../lib/project.mjs';
+import { deepMerge, initProject, loadProject, validate, checkProject } from '../../lib/project.mjs';
 import { parseRobots, robotsAllows, configureHttp, get, jsonLd, stripTags, attr, sitemapLocs } from '../../lib/http.mjs';
 
 const tmp = () => fs.mkdtempSync(path.join(os.tmpdir(), 'l2p-core-'));
@@ -123,4 +123,36 @@ test('CLI: help, init, unknown command', () => {
   const u = spawnSync(process.execPath, [CLI, 'nope', '--project', dir], { encoding: 'utf8' });
   assert.equal(u.status, 2);
   assert.match(u.stderr, /Unknown command/);
+});
+
+test('doctor: a broken project.json is reported, not "none here yet"', () => {
+  const dir = path.join(tmp(), 'broken');
+  initProject(dir);
+  assert.ok(checkProject(dir).project, 'a fresh project is valid');
+  assert.equal(checkProject(path.join(tmp(), 'empty')).found, false);
+  fs.writeFileSync(path.join(dir, 'project.json'), '{ "market": { "country": "US", ');
+  const bad = checkProject(dir);
+  assert.ok(bad.found && !bad.project);
+  assert.match(bad.error, /not valid JSON/);
+  fs.writeFileSync(path.join(dir, 'project.json'), JSON.stringify({ market: { country: 'USA' } }));
+  assert.match(checkProject(dir).error, /2-letter country code/);
+  const d = spawnSync(process.execPath, [CLI, 'doctor'], { cwd: dir, encoding: 'utf8' });
+  assert.equal(d.status, 1);
+  assert.match(d.stdout, /FIX +project\.json/);
+  assert.match(d.stdout, /2-letter country code/);
+  assert.doesNotMatch(d.stdout, /none here yet/);
+});
+
+test('init: the paid source is off, so a fresh project needs no Apify token', () => {
+  const dir = path.join(tmp(), 'fresh');
+  initProject(dir);
+  const p = loadProject(dir);
+  const gm = p.config.sources.find(s => s.type === 'google_maps');
+  assert.equal(gm.enabled, false);
+  assert.match(readJSON(path.join(dir, 'project.json')).sources.find(s => s.type === 'google_maps')._help, /enabled to true.*APIFY_TOKEN/);
+  assert.ok(p.config.sources.some(s => s.enabled !== false), 'a free source is on, so `l2p collect` has something to run');
+  assert.ok(!p.config.google_lookup.enabled);
+  const d = spawnSync(process.execPath, [CLI, 'doctor', '--project', dir], { encoding: 'utf8' });
+  assert.match(d.stdout, /ok +APIFY_TOKEN +not needed/);
+  assert.doesNotMatch(d.stdout, /FIX +(APIFY_TOKEN|project\.json)/);
 });

@@ -7,7 +7,7 @@
       "name": "lead-to-proposal",
       "source": "./",
       "description": "Leads → audit → score → workbook → redesign + proposal PDF → sales playbook.",
-      "version": "1.0.0"
+      "version": "1.1.0"
     }
   ]
 }

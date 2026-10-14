@@ -1,5 +1,5 @@
 {
-  "_help": "UI strings of the proposal template. Add a language by copying this file to <lang>.json (e.g. de.json) and translating the values; missing keys fall back to English. _dir is ltr or rtl. _fonts_css is an optional extra stylesheet URL (e.g. Google Fonts for Arabic script) and _font_stack an optional font family put first. {name} placeholders are filled in by the template.",
+  "_help": "UI strings of the proposal template. Add a language by copying this file to <lang>.json (e.g. de.json) and translating the values; missing keys fall back to English. _dir is ltr or rtl. _fonts_css is an optional extra stylesheet URL (e.g. Google Fonts for Arabic script) and _font_stack an optional font family (or comma-separated families) used for headings, text and labels; Persian (fa) and Arabic (ar) default to Vazirmatn from Google Fonts when neither is set. {name} placeholders are filled in by the template.",
   "_dir": "ltr",
   "_fonts_css": "",
   "_font_stack": "",

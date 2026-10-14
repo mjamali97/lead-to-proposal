@@ -157,3 +157,25 @@ test('google: dry run by default; --go matches, attaches and merges pass 2 by pl
     assert.equal(re.length, 3); assert.equal(re.find(b => b.names.includes('Northwind Plumbing')).google.place_id, 'PN');
   } finally { s.close(); delete process.env.APIFY_BASE_URL; }
 });
+
+test('merge keeps business ids when a source is added, also for projects made before data/ids.json', async () => {
+  const project = makeProject();
+  await quiet(() => collect.run(project, {}));
+  await quiet(() => merge.run(project, {}));
+  const before = readJSON(project.paths.businesses).items;
+  const nw = before.find(b => b.names.includes('Northwind Plumbing'));
+  fs.unlinkSync(project.paths.ids);                                  // a 1.0.0 project: no registry yet
+  // A new source lists Northwind; its source id sorts before the CSV ones.
+  writeJSON(path.join(project.paths.raw, 'aaa-directory.json'), { source: 'aaa-directory', items: [
+    { source: 'aaa-directory', source_id: 'aaa-directory:0001', source_url: 'https://directory.example/listing/1', name: 'Northwind Plumbing', phones: ['+1 512 555 0123'], city: 'Austin' },
+  ] });
+  const lines = [];
+  const l = console.log; console.log = (...a) => lines.push(a.join(' '));
+  try { await merge.run(project, {}); } finally { console.log = l; }
+  assert.ok(lines.some(x => /data\/ids\.json created/.test(x)), lines.join('\n'));
+  const after = readJSON(project.paths.businesses).items;
+  assert.deepEqual(after.map(b => b.id).sort(), before.map(b => b.id).sort(), 'every id kept');
+  const nw2 = after.find(b => b.id === nw.id);
+  assert.equal(nw2.sources.length, 3);
+  assert.equal(readJSON(project.paths.ids).sources['aaa-directory:0001'], nw.id);
+});

@@ -28,7 +28,7 @@ Short project name (`"plumbers-austin"`). Used in logs and file names.
 
 | Key | Example | Notes |
 |---|---|---|
-| `country` | `"US"` | ISO 3166 two-letter code (required). Drives phone parsing and defaults |
+| `country` | `"US"` | ISO 3166 two-letter code (required). Drives phone parsing and defaults: numbers written the national way (`0912 555 0123` with `"IR"`, `(512) 555-0123` with `"US"`) are read as that country's. Persian, Arabic and other non-Latin digits are understood everywhere |
 | `currency` | `"USD"` | ISO 4217 code (required) |
 | `currency_symbol` | `"$"` | Shown in prices |
 | `language` | `"en"` | Default language of proposals |
@@ -52,7 +52,7 @@ A listing is kept if it matches **any one** of these. Set at least one.
 | Key | Notes |
 |---|---|
 | `summary` | One sentence |
-| `plans[]` | Usually three. Each: `name`, `price` (a string with currency, e.g. `"$900"` or `"Quote"`), `tag` (short label), `rec` (true for the recommended plan), `items` (bullet list) |
+| `plans[]` | Usually three. Each: `name`, `price` (a string with currency, e.g. `"$900"`, `"۱۸ میلیون تومان"` or `"Quote"`; up to 24 characters, digits in any script; it is shrunk to fit its box and shown in its own reading direction), `tag` (short label), `rec` (true for the recommended plan), `items` (bullet list) |
 | `care_plan` | Monthly plan, one line (`""` for none) |
 | `delivery_days` | Days from materials received to site ready |
 
@@ -64,6 +64,11 @@ Each source has `type` (`google_maps`, `osm`, `directory`, `csv`) and `enabled`.
 Full detail and examples: `skills/find-leads/references/sources.md`.
 
 ### `google_maps` (paid)
+
+Off in a new project (`l2p init`), so nothing paid runs and `l2p doctor` asks for no token. To use
+it: set `"enabled": true`, put `APIFY_TOKEN=...` in `.env`, run `l2p doctor`, then `l2p collect`
+(a dry run that prints the cost) and `l2p collect --go`. OpenStreetMap is the source a new
+project starts with.
 
 | Key | Notes |
 |---|---|
@@ -94,7 +99,7 @@ Only use directories you are allowed to crawl. robots.txt is respected.
 | Key | Notes |
 |---|---|
 | `file` | Path relative to the project folder |
-| `map` | Optional. `{ plugin field: "Your Column Header" }` for `name`, `phone`, `website`, `address`, `city`, `category`, `email`, … Without it, common headers are detected (several languages) |
+| `map` | Optional. `{ plugin field: "Your Column Header" }` for `name`, `phone`, `website`, `address`, `city`, `category`, `email`, … Without it, common headers are detected (English, German, French, Italian, Spanish, Dutch, Persian, Arabic) |
 
 ## `google_lookup` (paid, optional)
 

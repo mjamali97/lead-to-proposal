@@ -23,6 +23,12 @@ Set your regime in `project.json → compliance.regime` and your identity in
   enquiries. Don't use personal social profiles or private numbers.
 - **Data minimisation.** Keep only what you need to contact the business. Delete the rest.
 - **Respect "no unsolicited email" statements** (`honor_no_cem_statement: true`).
+- **No paid-for reviews.** Never give a discount, a gift or a better price in exchange for a
+  Google (or any public) review: Google's review policy forbids incentivised reviews, and
+  consumer-protection law in many countries restricts them (for example the US FTC Rule on
+  the Use of Consumer Reviews and Testimonials, 2024). Ask for an honest review after
+  delivery with nothing attached. A testimonial and case-study permission can be part of a
+  founding-price deal. Not legal advice.
 
 ## United States: CAN-SPAM (+ TCPA for calls and texts)
 

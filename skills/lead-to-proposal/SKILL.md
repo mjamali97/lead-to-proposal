@@ -60,8 +60,9 @@ l2p init <folder>            # writes project.json, .env, .gitignore, data/, out
 
 Then edit `<folder>/project.json` with the interview answers (keep `_help` notes or drop
 them, both work). Show the user a short summary of what you set, not the whole file.
-If a paid source is on, ask them to paste their Apify token into `<folder>/.env`
-(`APIFY_TOKEN=...`). Never print the token back.
+A new project has Google Maps (paid) switched off and OpenStreetMap (free) on. If the user
+chose Google Maps, set its `"enabled": true` and ask them to paste their Apify token into
+`<folder>/.env` (`APIFY_TOKEN=...`). Never print the token back.
 
 ```bash
 l2p doctor --project <folder>

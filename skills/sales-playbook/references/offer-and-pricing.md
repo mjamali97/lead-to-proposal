@@ -25,9 +25,16 @@ tight, offer the entry plan, or a split payment.
 ## Founding-client deal (first 3 clients only)
 
 Zero clients means zero proof. Offer the recommended plan at the entry price **in exchange
-for** a public review, a two-line testimonial and permission to show their page. It's a
-trade with a reason, not a discount, and it buys the proof that makes clients 4–20 easier.
-Say exactly how many founding slots exist, and end it when they're gone.
+for** a two-line testimonial you may quote and permission to show their page as a case study
+in your portfolio (before/after, with their name). It's a trade with a reason, not a
+discount, and it buys the proof that makes clients 4–20 easier. Say exactly how many
+founding slots exist, and end it when they're gone.
+
+**Never trade the price, a discount or a gift for a Google review** (or any public review).
+Google's review policy forbids incentivised reviews, and consumer-protection rules in many
+countries treat them as fake reviews. After delivery you may *ask* every client for an
+honest review, with nothing attached: same price, same service, whether they write one or
+not, and whatever they write.
 
 ## Care plan (recurring)
 

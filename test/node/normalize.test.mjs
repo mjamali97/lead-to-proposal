@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  parsePhone, splitPhones, samePhone, fmtPhone, isTollFree, asciiDigits, fixUrl, hostname, regDomain, classifyUrl, canonSocial,
+  parsePhone, splitPhones, samePhone, fmtPhone, isTollFree, asciiDigits, normDigits, fixUrl, hostname, regDomain, classifyUrl, canonSocial,
   normName, nameSim, bestNameSim, hasScript, haversineKm, inArea, categoryGroup, ticketFor,
 } from '../../lib/normalize.mjs';
 
@@ -176,4 +176,23 @@ test('categories: config groups, word starts, tickets', () => {
   assert.equal(categoryGroup([], g), 'other');
   assert.equal(ticketFor('trades', config), 'premium');
   assert.equal(ticketFor('other', config), 'low');
+});
+
+test('phones: Iran - mobile and landline, Persian/Arabic digits, separators', () => {
+  for (const raw of ['0912 555 0123', '09125550123', '۰۹۱۲۵۵۵۰۱۲۳', '٠٩١٢٥٥٥٠١٢٣', '۰۹۱۲ ۵۵۵ ۰۱۲۳', '۰۹۱۲‐۵۵۵‐۰۱۲۳', '‏۰۹۱۲۵۵۵۰۱۲۳‏',
+    '+98 912 555 0123', '+۹۸ ۹۱۲ ۵۵۵ ۰۱۲۳', '0098 9125550123', '9125550123', 'tel:+989125550123'])
+    assert.equal(e164(raw, 'IR'), '+989125550123', raw);
+  assert.equal(parsePhone('0912 555 0123', { country: 'IR' }).type, 'mobile');
+  assert.equal(e164('021 8555 0123', 'IR'), '+982185550123');                      // Tehran landline: 2-digit area code + 8 digits
+  assert.equal(e164('۰۲۱-۸۵۵۵۰۱۲۳', 'IR'), '+982185550123');
+  assert.equal(parsePhone('021 8555 0123', { country: 'IR' }).type, 'fixed');
+  assert.equal(e164('031 3555 0123', 'IR'), '+983135550123');
+  assert.equal(parsePhone('0912555012', { country: 'IR' }).valid, false);         // one digit short
+  assert.equal(parsePhone('091255501234', { country: 'IR' }).valid, false);       // one digit long
+  assert.equal(fmtPhone(parsePhone('+989125550123')), '0912 555 0123');
+  assert.equal(fmtPhone(parsePhone('+982185550123')), '021 8555 0123');
+  assert.deepEqual(splitPhones('۰۹۱۲۵۵۵۰۱۲۳ یا ۰۲۱۸۵۵۵۰۱۲۳'), ['09125550123', '02185550123']);
+  assert.deepEqual(splitPhones('۰۹۱۲۵۵۵۰۱۲۳، ۰۲۱-۸۵۵۵۰۱۲۳؛ ۰۹۳۵۵۵۵۰۱۲۴'), ['09125550123', '021-85550123', '09355550124']);
+  assert.equal(samePhone('۰۹۱۲ ۵۵۵ ۰۱۲۳', '+98 912 555 0123', { country: 'IR' }), 'same');
+  assert.equal(normDigits('۰۹۱۲‌‐٥٥٥ ۰۱۲۳'), '0912-555 0123');
 });
