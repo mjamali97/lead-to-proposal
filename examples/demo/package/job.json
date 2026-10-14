@@ -1,6 +1,6 @@
 {
-  "_note": "Fictional demo package. Northwind Plumbing, its people, phone (555 number), domain (.example) and reviews are invented. Real job.json files are written by `l2p proposals queue`.",
-  "id": "b_0d3f5a9c2e71",
+  "_note": "Fictional demo package. Northwind Plumbing, its people, phone (555 number), domain (.example) and reviews are invented. Real job.json files are written by `l2p proposals queue`. id = the id `l2p demo` gives Northwind (hash of its first source id, demo-list:northwind, from the ID column of leads.csv), so `l2p queue` in the demo folder finds this package.",
+  "id": "b_59a04ccfa205",
   "slug": "northwind-plumbing",
   "folder": "Northwind Plumbing",
   "created": "2026-10-12",
@@ -9,7 +9,7 @@
   "language": "en",
   "secondary_language": "",
   "business": {
-    "id": "b_0d3f5a9c2e71",
+    "id": "b_59a04ccfa205",
     "name": "Northwind Plumbing",
     "names": [
       "Northwind Plumbing"
@@ -58,9 +58,14 @@
     "hours": "Mo-Sa 07:00-19:00",
     "sources": [
       {
-        "source": "demo",
-        "url": "https://www.openstreetmap.org/",
-        "id": "demo:northwind"
+        "source": "demo-list",
+        "url": "",
+        "id": "demo-list:northwind"
+      },
+      {
+        "source": "demo-list",
+        "url": "",
+        "id": "demo-list:northwind-drain"
       }
     ],
     "google": {

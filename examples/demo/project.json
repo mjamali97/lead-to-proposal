@@ -48,7 +48,8 @@
         "address": "Address",
         "city": "City",
         "category": "Category",
-        "email": "Email"
+        "email": "Email",
+        "id": "ID"
       }
     }
   ],
