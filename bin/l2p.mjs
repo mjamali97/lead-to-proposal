@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { parseArgs, UserError } from '../lib/io.mjs';
-import { loadProject, initProject, PLUGIN, logRun } from '../lib/project.mjs';
+import { loadProject, initProject, checkProject, findProjectDir, PLUGIN, logRun } from '../lib/project.mjs';
 import { python, runPython } from '../lib/python.mjs';
 
 const HELP = `lead-to-proposal (l2p)
@@ -61,13 +61,15 @@ function doctor(args) {
     const r = spawnSync(py, ['-c', 'from playwright.sync_api import sync_playwright\nwith sync_playwright() as p:\n  b=p.chromium.launch(); b.close()'], { encoding: 'utf8' });
     ok('Chromium for Playwright', r.status === 0, r.status === 0 ? '' : `${py} -m playwright install chromium`);
   }
-  let project = null;
-  try { project = loadProject(args.project); } catch { /* optional */ }
-  if (project) {
+  const pc = checkProject(args.project && args.project !== true ? args.project : undefined);
+  if (pc.project) {
+    const project = pc.project;
     const paid = project.config.sources.some(s => s.type === 'google_maps' && s.enabled !== false) || project.config.google_lookup?.enabled;
-    ok('project.json', true, project.dir);
+    ok('project.json', true, `${project.dir} (valid)`);
     ok('APIFY_TOKEN', !paid || !!project.env.APIFY_TOKEN, paid ? (project.env.APIFY_TOKEN ? 'set' : 'needed for Google Maps: put it in .env') : 'not needed (no paid source enabled)');
-  } else ok('project.json', true, 'none here yet (run `l2p init <folder>`)');
+  } else if (pc.error) ok('project.json', false, `${path.join(pc.dir, 'project.json')}\n       ${pc.error.replace(/\n\s*/g, '\n       ')}`);
+  else if (args.project) ok('project.json', false, `no project.json in ${pc.dir} (run \`l2p init <folder>\`)`);
+  else ok('project.json', true, 'none here yet (run `l2p init <folder>`)');
   console.log(rows.join('\n'));
   if (rows.some(r => r.startsWith('FIX'))) process.exitCode = 1;
 }
