@@ -87,10 +87,12 @@ Step by step:
 - `file` is relative to the project folder. UTF-8, header row first. Excel "CSV UTF-8"
   works; the delimiter (comma, semicolon, tab) is detected.
 - `map` is optional. Without it, common headers are detected in English, German, French,
-  Italian, Spanish and Dutch. With it, keys are plugin field names and values are the
-  user's column headers, exactly. Fields: `name`, `phone`, `website`, `email`, `address`,
-  `city`, `region`, `postcode`, `country`, `category`, `lat`, `lng`, `instagram`,
-  `facebook`, `linkedin`, `tiktok`, `notes`, `id`.
+  Italian, Spanish, Dutch, Persian and Arabic (`نام`, `تلفن`, `وب‌سایت`, `آدرس`, `شهر`,
+  `اینستاگرام`, … with or without the half-space). With it, keys are plugin field names and
+  values are the user's column headers, exactly. Fields: `name`, `phone`, `website`, `email`,
+  `address`, `city`, `region`, `postcode`, `country`, `category`, `lat`, `lng`, `instagram`,
+  `facebook`, `linkedin`, `tiktok`, `youtube`, `x`, `whatsapp`, `telegram`, `notes`, `id`.
+  Phones may use Persian or Arabic digits.
 - Unmapped columns are ignored. Rows without a name are skipped.
 - Only import lists the user has the right to use (their own contacts, a purchased list
   with a licence, a public registry export). Note the origin in the source `name`.

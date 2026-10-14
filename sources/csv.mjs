@@ -3,23 +3,34 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { hash, UserError } from '../lib/io.mjs';
 
+// Header aliases per field, in several languages (Persian and Arabic included). Matching ignores case,
+// accents, punctuation and spacing (so "وب‌سایت", "وب سایت", "وبسایت" and "Web-Site" all match).
 const ALIASES = {
-  name: ['name', 'business name', 'business', 'company', 'company name', 'organisation', 'organization', 'title', 'firma', 'nom', 'ragione sociale', 'bedrijfsnaam'],
-  phone: ['phone', 'phone number', 'telephone', 'tel', 'telefon', 'telefono', 'téléphone', 'telefoon', 'mobile', 'cell', 'main phone'],
-  website: ['website', 'web', 'url', 'site', 'homepage', 'web site', 'webseite', 'sito', 'site web'],
-  email: ['email', 'e mail', 'email address', 'mail'],
-  address: ['address', 'street', 'street address', 'address 1', 'address line 1', 'adresse', 'indirizzo', 'adres', 'full address'],
-  city: ['city', 'town', 'locality', 'stadt', 'ort', 'citta', 'città', 'ville', 'plaats'],
-  region: ['state', 'province', 'region', 'county', 'bundesland', 'provincia'],
-  postcode: ['zip', 'zip code', 'postal code', 'postcode', 'post code', 'plz', 'cap', 'code postal'],
-  country: ['country', 'country code', 'land', 'paese', 'pays'],
-  category: ['category', 'categories', 'type', 'industry', 'niche', 'kategorie', 'categoria', 'catégorie'],
-  lat: ['lat', 'latitude'], lng: ['lng', 'lon', 'long', 'longitude'],
-  instagram: ['instagram'], facebook: ['facebook'], linkedin: ['linkedin'], tiktok: ['tiktok'],
-  notes: ['notes', 'note', 'comments'],
-  id: ['id', 'record id', 'lead id'],
+  name: ['name', 'business name', 'business', 'company', 'company name', 'organisation', 'organization', 'title', 'firma', 'nom', 'ragione sociale', 'bedrijfsnaam',
+    'نام', 'اسم', 'نام کسب و کار', 'کسب و کار', 'نام شرکت', 'شرکت', 'نام فروشگاه', 'نام مجموعه', 'عنوان', 'الاسم', 'اسم الشركة', 'الشركة'],
+  phone: ['phone', 'phone number', 'telephone', 'tel', 'telefon', 'telefono', 'téléphone', 'telefoon', 'mobile', 'cell', 'main phone',
+    'تلفن', 'شماره تلفن', 'شماره تماس', 'تلفن تماس', 'تماس', 'موبایل', 'شماره موبایل', 'همراه', 'تلفن همراه', 'شماره همراه', 'هاتف', 'الهاتف', 'رقم الهاتف', 'جوال'],
+  website: ['website', 'web', 'url', 'site', 'homepage', 'web site', 'webseite', 'sito', 'site web',
+    'وب سایت', 'سایت', 'آدرس سایت', 'آدرس وب سایت', 'لینک سایت', 'الموقع', 'الموقع الإلكتروني'],
+  email: ['email', 'e mail', 'email address', 'mail', 'ایمیل', 'آدرس ایمیل', 'پست الکترونیک', 'رایانامه', 'البريد الإلكتروني'],
+  address: ['address', 'street', 'street address', 'address 1', 'address line 1', 'adresse', 'indirizzo', 'adres', 'full address', 'آدرس', 'نشانی', 'العنوان'],
+  city: ['city', 'town', 'locality', 'stadt', 'ort', 'citta', 'città', 'ville', 'plaats', 'شهر', 'المدينة'],
+  region: ['state', 'province', 'region', 'county', 'bundesland', 'provincia', 'استان', 'منطقه', 'المنطقة'],
+  postcode: ['zip', 'zip code', 'postal code', 'postcode', 'post code', 'plz', 'cap', 'code postal', 'کد پستی', 'الرمز البريدي'],
+  country: ['country', 'country code', 'land', 'paese', 'pays', 'کشور', 'الدولة'],
+  category: ['category', 'categories', 'type', 'industry', 'niche', 'kategorie', 'categoria', 'catégorie',
+    'دسته', 'دسته بندی', 'نوع', 'نوع کسب و کار', 'صنف', 'حوزه', 'زمینه فعالیت', 'حوزه فعالیت', 'الفئة', 'التصنيف'],
+  lat: ['lat', 'latitude', 'عرض جغرافیایی'], lng: ['lng', 'lon', 'long', 'longitude', 'طول جغرافیایی'],
+  instagram: ['instagram', 'اینستاگرام', 'اینستا', 'إنستغرام'], facebook: ['facebook', 'فیسبوک', 'فيسبوك'], linkedin: ['linkedin', 'لینکدین'],
+  tiktok: ['tiktok', 'تیک تاک'], youtube: ['youtube', 'یوتیوب'], x: ['twitter'],
+  whatsapp: ['whatsapp', 'واتساپ', 'واتس آپ', 'واتساب'], telegram: ['telegram', 'تلگرام'],
+  notes: ['notes', 'note', 'comments', 'توضیحات', 'یادداشت', 'ملاحظات'],
+  id: ['id', 'record id', 'lead id', 'شناسه'],
 };
-const normHead = h => String(h).toLowerCase().normalize('NFD').replace(/\p{M}/gu, '').replace(/[^a-z0-9]+/g, ' ').trim();
+// Persian and Arabic spellings of the same letter (ي/ی, ك/ک, ة/ه, أ/إ/آ → ا) and the zero-width non-joiner count as one.
+const normHead = h => String(h).toLowerCase().normalize('NFD').replace(/\p{M}/gu, '')
+  .replace(/[يى]/g, 'ی').replace(/ك/g, 'ک').replace(/ة/g, 'ه').replace(/[أإآ]/g, 'ا')
+  .replace(/[^\p{L}\p{N}]+/gu, '');                      // "کسب و کار" = "کسب‌وکار" = "کسبوکار", "web site" = "website"
 
 export function detectMap(headers) {
   const norm = new Map(headers.map(h => [normHead(h), h]));

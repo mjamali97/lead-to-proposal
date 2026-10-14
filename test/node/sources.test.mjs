@@ -109,6 +109,23 @@ test('csv: column map, auto-detected headers, semicolons, --limit', async () => 
   await assert.rejects(csv.collect(project, { file: 'missing.csv' }, {}), /not found/);
 });
 
+test('csv: Persian and Arabic headers are detected (نام، تلفن، وب‌سایت، آدرس، شهر، اینستاگرام…)', async () => {
+  const map = csv.detectMap(['نام کسب‌وکار', 'تلفن', 'وب‌سایت', 'آدرس', 'شهر', 'اینستاگرام', 'دسته‌بندی', 'ایمیل']);
+  assert.deepEqual(map, { name: 'نام کسب‌وکار', phone: 'تلفن', website: 'وب‌سایت', email: 'ایمیل', address: 'آدرس', city: 'شهر', category: 'دسته‌بندی', instagram: 'اینستاگرام' });
+  // Spelling variants: no ZWNJ, a space, Arabic ي/ك, other common names.
+  assert.deepEqual(csv.detectMap(['نام', 'شماره تماس', 'وبسایت', 'نشانی', 'استان', 'كد پستي', 'تلگرام']),
+    { name: 'نام', phone: 'شماره تماس', website: 'وبسایت', address: 'نشانی', region: 'استان', postcode: 'كد پستي', telegram: 'تلگرام' });
+  assert.deepEqual(csv.detectMap(['الاسم', 'الهاتف', 'الموقع', 'العنوان', 'المدينة']), { name: 'الاسم', phone: 'الهاتف', website: 'الموقع', address: 'العنوان', city: 'المدينة' });
+  assert.equal(csv.detectMap(['Business Name', 'Web-Site']).website, 'Web-Site');
+  const r = await csv.collect({ dir: FIX, config: {} }, { file: 'leads-fa.csv' }, {});
+  assert.equal(r.items.length, 2);
+  assert.equal(r.items[0].name, 'سالن زیبایی یاس');
+  assert.deepEqual(r.items[0].phones, ['۰۹۱۲ ۵۵۵ ۰۱۲۳']);
+  assert.equal(r.items[0].website, 'yas-salon.example');
+  assert.equal(r.items[0].city, 'تهران');
+  assert.equal(r.items[0].socials.instagram, 'https://instagram.com/yas.salon.example');
+});
+
 test('osm: query shape and element mapping', async () => {
   const q = osm.buildQuery([['craft', 'plumber'], 'shop=bakery', ['office', '*']], { bbox: [30, -98.1, 30.7, -97.4] });
   assert.match(q, /^\[out:json\]\[timeout:180\];/);

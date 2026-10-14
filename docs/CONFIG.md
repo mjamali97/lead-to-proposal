@@ -99,7 +99,7 @@ Only use directories you are allowed to crawl. robots.txt is respected.
 | Key | Notes |
 |---|---|
 | `file` | Path relative to the project folder |
-| `map` | Optional. `{ plugin field: "Your Column Header" }` for `name`, `phone`, `website`, `address`, `city`, `category`, `email`, … Without it, common headers are detected (several languages) |
+| `map` | Optional. `{ plugin field: "Your Column Header" }` for `name`, `phone`, `website`, `address`, `city`, `category`, `email`, … Without it, common headers are detected (English, German, French, Italian, Spanish, Dutch, Persian, Arabic) |
 
 ## `google_lookup` (paid, optional)
 
