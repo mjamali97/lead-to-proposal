@@ -30,8 +30,9 @@ subdomain and broken sites first; then niches in season; then the rest.
 ## This month
 
 **Founding deal for the first three clients.** Recommended plan at the entry price in
-exchange for a review, a testimonial and permission to show the page
-(`offer-and-pricing.md`).
+exchange for a testimonial and permission to show the page as a portfolio case study
+(`offer-and-pricing.md`). Ask for a Google review after delivery, with no conditions
+attached: never as part of the deal.
 
 **A monthly care plan.** Hosting, small edits, Google profile updates. Recurring income.
 

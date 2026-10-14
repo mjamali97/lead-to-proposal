@@ -250,7 +250,7 @@ function outcome(project, type, id, args, rows, state, day) {
   const msg = {
     replied: 'Sequence stopped. Answer within the hour if you can, and aim for a booked time.',
     booked: `Demo booked for ${ev.at}. Send a calendar invite and a one-line confirmation now.`,
-    won: 'Won. Ask for a review and two referrals at handover.',
+    won: 'Won. At handover ask for an honest review (nothing in return) and two referrals.',
     lost: `Marked lost: ${ev.reason}. Add the reason to your weekly review.`,
   }[type];
   log(`${row.name}: ${msg}`);

@@ -43,7 +43,7 @@ clinics are easiest at lunch or end of day.
 ## Week 2: volume and the first build
 
 - 100 dials. Demos in the evening block.
-- Build client #1. At handover ask for a review and two referrals.
+- Build client #1. At handover ask for an honest review (no conditions, no reward) and two referrals.
 - First case-study post (before/after, with permission) where your prospects gather.
 - **Target:** 6 demos, 2 clients in total.
 
